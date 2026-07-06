@@ -239,6 +239,7 @@ function soru3() {
 
 function sonuc() {
   ekranGizle();
+  kaydet({ veri: { durum: "test_tamamlandi" } });
   document.getElementById("result").classList.remove("hidden");
 }
 async function kaydet(veri) {
