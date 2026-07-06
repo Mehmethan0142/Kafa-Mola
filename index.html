@@ -813,12 +813,8 @@ headers:{
 },
 body:JSON.stringify({
 email,
-password,
-options:{
-emailRedirectTo:"https://kafa-mola.vercel.app/"
-}
+password
 })
-});
 
 const d=await r.json();
 
