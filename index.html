@@ -1,258 +1,830 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kafa Mola</title>
-  <script>
-  const SUPABASE_KEY = 'sb_publishable_FbABn8glu-CdoNWfofbBfA_gSv9wPv6';
- const SUPABASE_URL = ' https://isthfqyddzikcuudiuvp.supabase.co';
-</script>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #07101f;
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kafa Mola</title>
 
-    .app {
-      max-width: 430px;
-      margin: auto;
-      padding: 30px 20px;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 60px;
-    }
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 80% 10%,#28195c 0%,transparent 30%),
+    linear-gradient(180deg,#090d20,#060a15);
+  color:white;
+  min-height:100vh;
+}
 
-    .logo span {
-      color: #55df83;
-    }
+.app{
+  max-width:480px;
+  margin:auto;
+  padding:28px 18px 110px;
+}
 
-    h1 {
-      font-size: 34px;
-      line-height: 1.2;
-    }
+.hidden{
+  display:none !important;
+}
 
-    p {
-      color: #9eabc0;
-      line-height: 1.5;
-    }
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:28px;
+}
 
-    .card {
-      margin-top: 30px;
-      padding: 25px;
-      border-radius: 24px;
-      background: #121d31;
-      border: 1px solid #263652;
-    }
+.menu{
+  font-size:25px;
+}
 
-    .brain {
-      font-size: 70px;
-      text-align: center;
-    }
+.logo{
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:1px;
+}
 
-    button {
-      width: 100%;
-      padding: 17px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 16px;
-      background: #55df83;
-      color: #07101f;
-      font-size: 17px;
-      font-weight: bold;
-    }
+.logo span{
+  color:#8c5cff;
+}
 
-    .hidden {
-      display: none;
-    }
+.avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#8c5cff,#36d6c5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .option {
-      background: #17243a;
-      border: 1px solid #30415e;
-      padding: 17px;
-      margin: 12px 0;
-      border-radius: 15px;
-      text-align: center;
-    }
-  </style>
+.hero{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.heroEmoji{
+  font-size:62px;
+  margin-bottom:8px;
+}
+
+.hero h1{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#aab2c8;
+  line-height:1.55;
+  font-size:15px;
+}
+
+.card{
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:14px;
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 15px 40px rgba(0,0,0,.22);
+}
+
+.mainCard{
+  background:linear-gradient(135deg,#3a2879,#7340e5);
+}
+
+.reportCard{
+  background:
+    radial-gradient(circle at 85% 60%,#d89c22 0%,transparent 18%),
+    linear-gradient(135deg,#123a45,#152337);
+}
+
+.normalCard{
+  background:linear-gradient(135deg,#151b35,#1d2044);
+}
+
+.premiumCard{
+  background:linear-gradient(135deg,#4b3008,#6b4307);
+  border:1px solid #8c5b0c;
+}
+
+.cardTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.card h2{
+  font-size:19px;
+}
+
+.card p{
+  color:#d1d5e2;
+  line-height:1.5;
+  font-size:14px;
+  margin:8px 0 16px;
+}
+
+.time{
+  background:rgba(0,0,0,.22);
+  padding:7px 11px;
+  border-radius:14px;
+  font-size:13px;
+}
+
+button{
+  width:100%;
+  border:none;
+  border-radius:15px;
+  padding:16px;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.primary{
+  background:linear-gradient(90deg,#7244ff,#9b54ff);
+  color:white;
+}
+
+.green{
+  background:linear-gradient(90deg,#41c87b,#66e498);
+  color:#06150c;
+}
+
+.secondary{
+  background:#1b2440;
+  color:white;
+  margin-top:10px;
+}
+
+.note{
+  font-size:13px;
+  color:#c7cce0;
+  margin-top:13px;
+}
+
+.premium{
+  display:inline-block;
+  color:#ffd64a;
+  border:1px solid #ffd64a;
+  border-radius:12px;
+  padding:4px 8px;
+  font-size:10px;
+}
+
+.nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(480px,100%);
+  background:rgba(8,12,29,.96);
+  backdrop-filter:blur(15px);
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;
+  justify-content:space-around;
+  padding:13px 4px 22px;
+  z-index:20;
+}
+
+.navItem{
+  color:#818aa4;
+  text-align:center;
+  font-size:11px;
+}
+
+.navItem span{
+  display:block;
+  font-size:21px;
+  margin-bottom:4px;
+}
+
+.navItem.active{
+  color:#9c65ff;
+}
+
+.screenTitle{
+  text-align:center;
+  margin:20px 0 8px;
+  font-size:28px;
+}
+
+.screenText{
+  text-align:center;
+  color:#aab2c8;
+  line-height:1.5;
+  margin-bottom:25px;
+}
+
+.progressText{
+  color:#bfc5d6;
+  margin-bottom:8px;
+}
+
+.progress{
+  height:7px;
+  background:#242c48;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:45px;
+}
+
+.progressBar{
+  height:100%;
+  width:25%;
+  background:linear-gradient(90deg,#7645ff,#a85cff);
+  transition:.3s;
+}
+
+.question{
+  font-size:26px;
+  text-align:center;
+  line-height:1.3;
+  margin-bottom:30px;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+}
+
+.option{
+  background:#151c33;
+  border:1px solid #293351;
+  color:white;
+  text-align:left;
+  padding:17px;
+}
+
+.option:active{
+  border-color:#955eff;
+  transform:scale(.99);
+}
+
+.resultEmoji{
+  font-size:80px;
+  text-align:center;
+  margin:35px 0 15px;
+}
+
+.resultBox{
+  background:#131c32;
+  border:1px solid #283652;
+  border-radius:22px;
+  padding:22px;
+  margin:22px 0;
+}
+
+.resultBox h2{
+  margin-bottom:10px;
+}
+
+.resultBox p{
+  color:#b6bfd2;
+  line-height:1.6;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:15px 0;
+}
+
+.stat{
+  background:#131b30;
+  border:1px solid #26314c;
+  border-radius:18px;
+  padding:18px;
+}
+
+.stat strong{
+  display:block;
+  font-size:25px;
+  margin-bottom:4px;
+}
+
+.stat small{
+  color:#939db4;
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <div class="logo">
-    KAFA <span>MOLA</span>
+<!-- ANA SAYFA -->
+<section id="home">
+
+<div class="header">
+  <div class="menu">☰</div>
+  <div class="logo">KAFA <span>MOLA</span></div>
+  <div class="avatar">🧠</div>
+</div>
+
+<div class="hero">
+  <div class="heroEmoji">🌙☁️</div>
+  <h1>Kafa Mola</h1>
+  <p>
+    Günde birkaç dakika.<br>
+    Kendini fark et, zihnini kısa süreliğine<br>
+    başka yere taşı, değişimini gör.
+  </p>
+</div>
+
+<div class="card mainCard">
+  <div class="cardTop">
+    <h2>Bugünün Check-in'i</h2>
+    <span class="time">20:00</span>
   </div>
 
-  <div id="home">
+  <p>Akşam kendini nasıl hissediyorsun?</p>
 
-    <h1>Bugün kendini nasıl hissediyorsun?</h1>
+  <button class="primary" onclick="testBaslat()">
+    Check-in'i Başlat →
+  </button>
 
-    <p>
-      10 saniyelik check-in yap.
-      Sana uygun kısa bir mola hazırlayalım.
-    </p>
+  <div class="note">
+    🌙 Gece 00:00'da ikinci check-in seni bekliyor.
+  </div>
+</div>
 
-    <div class="card">
-
-      <div class="brain">🧠</div>
-
-      <h2>Bugünkü molanı keşfet</h2>
-
-      <p>
-        3 kısa soru • yaklaşık 10 saniye
-      </p>
-
-      <button onclick="baslat()">
-        Check-in Başlat →
-      </button>
-
-    </div>
-
+<div class="card reportCard">
+  <div class="cardTop">
+    <h2>Sabah Raporum</h2>
+    <span>🔒</span>
   </div>
 
+  <p>
+    Yarın sabah kişisel özetin burada hazır olacak.
+  </p>
+</div>
 
-  <div id="test" class="hidden">
-
-    <p>SORU 1 / 3</p>
-
-    <h1>Şu an enerjin nasıl?</h1>
-
-    <div class="option" onclick="soru2()">
-      😴 Düşük
-    </div>
-
-    <div class="option" onclick="soru2()">
-      🙂 Orta
-    </div>
-
-    <div class="option" onclick="soru2()">
-      ⚡ Yüksek
-    </div>
-
+<div class="card normalCard">
+  <div class="cardTop">
+    <h2>Geçmişim</h2>
+    <span>📊</span>
   </div>
 
+  <p>
+    Ruh halindeki değişimi gör ve kendini daha iyi tanı.
+  </p>
+</div>
 
-  <div id="test2" class="hidden">
-
-    <p>SORU 2 / 3</p>
-
-    <h1>Kafan ne kadar dolu?</h1>
-
-    <div class="option" onclick="soru3()">
-      🌤️ Rahat
-    </div>
-
-    <div class="option" onclick="soru3()">
-      ☁️ Biraz dolu
-    </div>
-
-    <div class="option" onclick="soru3()">
-      🌪️ Çok dolu
-    </div>
-
+<div class="card premiumCard">
+  <div class="cardTop">
+    <h2>30 Günlük Program</h2>
+    <span class="premium">PREMIUM</span>
   </div>
 
+  <p>
+    Kişisel yolculuğuna tam erişimle devam et.
+  </p>
 
-  <div id="test3" class="hidden">
+  <button class="secondary" onclick="premiumAc()">
+    Programı İncele
+  </button>
+</div>
 
-    <p>SORU 3 / 3</p>
-
-    <h1>Şu an en çok neye ihtiyacın var?</h1>
-
-    <div class="option" onclick="sonuc()">
-      🎮 Kafam dağılsın
-    </div>
-
-    <div class="option" onclick="sonuc()">
-      😂 Biraz güleyim
-    </div>
-
-    <div class="option" onclick="sonuc()">
-      🧩 Bir şeye odaklanayım
-    </div>
-
+<div class="stats">
+  <div class="stat">
+    <strong id="checkCount">0</strong>
+    <small>Check-in</small>
   </div>
 
-
-  <div id="result" class="hidden">
-
-    <div class="brain">🕵️</div>
-
-    <h1>Molan hazır.</h1>
-
-    <p>
-      Cevaplarına göre dikkatini birkaç dakikalığına
-      başka bir yere taşıyacak mini bir deneyim seçtik.
-    </p>
-
-    <div class="card">
-
-      <h2>🔎 3 Dakikalık Gizem</h2>
-
-      <p>
-        Küçük bir olayı incele, ipuçlarını yakala
-        ve doğru cevabı bul.
-      </p>
-
-      <button onclick="alert('İlk görev ekranını sıradaki adımda yapacağız 😄')">
-        Molaya Başla
-      </button>
-
-    </div>
-
+  <div class="stat">
+    <strong>1</strong>
+    <small>Aktif gün</small>
   </div>
+</div>
+
+</section>
+
+
+<!-- TEST -->
+<section id="test" class="hidden">
+
+<div class="header">
+  <div onclick="anaSayfa()">←</div>
+  <div class="logo">KAFA <span>MOLA</span></div>
+  <div></div>
+</div>
+
+<h1 class="screenTitle">Akşam Check-in'i</h1>
+
+<p class="screenText">
+  Kendini daha iyi anlamak için birkaç kısa soruya cevap ver.
+</p>
+
+<div class="progressText" id="progressText">
+  1 / 4
+</div>
+
+<div class="progress">
+  <div class="progressBar" id="progressBar"></div>
+</div>
+
+<div id="questionArea"></div>
+
+</section>
+
+
+<!-- SONUÇ -->
+<section id="result" class="hidden">
+
+<div class="header">
+  <div></div>
+  <div class="logo">KAFA <span>MOLA</span></div>
+  <div></div>
+</div>
+
+<div class="resultEmoji">🕵️</div>
+
+<h1 class="screenTitle">
+  Molan hazır.
+</h1>
+
+<p class="screenText">
+  Cevaplarına göre dikkatini birkaç dakikalığına başka yere taşıyacak bir deneyim seçtik.
+</p>
+
+<div class="resultBox">
+
+  <h2>🔎 Mini Gizem</h2>
+
+  <p>
+    Küçük bir olayı incele, ipuçlarını yakala ve kendi cevabını bul.
+  </p>
+
+</div>
+
+<button class="green" onclick="sonucTamamla()">
+  Molayı Başlat
+</button>
+
+</section>
+
+
+<!-- PREMIUM -->
+<section id="premiumScreen" class="hidden">
+
+<div class="header">
+  <div onclick="anaSayfa()">←</div>
+  <div class="logo">KAFA <span>MOLA</span></div>
+  <div></div>
+</div>
+
+<div class="resultEmoji">✨</div>
+
+<h1 class="screenTitle">
+  30 Günlük Kafa Mola
+</h1>
+
+<p class="screenText">
+  Kendini daha yakından tanıyacağın 30 günlük kişisel bir yolculuk.
+</p>
+
+<div class="card normalCard">
+
+  <h2>Programda neler var?</h2>
+
+  <p>
+    ✓ Günlük iki kısa check-in<br><br>
+    ✓ Sana göre seçilen mini deneyimler<br><br>
+    ✓ Sabah kişisel özetleri<br><br>
+    ✓ Ruh hali geçmişi<br><br>
+    ✓ Haftalık değişim raporları<br><br>
+    ✓ 30 günlük kişisel final özeti
+  </p>
+
+</div>
+
+<div class="card premiumCard">
+
+  <h2>30 Günlük Erişim</h2>
+
+  <h1 style="font-size:38px;margin:15px 0;">
+    499 TL
+  </h1>
+
+  <p>Tek ödeme • 30 gün erişim</p>
+
+  <button class="primary">
+    Programa Katıl
+  </button>
+
+</div>
+
+</section>
+
+</div>
+
+
+<div class="nav" id="nav">
+
+<div class="navItem active" onclick="anaSayfa()">
+  <span>⌂</span>
+  Ana Sayfa
+</div>
+
+<div class="navItem">
+  <span>✨</span>
+  Deneyimler
+</div>
+
+<div class="navItem">
+  <span>📊</span>
+  Geçmiş
+</div>
+
+<div class="navItem">
+  <span>♙</span>
+  Profil
+</div>
 
 </div>
 
 
 <script>
 
-function ekranGizle() {
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("test").classList.add("hidden");
-  document.getElementById("test2").classList.add("hidden");
-  document.getElementById("test3").classList.add("hidden");
-  document.getElementById("result").classList.add("hidden");
+/*
+BURAYA ESKİ DOSYANDAKİ
+SUPABASE BİLGİLERİNİ YAPIŞTIR.
+*/
+
+const SUPABASE_URL = "BURAYA_SUPABASE_URL";
+
+const SUPABASE_KEY = "BURAYA_SUPABASE_KEY";
+
+
+let soruNo = 0;
+let cevaplar = {};
+
+const sorular = [
+
+{
+soru:"Şu anki ruh halini nasıl tanımlarsın?",
+key:"ruh_hali",
+secenekler:[
+["😞 Çok kötü",1],
+["🙁 Kötü",2],
+["😐 Orta",3],
+["🙂 İyi",4],
+["😄 Çok iyi",5]
+]
+},
+
+{
+soru:"Bugün stres seviyen nasıldı?",
+key:"stres",
+secenekler:[
+["😌 Çok düşük",1],
+["🙂 Düşük",2],
+["😐 Orta",3],
+["😟 Yüksek",4],
+["😵 Çok yüksek",5]
+]
+},
+
+{
+soru:"Şu an enerjin nasıl?",
+key:"enerji",
+secenekler:[
+["🪫 Çok düşük",1],
+["😴 Düşük",2],
+["😐 Orta",3],
+["⚡ İyi",4],
+["🔥 Çok yüksek",5]
+]
+},
+
+{
+soru:"Şu an zihnin nasıl?",
+key:"zihin",
+secenekler:[
+["🌤️ Rahat",1],
+["☁️ Biraz dolu",2],
+["🌥️ Karışık",3],
+["🌧️ Çok dolu",4],
+["🌪️ Aşırı yoğun",5]
+]
 }
 
-function baslat() {
-  ekranGizle();
-  document.getElementById("test").classList.remove("hidden");
+];
+
+
+function ekranGizle(){
+
+document.getElementById("home").classList.add("hidden");
+
+document.getElementById("test").classList.add("hidden");
+
+document.getElementById("result").classList.add("hidden");
+
+document.getElementById("premiumScreen").classList.add("hidden");
+
 }
 
-function soru2() {
-  ekranGizle();
-  document.getElementById("test2").classList.remove("hidden");
+
+function anaSayfa(){
+
+ekranGizle();
+
+document.getElementById("home").classList.remove("hidden");
+
+document.getElementById("nav").style.display="flex";
+
+window.scrollTo(0,0);
+
 }
 
-function soru3() {
-  ekranGizle();
-  document.getElementById("test3").classList.remove("hidden");
+
+function testBaslat(){
+
+soruNo=0;
+
+cevaplar={};
+
+ekranGizle();
+
+document.getElementById("test").classList.remove("hidden");
+
+document.getElementById("nav").style.display="none";
+
+soruGoster();
+
+window.scrollTo(0,0);
+
 }
 
-function sonuc() {
-  ekranGizle();
-  kaydet({ veri: { durum: "test_tamamlandi" } });
-  document.getElementById("result").classList.remove("hidden");
+
+function soruGoster(){
+
+const soru=sorular[soruNo];
+
+document.getElementById("progressText").innerText=
+(soruNo+1)+" / "+sorular.length;
+
+document.getElementById("progressBar").style.width=
+((soruNo+1)/sorular.length*100)+"%";
+
+let html=
+'<h2 class="question">'+soru.soru+'</h2>';
+
+html+='<div class="options">';
+
+soru.secenekler.forEach(function(secenek){
+
+html+=
+'<button class="option" onclick="cevapVer(\''+
+soru.key+
+'\','+
+secenek[1]+
+')">'+
+secenek[0]+
+'</button>';
+
+});
+
+html+='</div>';
+
+document.getElementById("questionArea").innerHTML=html;
+
 }
-async function kaydet(veri) {
-  await fetch(SUPABASE_URL + '/rest/v1/Kayitlar', {
-    method: 'POST',
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(veri)
-  });
+
+
+function cevapVer(key,deger){
+
+cevaplar[key]=deger;
+
+soruNo++;
+
+if(soruNo < sorular.length){
+
+soruGoster();
+
+}else{
+
+testBitir();
+
 }
+
+}
+
+
+function testBitir(){
+
+ekranGizle();
+
+document.getElementById("result").classList.remove("hidden");
+
+kaydet({
+
+durum:"test_tamamlandi",
+
+saat:"20:00",
+
+cevaplar:cevaplar,
+
+tarih:new Date().toISOString()
+
+});
+
+let sayi=
+Number(localStorage.getItem("checkCount") || 0);
+
+sayi++;
+
+localStorage.setItem("checkCount",sayi);
+
+document.getElementById("checkCount").innerText=sayi;
+
+window.scrollTo(0,0);
+
+}
+
+
+function sonucTamamla(){
+
+alert("🎉 İlk deneyim ekranını sıradaki adımda yapacağız.");
+
+anaSayfa();
+
+}
+
+
+function premiumAc(){
+
+ekranGizle();
+
+document.getElementById("premiumScreen")
+.classList.remove("hidden");
+
+document.getElementById("nav").style.display="none";
+
+window.scrollTo(0,0);
+
+}
+
+
+async function kaydet(veri){
+
+if(
+SUPABASE_URL.includes("BURAYA") ||
+SUPABASE_KEY.includes("BURAYA")
+){
+
+console.log("Supabase bilgileri henüz eklenmedi.");
+
+return;
+
+}
+
+try{
+
+await fetch(
+SUPABASE_URL + "/rest/v1/Kayitlar",
+{
+
+method:"POST",
+
+headers:{
+
+"apikey":SUPABASE_KEY,
+
+"Authorization":"Bearer "+SUPABASE_KEY,
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+veri:veri
+
+})
+
+}
+
+);
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}
+
+
+document.getElementById("checkCount").innerText=
+localStorage.getItem("checkCount") || 0;
+
 </script>
 
 </body>
