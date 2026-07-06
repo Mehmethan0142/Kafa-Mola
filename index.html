@@ -243,7 +243,7 @@ function sonuc() {
   document.getElementById("result").classList.remove("hidden");
 }
 async function kaydet(veri) {
-  await fetch(SUPABASE_URL + '/rest/v1/kayitlar', {
+  await fetch(SUPABASE_URL + '/rest/v1/Kayitlar', {
     method: 'POST',
     headers: {
       'apikey': SUPABASE_KEY,
