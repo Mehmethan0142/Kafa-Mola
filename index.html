@@ -1,805 +1,2523 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Kafa Mola</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box}
 
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:
-    radial-gradient(circle at 80% 10%,#28195c 0%,transparent 30%),
-    linear-gradient(180deg,#090d20,#060a15);
-  color:white;
-  min-height:100vh;
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:
+radial-gradient(circle at 85% 4%,#2b1763 0,transparent 26%),
+linear-gradient(#090d20,#060a15);
+color:#fff;
+min-height:100vh
 }
 
 .app{
-  max-width:480px;
-  margin:auto;
-  padding:28px 18px 110px;
+max-width:480px;
+margin:auto;
+padding:22px 17px 110px
 }
 
-.hidden{
-  display:none !important;
-}
+.hidden{display:none!important}
 
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:28px;
-}
-
-.menu{
-  font-size:25px;
+.head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:22px
 }
 
 .logo{
-  font-size:23px;
-  font-weight:900;
-  letter-spacing:1px;
+font-weight:900;
+font-size:22px
 }
 
-.logo span{
-  color:#8c5cff;
-}
+.logo b{color:#9462ff}
 
-.avatar{
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#8c5cff,#36d6c5);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.circle{
+width:40px;
+height:40px;
+border:0;
+border-radius:50%;
+background:#18213b;
+color:#fff
 }
 
 .hero{
-  text-align:center;
-  margin-bottom:25px;
+text-align:center;
+padding:5px 0 18px
 }
 
-.heroEmoji{
-  font-size:62px;
-  margin-bottom:8px;
-}
+.hero .emo{font-size:58px}
 
 .hero h1{
-  font-size:36px;
-  margin-bottom:10px;
+font-size:36px;
+margin:6px
 }
 
-.hero p{
-  color:#aab2c8;
-  line-height:1.55;
-  font-size:15px;
+.muted,.hero p{
+color:#aab3c9;
+line-height:1.55
 }
 
 .card{
-  border-radius:22px;
-  padding:20px;
-  margin-bottom:14px;
-  border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 15px 40px rgba(0,0,0,.22);
+background:linear-gradient(135deg,#151c35,#202147);
+border:1px solid #ffffff17;
+border-radius:22px;
+padding:19px;
+margin:13px 0
 }
 
-.mainCard{
-  background:linear-gradient(135deg,#3a2879,#7340e5);
+.purple{
+background:linear-gradient(135deg,#3b287c,#7442e7)
 }
 
-.reportCard{
-  background:
-    radial-gradient(circle at 85% 60%,#d89c22 0%,transparent 18%),
-    linear-gradient(135deg,#123a45,#152337);
+.gold{
+background:linear-gradient(135deg,#493008,#6a4307);
+border-color:#8c5b0c
 }
 
-.normalCard{
-  background:linear-gradient(135deg,#151b35,#1d2044);
+.row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px
 }
 
-.premiumCard{
-  background:linear-gradient(135deg,#4b3008,#6b4307);
-  border:1px solid #8c5b0c;
+.badge{
+font-size:11px;
+padding:6px 9px;
+border-radius:12px;
+background:#0004
 }
 
-.cardTop{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
+.rank{
+background:#171e35;
+border-radius:18px;
+padding:15px;
+margin:14px 0
 }
 
-.card h2{
-  font-size:19px;
+.rankline{
+height:8px;
+background:#2a3350;
+border-radius:10px;
+overflow:hidden;
+margin-top:10px
 }
 
-.card p{
-  color:#d1d5e2;
-  line-height:1.5;
-  font-size:14px;
-  margin:8px 0 16px;
-}
-
-.time{
-  background:rgba(0,0,0,.22);
-  padding:7px 11px;
-  border-radius:14px;
-  font-size:13px;
+.rankfill{
+height:100%;
+background:linear-gradient(90deg,#8150ff,#55d5a5)
 }
 
 button{
-  width:100%;
-  border:none;
-  border-radius:15px;
-  padding:16px;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
+width:100%;
+border:0;
+border-radius:15px;
+padding:15px;
+font-size:16px;
+font-weight:800
 }
 
 .primary{
-  background:linear-gradient(90deg,#7244ff,#9b54ff);
-  color:white;
+background:linear-gradient(90deg,#7143ff,#a058ff);
+color:white
 }
 
 .green{
-  background:linear-gradient(90deg,#41c87b,#66e498);
-  color:#06150c;
+background:linear-gradient(90deg,#43ca7d,#65e29a);
+color:#06150c
 }
 
-.secondary{
-  background:#1b2440;
-  color:white;
-  margin-top:10px;
-}
-
-.note{
-  font-size:13px;
-  color:#c7cce0;
-  margin-top:13px;
-}
-
-.premium{
-  display:inline-block;
-  color:#ffd64a;
-  border:1px solid #ffd64a;
-  border-radius:12px;
-  padding:4px 8px;
-  font-size:10px;
+.dark{
+background:#1b2440;
+color:white
 }
 
 .nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(480px,100%);
-  background:rgba(8,12,29,.96);
-  backdrop-filter:blur(15px);
-  border-top:1px solid rgba(255,255,255,.08);
-  display:flex;
-  justify-content:space-around;
-  padding:13px 4px 22px;
-  z-index:20;
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:min(480px,100%);
+display:flex;
+justify-content:space-around;
+background:#080c1df2;
+border-top:1px solid #ffffff17;
+padding:11px 3px 18px;
+z-index:9
 }
 
-.navItem{
-  color:#818aa4;
-  text-align:center;
-  font-size:11px;
+.nav div{
+text-align:center;
+color:#8e97ad;
+font-size:11px
 }
 
-.navItem span{
-  display:block;
-  font-size:21px;
-  margin-bottom:4px;
+.nav span{
+display:block;
+font-size:21px
 }
 
-.navItem.active{
-  color:#9c65ff;
+.title{
+text-align:center;
+font-size:29px;
+margin:15px 0 7px
 }
 
-.screenTitle{
-  text-align:center;
-  margin:20px 0 8px;
-  font-size:28px;
-}
-
-.screenText{
-  text-align:center;
-  color:#aab2c8;
-  line-height:1.5;
-  margin-bottom:25px;
-}
-
-.progressText{
-  color:#bfc5d6;
-  margin-bottom:8px;
+.desc{
+text-align:center;
+color:#aab3c9;
+line-height:1.5;
+margin-bottom:22px
 }
 
 .progress{
-  height:7px;
-  background:#242c48;
-  border-radius:20px;
-  overflow:hidden;
-  margin-bottom:45px;
+height:7px;
+background:#28304b;
+border-radius:10px;
+overflow:hidden;
+margin:10px 0 35px
 }
 
-.progressBar{
-  height:100%;
-  width:25%;
-  background:linear-gradient(90deg,#7645ff,#a85cff);
-  transition:.3s;
+.progress div{
+height:100%;
+background:#8b55ff
 }
 
 .question{
-  font-size:26px;
-  text-align:center;
-  line-height:1.3;
-  margin-bottom:30px;
+text-align:center;
+font-size:25px
 }
 
-.options{
-  display:grid;
-  gap:12px;
+.opts{
+display:grid;
+gap:10px
 }
 
-.option{
-  background:#151c33;
-  border:1px solid #293351;
-  color:white;
-  text-align:left;
-  padding:17px;
+.opt{
+background:#161e36;
+color:white;
+border:1px solid #303b5c;
+text-align:left
 }
 
-.option:active{
-  border-color:#955eff;
-  transform:scale(.99);
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:11px
 }
 
-.resultEmoji{
-  font-size:80px;
-  text-align:center;
-  margin:35px 0 15px;
+.mini{
+min-height:145px;
+display:flex;
+flex-direction:column;
+justify-content:space-between
 }
 
-.resultBox{
-  background:#131c32;
-  border:1px solid #283652;
-  border-radius:22px;
-  padding:22px;
-  margin:22px 0;
-}
-
-.resultBox h2{
-  margin-bottom:10px;
-}
-
-.resultBox p{
-  color:#b6bfd2;
-  line-height:1.6;
+.mini i{
+font-style:normal;
+font-size:35px
 }
 
 .stats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin:15px 0;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px
 }
 
 .stat{
-  background:#131b30;
-  border:1px solid #26314c;
-  border-radius:18px;
-  padding:18px;
+background:#121a30;
+border-radius:15px;
+padding:13px;
+text-align:center
 }
 
 .stat strong{
-  display:block;
-  font-size:25px;
-  margin-bottom:4px;
+display:block;
+font-size:21px
 }
 
-.stat small{
-  color:#939db4;
+.medals{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px
+}
+
+.medal{
+text-align:center;
+background:#121a30;
+border-radius:15px;
+padding:13px 5px;
+font-size:12px
+}
+
+.medal i{
+display:block;
+font-style:normal;
+font-size:30px
+}
+
+.locked{
+opacity:.35;
+filter:grayscale(1)
+}
+
+.breath{
+width:180px;
+height:180px;
+border-radius:50%;
+margin:35px auto;
+background:linear-gradient(135deg,#8150ff,#55d5a5);
+display:grid;
+place-items:center;
+font-weight:900;
+animation:b 8s infinite ease-in-out
+}
+
+@keyframes b{
+0%,100%{transform:scale(.72)}
+50%{transform:scale(1)}
+}
+
+input,textarea{
+width:100%;
+padding:15px;
+margin:7px 0;
+border:1px solid #303b5c;
+border-radius:14px;
+background:#151d34;
+color:white;
+font:inherit
+}
+
+.toast{
+position:fixed;
+bottom:95px;
+left:50%;
+transform:translateX(-50%);
+background:white;
+color:#111;
+padding:12px 16px;
+border-radius:13px;
+z-index:99
+}
+
+.weather{
+text-align:center;
+font-size:70px
+}
+
+.chartrow{margin:15px 0}
+
+.bar{
+height:10px;
+background:#29314d;
+border-radius:10px;
+overflow:hidden
+}
+
+.fill{
+height:100%;
+background:linear-gradient(90deg,#8050ff,#55d5a5)
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<main class="app">
 
-<!-- ANA SAYFA -->
 <section id="home">
 
-<div class="header">
-  <div class="menu">☰</div>
-  <div class="logo">KAFA <span>MOLA</span></div>
-  <div class="avatar">🧠</div>
+<div class="head">
+<button class="circle">☰</button>
+<div class="logo">KAFA <b>MOLA</b></div>
+<div class="circle" style="display:grid;place-items:center">🧠</div>
 </div>
 
 <div class="hero">
-  <div class="heroEmoji">🌙☁️</div>
-  <h1>Kafa Mola</h1>
-  <p>
-    Günde birkaç dakika.<br>
-    Kendini fark et, zihnini kısa süreliğine<br>
-    başka yere taşı, değişimini gör.
-  </p>
+<div class="emo">🌙☁️</div>
+<h1>Kafa Mola</h1>
+<p>
+Günde birkaç dakika. Kendini fark et,
+zihnini kısa süreliğine başka yere taşı,
+değişimini gör.
+</p>
 </div>
 
-<div class="card mainCard">
-  <div class="cardTop">
-    <h2>Bugünün Check-in'i</h2>
-    <span class="time">20:00</span>
-  </div>
+<div class="rank">
 
-  <p>Akşam kendini nasıl hissediyorsun?</p>
-
-  <button class="primary" onclick="testBaslat()">
-    Check-in'i Başlat →
-  </button>
-
-  <div class="note">
-    🌙 Gece 00:00'da ikinci check-in seni bekliyor.
-  </div>
+<div class="row">
+<b id="rankName">Rütbe: Çaylak</b>
+<span id="energy">⚡ 0 Enerji</span>
 </div>
 
-<div class="card reportCard">
-  <div class="cardTop">
-    <h2>Sabah Raporum</h2>
-    <span>🔒</span>
-  </div>
-
-  <p>
-    Yarın sabah kişisel özetin burada hazır olacak.
-  </p>
+<div class="rankline">
+<div class="rankfill" id="rankFill" style="width:0"></div>
 </div>
 
-<div class="card normalCard">
-  <div class="cardTop">
-    <h2>Geçmişim</h2>
-    <span>📊</span>
-  </div>
+<small class="muted" id="rankNext">
+Sonraki rütbeye ilerliyorsun.
+</small>
 
-  <p>
-    Ruh halindeki değişimi gör ve kendini daha iyi tanı.
-  </p>
 </div>
 
-<div class="card premiumCard">
-  <div class="cardTop">
-    <h2>30 Günlük Program</h2>
-    <span class="premium">PREMIUM</span>
-  </div>
+<div class="card purple">
 
-  <p>
-    Kişisel yolculuğuna tam erişimle devam et.
-  </p>
-
-  <button class="secondary" onclick="premiumAc()">
-    Programı İncele
-  </button>
+<div class="row">
+<h2>Bugünün Check-in'i</h2>
+<span class="badge">+20 ⚡</span>
 </div>
 
-<div class="stats">
-  <div class="stat">
-    <strong id="checkCount">0</strong>
-    <small>Check-in</small>
-  </div>
+<p>Şu an kendini nasıl hissediyorsun?</p>
 
-  <div class="stat">
-    <strong>1</strong>
-    <small>Aktif gün</small>
-  </div>
+<button class="primary" onclick="startTest()">
+Check-in'i Başlat →
+</button>
+
+</div>
+
+<div class="card" onclick="show('weather')">
+
+<div class="row">
+<h2>Ruh Hâli Hava Durumu</h2>
+<span>🌤️</span>
+</div>
+
+<p class="muted">
+Son cevaplarından oluşan bugünkü zihinsel hava.
+</p>
+
+</div>
+
+<div class="card" onclick="show('dailyQuestion')">
+
+<div class="row">
+<h2>Günün Tek Sorusu</h2>
+<span>💭</span>
+</div>
+
+<p class="muted">
+Bugün için tek bir düşündüren soru.
+</p>
+
+</div>
+
+<div class="card" onclick="show('capsule')">
+
+<div class="row">
+<h2>Sürpriz Kapsül</h2>
+<span>🎁</span>
+</div>
+
+<p class="muted">
+Bugünkü küçük sürprizini aç.
+</p>
+
+</div>
+
+<div class="card gold" onclick="show('premium')">
+
+<div class="row">
+<h2>30 Günlük Program</h2>
+<span class="badge">YAKINDA</span>
+</div>
+
+<p>
+Günlük kişisel akış, gelişim özetleri
+ve özel deneyimler hazırlanıyor.
+</p>
+
+<button class="dark">
+Yakında Aktif
+</button>
+
 </div>
 
 </section>
 
 
-<!-- TEST -->
 <section id="test" class="hidden">
 
-<div class="header">
-  <div onclick="anaSayfa()">←</div>
-  <div class="logo">KAFA <span>MOLA</span></div>
-  <div></div>
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+CHECK-<b>IN</b>
 </div>
 
-<h1 class="screenTitle">Akşam Check-in'i</h1>
+<div></div>
 
-<p class="screenText">
-  Kendini daha iyi anlamak için birkaç kısa soruya cevap ver.
+</div>
+
+<h1 class="title">
+Kısa Check-in
+</h1>
+
+<p class="desc">
+Beş kısa soruyla bugünkü durumuna bakalım.
 </p>
 
-<div class="progressText" id="progressText">
-  1 / 4
+<div id="qCount" class="muted">
+1 / 5
 </div>
 
 <div class="progress">
-  <div class="progressBar" id="progressBar"></div>
+<div id="qBar"></div>
 </div>
 
-<div id="questionArea"></div>
+<div id="qArea"></div>
 
 </section>
 
 
-<!-- SONUÇ -->
 <section id="result" class="hidden">
 
-<div class="header">
-  <div></div>
-  <div class="logo">KAFA <span>MOLA</span></div>
-  <div></div>
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+SONUÇ <b>ÖZETİ</b>
 </div>
 
-<div class="resultEmoji">🕵️</div>
+<div></div>
 
-<h1 class="screenTitle">
-  Molan hazır.
+</div>
+
+<div class="weather" id="resultEmoji">
+🌤️
+</div>
+
+<h1 class="title" id="resultTitle">
+Bugünün dengeli görünüyor.
 </h1>
 
-<p class="screenText">
-  Cevaplarına göre dikkatini birkaç dakikalığına başka yere taşıyacak bir deneyim seçtik.
-</p>
+<p class="desc" id="resultText"></p>
 
-<div class="resultBox">
+<div class="card">
 
-  <h2>🔎 Mini Gizem</h2>
+<h2>Bugün sana uygun mola</h2>
 
-  <p>
-    Küçük bir olayı incele, ipuçlarını yakala ve kendi cevabını bul.
-  </p>
+<p id="resultSuggestion" class="muted"></p>
+
+<button class="green" onclick="show('mystery')">
+Önerilen Molayı Başlat
+</button>
 
 </div>
 
-<button class="green" onclick="sonucTamamla()">
-  Molayı Başlat
+</section>
+
+
+<section id="experiences" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+DENEYİM<b>LER</b>
+</div>
+
+<div></div>
+
+</div>
+
+<h1 class="title">
+Kısa Molalar
+</h1>
+
+<p class="desc">
+O an ihtiyacına göre bir mola seç.
+</p>
+
+<div class="grid">
+
+<div class="card mini" onclick="show('mystery')">
+<i>🕵️</i>
+<div>
+<h3>Mini Gizem</h3>
+<small class="muted">İpuçlarını çöz.</small>
+</div>
+</div>
+
+<div class="card mini" onclick="startBreath()">
+<i>🌬️</i>
+<div>
+<h3>Nefes Ritmi</h3>
+<small class="muted">2 dakikalık mola.</small>
+</div>
+</div>
+
+<div class="card mini" onclick="show('focus')">
+<i>🎯</i>
+<div>
+<h3>Odak Oyunu</h3>
+<small class="muted">Dikkatini topla.</small>
+</div>
+</div>
+
+<div class="card mini" onclick="show('memory')">
+<i>🧠</i>
+<div>
+<h3>Hafıza</h3>
+<small class="muted">Kısa zihin oyunu.</small>
+</div>
+</div>
+
+<div class="card mini" onclick="show('goodThings')">
+<i>🌱</i>
+<div>
+<h3>3 İyi Şey</h3>
+<small class="muted">Bugünden kalanlar.</small>
+</div>
+</div>
+
+<div class="card mini" onclick="show('prediction')">
+<i>🔮</i>
+<div>
+<h3>Yarın Tahmini</h3>
+<small class="muted">Kendini ne kadar tanıyorsun?</small>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="mystery" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('experiences')">
+←
+</button>
+
+<div class="logo">
+MİNİ <b>GİZEM</b>
+</div>
+
+<span class="badge">
++15 ⚡
+</span>
+
+</div>
+
+<h1 class="title">
+Kayıp Anahtar
+</h1>
+
+<p class="desc">
+Bir kafede masadaki anahtar kayboldu.
+Masada üç kişi vardı.
+</p>
+
+<div class="card">
+
+<p>
+Ali: “Telefonuma bakıyordum.”
+<br><br>
+Deniz: “Kahve almaya gittim.”
+<br><br>
+Ece: “Anahtar ben geldiğimde zaten yoktu.”
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>İpucu</h3>
+
+<p class="muted">
+Ece, kimse tarif etmediği hâlde
+anahtarlığın kırmızı olduğunu söyledi.
+</p>
+
+</div>
+
+<h2 class="question">
+Kim daha şüpheli?
+</h2>
+
+<div class="opts">
+
+<button class="opt" onclick="mysteryAnswer('Ali')">
+📱 Ali
+</button>
+
+<button class="opt" onclick="mysteryAnswer('Deniz')">
+☕ Deniz
+</button>
+
+<button class="opt" onclick="mysteryAnswer('Ece')">
+🗝️ Ece
+</button>
+
+</div>
+
+</section>
+
+
+<section id="breath" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('experiences')">
+←
+</button>
+
+<div class="logo">
+NEFES <b>RİTMİ</b>
+</div>
+
+<div></div>
+
+</div>
+
+<h1 class="title">
+Daireyi takip et
+</h1>
+
+<p class="desc">
+Büyürken nefes al, küçülürken ver.
+</p>
+
+<div class="breath" id="breathCircle">
+Nefes Al
+</div>
+
+<p class="desc" id="timer">
+02:00
+</p>
+
+<button class="green"
+onclick="finishExp('Nefes Ritmi')">
+Tamamladım
 </button>
 
 </section>
 
 
-<!-- PREMIUM -->
-<section id="premiumScreen" class="hidden">
+<section id="focus" class="hidden">
 
-<div class="header">
-  <div onclick="anaSayfa()">←</div>
-  <div class="logo">KAFA <span>MOLA</span></div>
-  <div></div>
+<div class="head">
+
+<button class="circle" onclick="show('experiences')">
+←
+</button>
+
+<div class="logo">
+ODAK <b>MOLASI</b>
 </div>
 
-<div class="resultEmoji">✨</div>
+<div></div>
 
-<h1 class="screenTitle">
-  30 Günlük Kafa Mola
+</div>
+
+<h1 class="title">
+5-4-3-2-1
 </h1>
 
-<p class="screenText">
-  Kendini daha yakından tanıyacağın 30 günlük kişisel bir yolculuk.
+<p class="desc">
+Çevrende 5 şey gör,
+4 şeye dokun,
+3 ses duy,
+2 koku fark et
+ve 1 düşünceni isimlendir.
 </p>
 
-<div class="card normalCard">
+<div class="card">
 
-  <h2>Programda neler var?</h2>
+<h2>Hazır olduğunda başla</h2>
 
-  <p>
-    ✓ Günlük iki kısa check-in<br><br>
-    ✓ Sana göre seçilen mini deneyimler<br><br>
-    ✓ Sabah kişisel özetleri<br><br>
-    ✓ Ruh hali geçmişi<br><br>
-    ✓ Haftalık değişim raporları<br><br>
-    ✓ 30 günlük kişisel final özeti
-  </p>
+<p class="muted">
+Acele etme. Amaç doğru yapmak değil,
+dikkatini bulunduğun ana getirmek.
+</p>
 
 </div>
 
-<div class="card premiumCard">
+<button class="green"
+onclick="finishExp('Odak Molası')">
+Tamamladım
+</button>
 
-  <h2>30 Günlük Erişim</h2>
+</section>
 
-  <h1 style="font-size:38px;margin:15px 0;">
-    499 TL
-  </h1>
 
-  <p>Tek ödeme • 30 gün erişim</p>
+<section id="memory" class="hidden">
 
-  <button class="primary">
-    Programa Katıl
-  </button>
+<div class="head">
+
+<button class="circle" onclick="show('experiences')">
+←
+</button>
+
+<div class="logo">
+HAFIZA <b>OYUNU</b>
+</div>
+
+<div></div>
+
+</div>
+
+<h1 class="title">
+10 saniye bak
+</h1>
+
+<div class="card"
+style="text-align:center;font-size:23px;line-height:2"
+id="words">
+
+Limon · Saat · Köprü
+<br>
+Mavi · Anahtar · Bulut
+
+</div>
+
+<button class="primary"
+onclick="hideWords()">
+Hazırım
+</button>
+
+<div id="memoryQ" class="hidden">
+
+<h2 class="question">
+Listede hangisi vardı?
+</h2>
+
+<div class="opts">
+
+<button class="opt" onclick="mem(false)">
+🚲 Bisiklet
+</button>
+
+<button class="opt" onclick="mem(true)">
+🌉 Köprü
+</button>
+
+<button class="opt" onclick="mem(false)">
+📚 Kitap
+</button>
+
+</div>
 
 </div>
 
 </section>
 
+
+<section id="goodThings" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('experiences')">
+←
+</button>
+
+<div class="logo">
+3 İYİ <b>ŞEY</b>
 </div>
 
-
-<div class="nav" id="nav">
-
-<div class="navItem active" onclick="anaSayfa()">
-  <span>⌂</span>
-  Ana Sayfa
-</div>
-
-<div class="navItem">
-  <span>✨</span>
-  Deneyimler
-</div>
-
-<div class="navItem">
-  <span>📊</span>
-  Geçmiş
-</div>
-
-<div class="navItem">
-  <span>♙</span>
-  Profil
-</div>
+<div></div>
 
 </div>
+
+<h1 class="title">
+Bugünden kalanlar
+</h1>
+
+<p class="desc">
+Büyük olmak zorunda değiller.
+</p>
+
+<input id="g1"
+placeholder="Bugün iyi gelen...">
+
+<input id="g2"
+placeholder="Teşekkür ettiğin...">
+
+<input id="g3"
+placeholder="Gülümsediğin...">
+
+<button class="green"
+onclick="saveGood()">
+Kaydet
+</button>
+
+</section>
+
+
+<section id="prediction" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('experiences')">
+←
+</button>
+
+<div class="logo">
+YARIN <b>TAHMİNİ</b>
+</div>
+
+<div></div>
+
+</div>
+
+<h1 class="title">
+Yarın nasıl hissedeceksin?
+</h1>
+
+<p class="desc">
+Tahminini kaydet.
+Sonraki check-in'inde karşılaştıracağız.
+</p>
+
+<div class="opts">
+
+<button class="opt" onclick="predict(2)">
+😕 Zorlanabilirim
+</button>
+
+<button class="opt" onclick="predict(3)">
+😐 Benzer olur
+</button>
+
+<button class="opt" onclick="predict(4)">
+🙂 Daha iyi olurum
+</button>
+
+</div>
+
+</section>
+
+
+<section id="dailyQuestion" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+TEK <b>SORU</b>
+</div>
+
+<div></div>
+
+</div>
+
+<h1 class="title">
+Bugünün sorusu
+</h1>
+
+<div class="card">
+
+<h2>
+Bugün tekrar yaşayabilsen
+hangi 10 dakikayı seçerdin?
+</h2>
+
+</div>
+
+<textarea id="dailyAnswer"
+rows="5"
+placeholder="İstersen birkaç kelime yaz..."></textarea>
+
+<button class="green"
+onclick="saveDaily()">
+Cevabımı Kaydet
+</button>
+
+</section>
+
+
+<section id="capsule" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+SÜRPRİZ <b>KAPSÜL</b>
+</div>
+
+<div></div>
+
+</div>
+
+<div class="hero">
+
+<div class="emo">
+🎁
+</div>
+
+<h1>
+Bugünün kapsülü
+</h1>
+
+<p>
+Her gün bir kez açılabilir.
+</p>
+
+</div>
+
+<div class="card" id="capsuleText">
+
+<p class="muted">
+Açmak için butona dokun.
+</p>
+
+</div>
+
+<button class="primary"
+onclick="openCapsule()">
+Kapsülü Aç
+</button>
+
+</section>
+
+
+<section id="weather" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+ZİHİNSEL <b>HAVA</b>
+</div>
+
+<div></div>
+
+</div>
+
+<div class="weather" id="weatherEmoji">
+🌤️
+</div>
+
+<h1 class="title" id="weatherTitle">
+Henüz veri yok
+</h1>
+
+<p class="desc" id="weatherText">
+Check-in tamamladığında burada kısa bir yorum oluşacak.
+</p>
+
+</section>
+
+
+<section id="report" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+ZİHİN <b>HARİTASI</b>
+</div>
+
+<div></div>
+
+</div>
+
+<h1 class="title">
+Son Durumun
+</h1>
+
+<p class="desc">
+Verdiğin son cevapların görsel özeti.
+</p>
+
+<div class="card">
+
+<div class="chartrow">
+Ruh Hâli
+<div class="bar">
+<div id="moodFill" class="fill"></div>
+</div>
+</div>
+
+<div class="chartrow">
+Enerji
+<div class="bar">
+<div id="energyFill" class="fill"></div>
+</div>
+</div>
+
+<div class="chartrow">
+Sakinlik
+<div class="bar">
+<div id="calmFill" class="fill"></div>
+</div>
+</div>
+
+<div class="chartrow">
+Zihin Açıklığı
+<div class="bar">
+<div id="mindFill" class="fill"></div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="badges" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('profile')">
+←
+</button>
+
+<div class="logo">
+ROZET<b>LER</b>
+</div>
+
+<div></div>
+
+</div>
+
+<h1 class="title">
+Rozet Koleksiyonu
+</h1>
+
+<p class="desc">
+Kullandıkça yeni rozetler açılır.
+</p>
+
+<div class="medals" id="medalGrid"></div>
+
+</section>
+
+
+<section id="history" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+GEÇMİŞ<b>İM</b>
+</div>
+
+<div></div>
+
+</div>
+
+<h1 class="title">
+Aktiviteler
+</h1>
+
+<div class="card" id="historyList"></div>
+
+</section>
+
+
+<section id="profile" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+PROF<b>İL</b>
+</div>
+
+<div></div>
+
+</div>
+
+<div class="hero">
+
+<div class="emo">
+🧠
+</div>
+
+<h1 id="profileRank">
+Çaylak
+</h1>
+
+<p>
+Kendi ritminde ilerliyorsun.
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="pEnergy">0</strong>
+<small>Enerji</small>
+</div>
+
+<div class="stat">
+<strong id="pCheck">0</strong>
+<small>Check-in</small>
+</div>
+
+<div class="stat">
+<strong id="pExp">0</strong>
+<small>Mola</small>
+</div>
+
+</div>
+
+<div class="card"
+onclick="show('badges')">
+
+<div class="row">
+<h2>Rozetlerim</h2>
+<span>🏅 →</span>
+</div>
+
+<p class="muted">
+Açılan ve sıradaki rozetlerini gör.
+</p>
+
+</div>
+
+<div class="card"
+onclick="show('report')">
+
+<div class="row">
+<h2>Zihin Haritam</h2>
+<span>📊 →</span>
+</div>
+
+<p class="muted">
+Son check-in verilerinin özeti.
+</p>
+
+</div>
+
+</section>
+
+
+<section id="premium" class="hidden">
+
+<div class="head">
+
+<button class="circle" onclick="show('home')">
+←
+</button>
+
+<div class="logo">
+30 GÜNLÜK <b>PROGRAM</b>
+</div>
+
+<div></div>
+
+</div>
+
+<div class="hero">
+
+<div class="emo">
+✨
+</div>
+
+<h1>
+Hazırlanıyor
+</h1>
+
+<p>
+30 günlük kişisel Kafa Mola deneyimi
+yakın zamanda aktif olacak.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>
+Programda planlananlar
+</h2>
+
+<p class="muted">
+
+✓ Günlük kişisel check-in akışı
+
+<br><br>
+
+✓ Cevaplara göre değişen mini deneyimler
+
+<br><br>
+
+✓ Haftalık gelişim özetleri
+
+<br><br>
+
+✓ Ruh hâli eğilimleri ve Zihin Haritası
+
+<br><br>
+
+✓ Rütbe ilerlemesi ve özel rozetler
+
+<br><br>
+
+✓ Yeni sürpriz kapsüller ve özel deneyimler
+
+<br><br>
+
+✓ 30. gün kişisel final özeti
+
+</p>
+
+</div>
+
+<button class="dark" disabled>
+🚀 Yakında Aktif Olacak
+</button>
+
+</section>
+
+</main>
+
+
+<nav class="nav" id="nav">
+
+<div onclick="show('home')">
+<span>⌂</span>
+Ana Sayfa
+</div>
+
+<div onclick="show('experiences')">
+<span>✨</span>
+Deneyimler
+</div>
+
+<div onclick="show('history')">
+<span>📊</span>
+Geçmiş
+</div>
+
+<div onclick="show('profile')">
+<span>♙</span>
+Profil
+</div>
+
+</nav>
 
 
 <script>
 
-/*
-BURAYA ESKİ DOSYANDAKİ
-SUPABASE BİLGİLERİNİ YAPIŞTIR.
-*/
+const SUPABASE_URL =
+"https://isthfqyddzjkcuudiuvp.supabase.co";
 
- const SUPABASE_URL = "https://isthfqyddzjkcuudiuvp.supabase.co";
-
-const SUPABASE_KEY = "sb_publishable_FbABn8glu-CdoNWfofbBfA_gSv9wPv6";
+const SUPABASE_KEY =
+"sb_publishable_FbABn8glu-CdoNWfofbBfA_gSv9wPv6";
 
 
-let soruNo = 0;
-let cevaplar = {};
+const ids = [
+"home",
+"test",
+"result",
+"experiences",
+"mystery",
+"breath",
+"focus",
+"memory",
+"goodThings",
+"prediction",
+"dailyQuestion",
+"capsule",
+"weather",
+"report",
+"badges",
+"history",
+"profile",
+"premium"
+];
 
-const sorular = [
 
-{
-soru:"Şu anki ruh halini nasıl tanımlarsın?",
-key:"ruh_hali",
-secenekler:[
+const ranks = [
+
+["Çaylak",0],
+
+["Gözcü",100],
+
+["Kaşif",250],
+
+["Öncü",500],
+
+["Uzman",850],
+
+["Kaptan",1300],
+
+["Komutan",2000],
+
+["Mareşal",3000]
+
+];
+
+
+const medals = [
+
+["🌱","İlk Adım",1],
+
+["🔥","Ritmi Yakaladın",3],
+
+["🕵️","Gizem Avcısı",5],
+
+["🌬️","Sessiz Güç",8],
+
+["🎯","Odak Noktası",12],
+
+["🧠","Zihin Kaşifi",18],
+
+["⚡","Enerji Ustası",25],
+
+["🏅","30 Mola",30],
+
+["👑","Zirve",50]
+
+];
+
+
+let q = 0;
+
+let ans = {};
+
+let breathInt;
+
+
+const qs = [
+
+[
+"Bugünkü ruh hâlin nasıl?",
+"ruh_hali",
+[
 ["😞 Çok kötü",1],
 ["🙁 Kötü",2],
 ["😐 Orta",3],
 ["🙂 İyi",4],
 ["😄 Çok iyi",5]
 ]
-},
+],
 
-{
-soru:"Bugün stres seviyen nasıldı?",
-key:"stres",
-secenekler:[
+[
+"Stres seviyen nasıl?",
+"stres",
+[
 ["😌 Çok düşük",1],
 ["🙂 Düşük",2],
 ["😐 Orta",3],
 ["😟 Yüksek",4],
 ["😵 Çok yüksek",5]
 ]
-},
+],
 
-{
-soru:"Şu an enerjin nasıl?",
-key:"enerji",
-secenekler:[
+[
+"Enerjin nasıl?",
+"enerji",
+[
 ["🪫 Çok düşük",1],
 ["😴 Düşük",2],
 ["😐 Orta",3],
 ["⚡ İyi",4],
 ["🔥 Çok yüksek",5]
 ]
-},
+],
 
-{
-soru:"Şu an zihnin nasıl?",
-key:"zihin",
-secenekler:[
+[
+"Zihnin ne kadar dolu?",
+"zihin",
+[
 ["🌤️ Rahat",1],
 ["☁️ Biraz dolu",2],
 ["🌥️ Karışık",3],
 ["🌧️ Çok dolu",4],
 ["🌪️ Aşırı yoğun",5]
 ]
-}
+],
+
+[
+"Şu an neye ihtiyacın var?",
+"ihtiyac",
+[
+["🌬️ Sakinleşmek",1],
+["🎯 Odaklanmak",2],
+["✨ Kafamı dağıtmak",3]
+]
+]
 
 ];
 
 
-function ekranGizle(){
+function show(id){
 
-document.getElementById("home").classList.add("hidden");
+ids.forEach(function(x){
 
-document.getElementById("test").classList.add("hidden");
-
-document.getElementById("result").classList.add("hidden");
-
-document.getElementById("premiumScreen").classList.add("hidden");
-
-}
-
-
-function anaSayfa(){
-
-ekranGizle();
-
-document.getElementById("home").classList.remove("hidden");
-
-document.getElementById("nav").style.display="flex";
-
-window.scrollTo(0,0);
-
-}
-
-
-function testBaslat(){
-
-soruNo=0;
-
-cevaplar={};
-
-ekranGizle();
-
-document.getElementById("test").classList.remove("hidden");
-
-document.getElementById("nav").style.display="none";
-
-soruGoster();
-
-window.scrollTo(0,0);
-
-}
-
-
-function soruGoster(){
-
-const soru=sorular[soruNo];
-
-document.getElementById("progressText").innerText=
-(soruNo+1)+" / "+sorular.length;
-
-document.getElementById("progressBar").style.width=
-((soruNo+1)/sorular.length*100)+"%";
-
-let html=
-'<h2 class="question">'+soru.soru+'</h2>';
-
-html+='<div class="options">';
-
-soru.secenekler.forEach(function(secenek){
-
-html+=
-'<button class="option" onclick="cevapVer(\''+
-soru.key+
-'\','+
-secenek[1]+
-')">'+
-secenek[0]+
-'</button>';
+document
+.getElementById(x)
+.classList
+.add("hidden");
 
 });
 
-html+='</div>';
+document
+.getElementById(id)
+.classList
+.remove("hidden");
 
-document.getElementById("questionArea").innerHTML=html;
+
+nav.style.display =
+[
+"home",
+"experiences",
+"history",
+"profile"
+].includes(id)
+? "flex"
+: "none";
+
+
+if(id === "history"){
+renderHistory();
+}
+
+if(id === "profile"){
+renderProfile();
+}
+
+if(id === "badges"){
+renderBadges();
+}
+
+if(id === "report"){
+renderReport();
+}
+
+if(id === "weather"){
+renderWeather();
+}
+
+window.scrollTo(0,0);
 
 }
 
 
-function cevapVer(key,deger){
+function startTest(){
 
-cevaplar[key]=deger;
+q = 0;
 
-soruNo++;
+ans = {};
 
-if(soruNo < sorular.length){
+show("test");
 
-soruGoster();
+renderQ();
+
+}
+
+
+function renderQ(){
+
+let x = qs[q];
+
+
+qCount.textContent =
+(q + 1) + " / " + qs.length;
+
+
+qBar.style.width =
+((q + 1) / qs.length * 100) + "%";
+
+
+qArea.innerHTML =
+
+'<h2 class="question">' +
+
+x[0] +
+
+'</h2>' +
+
+'<div class="opts">' +
+
+x[2].map(function(o){
+
+return (
+
+'<button class="opt" onclick="answer(\'' +
+
+x[1] +
+
+'\',' +
+
+o[1] +
+
+')">' +
+
+o[0] +
+
+'</button>'
+
+);
+
+}).join("") +
+
+'</div>';
+
+}
+
+
+function answer(k,v){
+
+ans[k] = v;
+
+q++;
+
+if(q < qs.length){
+
+renderQ();
 
 }else{
 
-testBitir();
+finishTest();
 
 }
 
 }
 
 
-function testBitir(){
+function finishTest(){
 
-ekranGizle();
+localStorage.setItem(
+"lastAnswers",
+JSON.stringify(ans)
+);
 
-document.getElementById("result").classList.remove("hidden");
+
+inc("checks",1);
+
+addEnergy(20);
+
+addHistory(
+"Check-in tamamlandı",
+"📝"
+);
+
 
 kaydet({
 
-durum:"test_tamamlandi",
+durum:"checkin",
 
-saat:"20:00",
-
-cevaplar:cevaplar,
+cevaplar:ans,
 
 tarih:new Date().toISOString()
 
 });
 
-let sayi=
-Number(localStorage.getItem("checkCount") || 0);
 
-sayi++;
+let stress = ans.stres;
 
-localStorage.setItem("checkCount",sayi);
+let mood = ans.ruh_hali;
 
-document.getElementById("checkCount").innerText=sayi;
 
-window.scrollTo(0,0);
+if(stress >= 4){
+
+resultEmoji.textContent = "🌧️";
+
+resultTitle.textContent =
+"Bugün biraz yoğun görünüyorsun.";
+
+resultSuggestion.textContent =
+"Kısa bir Mini Gizem ile dikkatini başka bir noktaya taşıyalım.";
+
+}
+
+else if(mood >= 4){
+
+resultEmoji.textContent = "☀️";
+
+resultTitle.textContent =
+"Bugünün havası açık.";
+
+resultSuggestion.textContent =
+"Enerjini kısa bir odak veya hafıza oyununda kullanabilirsin.";
+
+}
+
+else{
+
+resultEmoji.textContent = "🌤️";
+
+resultTitle.textContent =
+"Bugün dengeli ama değişken.";
+
+resultSuggestion.textContent =
+"Birkaç dakikalık hafif bir mola iyi gelebilir.";
 
 }
 
 
-function sonucTamamla(){
+resultText.textContent =
+"Bu yorum yalnızca verdiğin cevapların kısa bir özetidir.";
 
-alert("🎉 İlk deneyim ekranını sıradaki adımda yapacağız.");
 
-anaSayfa();
+show("result");
+
+refresh();
 
 }
 
 
-function premiumAc(){
+function mysteryAnswer(a){
 
-ekranGizle();
+if(a === "Ece"){
 
-document.getElementById("premiumScreen")
-.classList.remove("hidden");
+toast(
+"Doğru! Ece bilmemesi gereken bir ayrıntıyı biliyordu. 🎉"
+);
 
-document.getElementById("nav").style.display="none";
+}else{
 
-window.scrollTo(0,0);
+toast(
+"En güçlü ipucu Ece'yi gösteriyordu 👀"
+);
+
+}
+
+finishExp("Mini Gizem");
+
+}
+
+
+function finishExp(name){
+
+inc("exps",1);
+
+addEnergy(15);
+
+addHistory(
+name + " tamamlandı",
+"✨"
+);
+
+
+kaydet({
+
+durum:"deneyim",
+
+deneyim:name,
+
+tarih:new Date().toISOString()
+
+});
+
+
+refresh();
+
+
+setTimeout(function(){
+
+show("home");
+
+},700);
+
+}
+
+
+function startBreath(){
+
+show("breath");
+
+let n = 120;
+
+clearInterval(breathInt);
+
+
+breathInt = setInterval(function(){
+
+n--;
+
+
+timer.textContent =
+
+String(
+Math.floor(n / 60)
+).padStart(2,"0")
+
++
+
+":"
+
++
+
+String(
+n % 60
+).padStart(2,"0");
+
+
+breathCircle.textContent =
+
+n % 8 < 4
+
+? "Nefes Al"
+
+: "Nefes Ver";
+
+
+if(n <= 0){
+
+clearInterval(breathInt);
+
+}
+
+},1000);
+
+}
+
+
+function hideWords(){
+
+words.textContent =
+"••••••";
+
+
+memoryQ.classList.remove(
+"hidden"
+);
+
+}
+
+
+function mem(ok){
+
+if(ok){
+
+toast(
+"Doğru! 🧠"
+);
+
+}else{
+
+toast(
+"Cevap Köprü'ydü 🌉"
+);
+
+}
+
+finishExp(
+"Hafıza Oyunu"
+);
+
+}
+
+
+function saveGood(){
+
+localStorage.setItem(
+
+"goodThings",
+
+JSON.stringify([
+
+g1.value,
+
+g2.value,
+
+g3.value
+
+])
+
+);
+
+
+addEnergy(10);
+
+
+addHistory(
+
+"3 İyi Şey kaydedildi",
+
+"🌱"
+
+);
+
+
+toast(
+"Kaydedildi 🌱"
+);
+
+
+refresh();
+
+
+setTimeout(function(){
+
+show("home");
+
+},700);
+
+}
+
+
+function predict(v){
+
+localStorage.setItem(
+
+"prediction",
+
+v
+
+);
+
+
+addEnergy(5);
+
+
+toast(
+"Tahminin kaydedildi 🔮"
+);
+
+
+refresh();
+
+
+setTimeout(function(){
+
+show("home");
+
+},700);
+
+}
+
+
+function saveDaily(){
+
+if(
+dailyAnswer.value.trim()
+){
+
+localStorage.setItem(
+
+"dailyAnswer",
+
+dailyAnswer.value
+
+);
+
+
+addEnergy(10);
+
+
+addHistory(
+
+"Günün sorusu cevaplandı",
+
+"💭"
+
+);
+
+
+toast(
+"Cevabın kaydedildi"
+);
+
+
+refresh();
+
+
+setTimeout(function(){
+
+show("home");
+
+},700);
+
+}
+
+}
+
+
+function openCapsule(){
+
+let arr = [
+
+"Bugün 5 dakika boyunca telefonunu başka bir odada bırak.",
+
+"Bir şarkıyı hiçbir şey yapmadan sadece dinle.",
+
+"Bugün bir kişiye içten bir teşekkür mesajı gönder.",
+
+"10 dakikalık kısa bir yürüyüş yap ve üç ayrıntı fark et.",
+
+"Bugün ertelediğin küçük bir işi 2 dakikalığına başlat."
+
+];
+
+
+let d =
+new Date().getDate();
+
+
+capsuleText.innerHTML =
+
+"<h2>🎁 Görevin</h2><p>" +
+
+arr[d % arr.length] +
+
+"</p>";
+
+
+addEnergy(5);
+
+refresh();
+
+}
+
+
+function renderWeather(){
+
+let a = JSON.parse(
+
+localStorage.getItem(
+"lastAnswers"
+)
+
+|| "{}"
+
+);
+
+
+if(!a.stres){
+
+return;
+
+}
+
+
+if(a.stres >= 4){
+
+weatherEmoji.textContent =
+"🌧️";
+
+weatherTitle.textContent =
+"Yoğun ve yağmurlu";
+
+weatherText.textContent =
+"Stres ve zihinsel yoğunluk puanların yüksek. Kısa bir dikkat değişimi deneyebilirsin.";
+
+}
+
+else if(a.ruh_hali >= 4){
+
+weatherEmoji.textContent =
+"☀️";
+
+weatherTitle.textContent =
+"Açık ve enerjik";
+
+weatherText.textContent =
+"Ruh hâli puanın olumlu tarafta. Enerjini küçük bir göreve yönlendirebilirsin.";
+
+}
+
+else{
+
+weatherEmoji.textContent =
+"🌤️";
+
+weatherTitle.textContent =
+"Parçalı bulutlu";
+
+weatherText.textContent =
+"Bugünkü cevapların dengeli ama değişken bir tablo gösteriyor.";
+
+}
+
+}
+
+
+function renderReport(){
+
+let a = JSON.parse(
+
+localStorage.getItem(
+"lastAnswers"
+)
+
+|| "{}"
+
+);
+
+
+moodFill.style.width =
+
+((a.ruh_hali || 0) * 20)
+
++ "%";
+
+
+energyFill.style.width =
+
+((a.enerji || 0) * 20)
+
++ "%";
+
+
+calmFill.style.width =
+
+((6 - (a.stres || 5)) * 20)
+
++ "%";
+
+
+mindFill.style.width =
+
+((6 - (a.zihin || 5)) * 20)
+
++ "%";
+
+}
+
+
+function addHistory(t,e){
+
+let h = JSON.parse(
+
+localStorage.getItem(
+"history"
+)
+
+|| "[]"
+
+);
+
+
+h.unshift({
+
+t:t,
+
+e:e,
+
+d:new Date().toLocaleString("tr-TR")
+
+});
+
+
+localStorage.setItem(
+
+"history",
+
+JSON.stringify(
+h.slice(0,30)
+)
+
+);
+
+}
+
+
+function renderHistory(){
+
+let h = JSON.parse(
+
+localStorage.getItem(
+"history"
+)
+
+|| "[]"
+
+);
+
+
+if(h.length){
+
+historyList.innerHTML =
+
+h.map(function(x){
+
+return (
+
+'<div class="row" style="padding:13px 0;border-bottom:1px solid #ffffff15">' +
+
+'<span>' +
+
+x.e +
+
+' ' +
+
+x.t +
+
+'</span>' +
+
+'<small class="muted">' +
+
+x.d +
+
+'</small>' +
+
+'</div>'
+
+);
+
+}).join("");
+
+}
+
+else{
+
+historyList.innerHTML =
+
+'<p class="muted">Henüz aktivite yok.</p>';
+
+}
+
+}
+
+
+function inc(k,n){
+
+localStorage.setItem(
+
+k,
+
+Number(
+localStorage.getItem(k)
+|| 0
+)
+
++ n
+
+);
+
+}
+
+
+function addEnergy(n){
+
+localStorage.setItem(
+
+"energy",
+
+Number(
+
+localStorage.getItem(
+"energy"
+)
+
+|| 0
+
+)
+
++ n
+
+);
+
+}
+
+
+function rankInfo(){
+
+let e = Number(
+
+localStorage.getItem(
+"energy"
+)
+
+|| 0
+
+);
+
+
+let idx = 0;
+
+
+for(
+let i = 0;
+i < ranks.length;
+i++
+){
+
+if(
+e >= ranks[i][1]
+){
+
+idx = i;
+
+}
+
+}
+
+
+let cur =
+ranks[idx];
+
+
+let next =
+ranks[
+Math.min(
+idx + 1,
+ranks.length - 1
+)
+];
+
+
+let pct =
+
+idx === ranks.length - 1
+
+? 100
+
+: (
+
+(e - cur[1])
+
+/
+
+(next[1] - cur[1])
+
+*
+
+100
+
+);
+
+
+return {
+
+e:e,
+
+name:cur[0],
+
+next:next[0],
+
+pct:Math.max(
+0,
+Math.min(100,pct)
+)
+
+};
+
+}
+
+
+function refresh(){
+
+let r =
+rankInfo();
+
+
+rankName.textContent =
+"Rütbe: " + r.name;
+
+
+energy.textContent =
+"⚡ " + r.e + " Enerji";
+
+
+rankFill.style.width =
+r.pct + "%";
+
+
+rankNext.textContent =
+
+r.name === r.next
+
+? "En yüksek rütbedesin."
+
+: "Sonraki rütbe: " + r.next;
+
+}
+
+
+function renderProfile(){
+
+let r =
+rankInfo();
+
+
+profileRank.textContent =
+r.name;
+
+
+pEnergy.textContent =
+r.e;
+
+
+pCheck.textContent =
+
+localStorage.getItem(
+"checks"
+)
+
+|| 0;
+
+
+pExp.textContent =
+
+localStorage.getItem(
+"exps"
+)
+
+|| 0;
+
+}
+
+
+function renderBadges(){
+
+let total =
+
+Number(
+
+localStorage.getItem(
+"checks"
+)
+
+|| 0
+
+)
+
++
+
+Number(
+
+localStorage.getItem(
+"exps"
+)
+
+|| 0
+
+);
+
+
+medalGrid.innerHTML =
+
+medals.map(function(m){
+
+let locked =
+total < m[2];
+
+
+return (
+
+'<div class="medal ' +
+
+(locked ? "locked" : "")
+
++
+
+'">' +
+
+'<i>' +
+
+m[0] +
+
+'</i>' +
+
+m[1] +
+
+'<br>' +
+
+'<small>' +
+
+(
+locked
+
+? m[2] + " aktivite"
+
+: "Açıldı"
+)
+
++
+
+'</small>' +
+
+'</div>'
+
+);
+
+}).join("");
+
+}
+
+
+function toast(t){
+
+let d =
+document.createElement(
+"div"
+);
+
+
+d.className =
+"toast";
+
+
+d.textContent =
+t;
+
+
+document.body.appendChild(
+d
+);
+
+
+setTimeout(function(){
+
+d.remove();
+
+},2200);
 
 }
 
 
 async function kaydet(veri){
 
-if(
-SUPABASE_URL.includes("BURAYA") ||
-SUPABASE_KEY.includes("BURAYA")
-){
-
-console.log("Supabase bilgileri henüz eklenmedi.");
-
-return;
-
-}
-
 try{
 
 await fetch(
-SUPABASE_URL + "/rest/v1/Kayitlar",
+
+SUPABASE_URL +
+
+"/rest/v1/Kayitlar",
+
 {
 
 method:"POST",
 
 headers:{
 
-"apikey":SUPABASE_KEY,
+apikey:
+SUPABASE_KEY,
 
-"Authorization":"Bearer "+SUPABASE_KEY,
+Authorization:
+"Bearer " +
+SUPABASE_KEY,
 
-"Content-Type":"application/json"
+"Content-Type":
+"application/json"
 
 },
 
@@ -813,17 +2531,20 @@ veri:veri
 
 );
 
-}catch(error){
+}
 
-console.log(error);
+catch(e){
+
+console.log(e);
 
 }
 
 }
 
 
-document.getElementById("checkCount").innerText=
-localStorage.getItem("checkCount") || 0;
+refresh();
+
+show("home");
 
 </script>
 
