@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kafa Mola</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07101f;
+      color: white;
+    }
+
+    .app {
+      max-width: 430px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 60px;
+    }
+
+    .logo span {
+      color: #55df83;
+    }
+
+    h1 {
+      font-size: 34px;
+      line-height: 1.2;
+    }
+
+    p {
+      color: #9eabc0;
+      line-height: 1.5;
+    }
+
+    .card {
+      margin-top: 30px;
+      padding: 25px;
+      border-radius: 24px;
+      background: #121d31;
+      border: 1px solid #263652;
+    }
+
+    .brain {
+      font-size: 70px;
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 17px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 16px;
+      background: #55df83;
+      color: #07101f;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .option {
+      background: #17243a;
+      border: 1px solid #30415e;
+      padding: 17px;
+      margin: 12px 0;
+      border-radius: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="logo">
+    KAFA <span>MOLA</span>
+  </div>
+
+  <div id="home">
+
+    <h1>Bugün kendini nasıl hissediyorsun?</h1>
+
+    <p>
+      10 saniyelik check-in yap.
+      Sana uygun kısa bir mola hazırlayalım.
+    </p>
+
+    <div class="card">
+
+      <div class="brain">🧠</div>
+
+      <h2>Bugünkü molanı keşfet</h2>
+
+      <p>
+        3 kısa soru • yaklaşık 10 saniye
+      </p>
+
+      <button onclick="baslat()">
+        Check-in Başlat →
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div id="test" class="hidden">
+
+    <p>SORU 1 / 3</p>
+
+    <h1>Şu an enerjin nasıl?</h1>
+
+    <div class="option" onclick="soru2()">
+      😴 Düşük
+    </div>
+
+    <div class="option" onclick="soru2()">
+      🙂 Orta
+    </div>
+
+    <div class="option" onclick="soru2()">
+      ⚡ Yüksek
+    </div>
+
+  </div>
+
+
+  <div id="test2" class="hidden">
+
+    <p>SORU 2 / 3</p>
+
+    <h1>Kafan ne kadar dolu?</h1>
+
+    <div class="option" onclick="soru3()">
+      🌤️ Rahat
+    </div>
+
+    <div class="option" onclick="soru3()">
+      ☁️ Biraz dolu
+    </div>
+
+    <div class="option" onclick="soru3()">
+      🌪️ Çok dolu
+    </div>
+
+  </div>
+
+
+  <div id="test3" class="hidden">
+
+    <p>SORU 3 / 3</p>
+
+    <h1>Şu an en çok neye ihtiyacın var?</h1>
+
+    <div class="option" onclick="sonuc()">
+      🎮 Kafam dağılsın
+    </div>
+
+    <div class="option" onclick="sonuc()">
+      😂 Biraz güleyim
+    </div>
+
+    <div class="option" onclick="sonuc()">
+      🧩 Bir şeye odaklanayım
+    </div>
+
+  </div>
+
+
+  <div id="result" class="hidden">
+
+    <div class="brain">🕵️</div>
+
+    <h1>Molan hazır.</h1>
+
+    <p>
+      Cevaplarına göre dikkatini birkaç dakikalığına
+      başka bir yere taşıyacak mini bir deneyim seçtik.
+    </p>
+
+    <div class="card">
+
+      <h2>🔎 3 Dakikalık Gizem</h2>
+
+      <p>
+        Küçük bir olayı incele, ipuçlarını yakala
+        ve doğru cevabı bul.
+      </p>
+
+      <button onclick="alert('İlk görev ekranını sıradaki adımda yapacağız 😄')">
+        Molaya Başla
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+function ekranGizle() {
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("test").classList.add("hidden");
+  document.getElementById("test2").classList.add("hidden");
+  document.getElementById("test3").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+}
+
+function baslat() {
+  ekranGizle();
+  document.getElementById("test").classList.remove("hidden");
+}
+
+function soru2() {
+  ekranGizle();
+  document.getElementById("test2").classList.remove("hidden");
+}
+
+function soru3() {
+  ekranGizle();
+  document.getElementById("test3").classList.remove("hidden");
+}
+
+function sonuc() {
+  ekranGizle();
+  document.getElementById("result").classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
