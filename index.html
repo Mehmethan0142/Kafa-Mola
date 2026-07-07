@@ -1,156 +1,1251 @@
-from pathlib import Path
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kafa Mola</title>
 
-import re, json
+<style>
+*{box-sizing:border-box}
 
-p=Path("/mnt/data/index.html")
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:
+radial-gradient(circle at 85% 4%,#2b1763 0,transparent 26%),
+linear-gradient(#090d20,#060a15);
+color:#fff;
+min-height:100vh
+}
 
-text=p.read_text(encoding="utf-8")
+button,input,textarea,select{font:inherit}
 
-capsules = [
+button{cursor:pointer}
 
-"5 dakika boyunca telefonunu başka bir odada bırak.","Bir şarkıyı hiçbir şey yapmadan sadece dinle.","Bir kişiye içten bir teşekkür mesajı gönder.","10 dakikalık kısa bir yürüyüş yap ve üç ayrıntı fark et.","Ertelediğin küçük bir işe yalnızca 2 dakikalığına başla.",
+.app{
+max-width:480px;
+margin:auto;
+padding:22px 17px 120px
+}
 
-"Bugün gökyüzüne 2 dakika bak.","Uzun zamandır konuşmadığın birine nasılsın diye yaz.","Bir bardak suyu yavaşça ve fark ederek iç.","Bulunduğun yerde gördüğün 5 rengi say.","Bugün kendin için küçük bir şeyi ertelemeden yap.",
+.hidden{display:none!important}
 
-"Telefonundaki gereksiz 10 ekran görüntüsünü sil.","Sevdiğin bir fotoğrafı bul ve neden sevdiğini düşün.","Birine samimi bir iltifat et.","5 dakika sessizce otur ve çevrendeki sesleri dinle.","Bugün bir işi normalden daha yavaş ve dikkatli yap.",
+.head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:22px
+}
 
-"Bir pencere aç ve 10 derin, rahat nefes al.","Çocukken sevdiğin bir şarkıyı dinle.","Bugün şikâyet etmek üzereyken bir kez durup yeniden ifade et.","Masandaki veya odandaki küçük bir alanı düzenle.","Bir kâğıda bugün aklını en çok meşgul eden şeyi yaz.",
+.logo{
+font-weight:900;
+font-size:22px
+}
 
-"Bir fincan çay veya kahveyi telefona bakmadan iç.","Bugün bir kişiye teşekkür etmek için özel bir neden bul.","5 dakika boyunca sadece yürüyüşüne odaklan.","Kendine bugün iyi yaptığın bir şeyi söyle.","Uzun zamandır ertelediğin küçük bir mesajı gönder.",
+.logo b{color:#9462ff}
 
-"Bir dakika gözlerini kapatıp bedenindeki gergin yerleri fark et.","Bugün bir öğünü ilk 5 dakika ekransız ye.","Evin içinde kullanmadığın bir şeyi ayır.","Bir arkadaşına güzel bir anınızı hatırlatan mesaj gönder.","Bugün bir işi bitirince 30 saniye hiçbir şeye geçmeden bekle.",
+.circle{
+width:44px;
+height:44px;
+border:0;
+border-radius:50%;
+background:#18213b;
+color:#fff;
+font-size:21px
+}
 
-"Çevrende daha önce fark etmediğin üç ayrıntı bul.","Kendine küçük bir gelecek notu yaz.","Bugün bir kişiyi sözünü kesmeden dikkatle dinle.","5 dakika sevdiğin bir müziğe eşlik et.","Bugün yapmayacağın bir şeyi bilinçli olarak seç.",
+.hero{
+text-align:center;
+padding:5px 0 18px
+}
 
-"Telefonunun bildirimlerini 30 dakikalığına sessize al.","Bir bitkiye, ağaca veya gökyüzüne birkaç dakika dikkatle bak.","Bugün birine yardım edebileceğin küçük bir şey bul.","Kendine sevdiğin bir içecek hazırla ve acele etmeden iç.","Bugün seni güldüren bir şeyi not et.",
+.hero .emo{font-size:58px}
 
-"Bir çekmeceyi 5 dakika düzenle.","Bugün bir karar verirken kendine 'Bunu gerçekten istiyor muyum?' diye sor.","Bir kişiye sebepsiz yere iyi dilek mesajı gönder.","3 dakika boyunca omuzlarını ve boynunu rahatlat.","Bugün sosyal medyaya girişini bir kez ertele.",
+.hero h1{
+font-size:35px;
+margin:7px
+}
 
-"Bir çocukluk anını ayrıntılarıyla hatırlamaya çalış.","Bugün duyduğun en güzel cümleyi not et.","Kendin için 10 dakikalık boş zaman oluştur.","Bir işi mükemmel yapmak yerine yeterince iyi bitir.","Bugün çevrendeki birine küçük bir kolaylık sağla.",
+.hero p,.muted{
+color:#aab3c9;
+line-height:1.55
+}
 
-"Sabah veya akşam 5 dakika pencereden dışarıyı izle.","Telefonundaki ana ekranı sadeleştir.","Bugün bir kişiye onu neden sevdiğini veya değer verdiğini söyle.","Bir dakikalık esneme yap.","Bugün seni yoran bir düşünceyi yazıp kapat.",
+.card{
+background:linear-gradient(135deg,#151c35,#202147);
+border:1px solid #ffffff17;
+border-radius:22px;
+padding:19px;
+margin:13px 0
+}
 
-"Sevdiğin bir kokuyu bilinçli olarak fark et.","Bugün 10 dakika erken hazırlanmayı dene.","Bir arkadaşının güzel bir özelliğini ona söyle.","Kısa bir yürüyüşte adımlarını say.","Bugün bir işi tek seferde, sekme değiştirmeden bitir.",
+.purple{
+background:linear-gradient(135deg,#3b287c,#7442e7)
+}
 
-"Eski bir fotoğrafa bak ve o günkü haline bir cümle söyle.","Bugün kendine küçük bir ödül belirle.","Bir kişiye gerçekten merak ettiğin bir soru sor.","2 dakika boyunca sadece nefesinin doğal ritmini izle.","Bugün gereksiz bir tartışmadan bilinçli olarak uzak dur.",
+.gold{
+background:linear-gradient(135deg,#493008,#6a4307);
+border-color:#8c5b0c
+}
 
-"Bir odadaki ışığı değiştirip ortamın nasıl hissettirdiğini fark et.","Bugün tamamladığın üç küçük şeyi say.","Birine komik bir şey gönder.","5 dakika boyunca elindeki tek işe odaklan.","Bugün bir şeyi 'sonra' demeden hemen yap.",
+.row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px
+}
 
-"Bir kâğıda şu an istediğin üç şeyi yaz.","Bugün birine teşekkür ederken nedenini de söyle.","Kısa süreliğine kulaklığı çıkarıp çevreni dinle.","Bir bardak daha fazla su iç.","Bugün kendini başkasıyla kıyasladığını fark ettiğinde konuyu değiştir.",
+.badge{
+font-size:11px;
+padding:6px 9px;
+border-radius:12px;
+background:#0004
+}
 
-"Sevdiğin bir yeri zihninde ayrıntılarıyla canlandır.","Bugün bir kişiye 'Sana nasıl yardımcı olabilirim?' diye sor.","5 dakika boyunca haber ve sosyal medya akışından uzak dur.","Yarın için tek bir küçük öncelik belirle.","Bugün seni rahatlatan bir hareketi tekrar et.",
+.rank{
+background:#171e35;
+border-radius:18px;
+padding:15px;
+margin:14px 0
+}
 
-"Bir şarkının sözlerinden çok enstrümanlarına dikkat et.","Bugün geçmişte yaptığın iyi bir seçimi hatırla.","Bir kişiye kısa bir sesli mesaj gönder.","Çevrende yuvarlak, kare ve üçgen birer nesne bul.","Bugün bir gereksiz harcamayı ertele.",
+.rankline{
+height:8px;
+background:#2a3350;
+border-radius:10px;
+overflow:hidden;
+margin-top:10px
+}
 
-"Bir dakika boyunca yüz kaslarını bilinçli olarak gevşet.","Bugün seni motive eden bir cümle yaz.","Birine küçük bir sürpriz yap.","10 dakika boyunca tek bir ortamda telefonsuz kal.","Bugünün sonunda 'iyi ki yaptım' diyebileceğin küçük bir şey yap."
+.rankfill{
+height:100%;
+background:linear-gradient(90deg,#8150ff,#55d5a5)
+}
 
-]
+button{
+width:100%;
+border:0;
+border-radius:15px;
+padding:15px;
+font-size:16px;
+font-weight:800
+}
 
-questions = [
+.primary{
+background:linear-gradient(90deg,#7143ff,#a058ff);
+color:#fff
+}
 
-"Bugün tekrar yaşayabilsen hangi 10 dakikayı seçerdin?","Bugün seni en çok ne rahatlattı?","Bugün kendinle ilgili ne fark ettin?","Şu an hayatında neyi biraz daha azaltmak isterdin?","Bugün hangi küçük şey beklediğinden daha iyi geçti?",
+.green{
+background:linear-gradient(90deg,#43ca7d,#65e29a);
+color:#06150c
+}
 
-"Son zamanlarda sana enerji veren şey ne?","Bugün kime teşekkür etmek isterdin ve neden?","Şu an zihninde en fazla yer kaplayan konu ne?","Bugün kendine daha nazik davransaydın neyi farklı yapardın?","Bugün seni gülümseten en küçük şey neydi?",
+.dark{
+background:#1b2440;
+color:#fff
+}
 
-"Bir haftalığına tek bir alışkanlığını değiştirebilseydin hangisi olurdu?","Bugün hangi anda gerçekten oradaydın?","Şu an en çok neye ihtiyacın var?","Bugün öğrendiğin küçük bir şey ne?","Hangi işi bitirmek sana en fazla rahatlama getirirdi?",
+.nav{
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:min(480px,100%);
+display:flex;
+justify-content:space-around;
+background:#080c1df2;
+border-top:1px solid #ffffff17;
+padding:11px 3px 18px;
+z-index:9
+}
 
-"Bugün birine söyleyemediğin ama söylemek istediğin şey ne?","Son günlerde seni şaşırtan şey ne oldu?","Bugün hangi düşünceyi yanında taşımak istemezdin?","Kendine bugün tek bir tavsiye verecek olsan ne derdin?","Şu an hayatındaki hangi şey için minnettarsın?",
+.nav div{
+text-align:center;
+color:#8e97ad;
+font-size:11px;
+cursor:pointer
+}
 
-"Bugün neyi gereğinden fazla düşündün?","Son zamanlarda hangi anı tekrar hatırlıyorsun?","Bugün enerjini en çok ne tüketti?","Bugün enerjini en çok ne yükseltti?","Yarın sabah daha iyi hissetmek için bu akşam ne yapabilirsin?",
+.nav span{
+display:block;
+font-size:21px
+}
 
-"Bugün bir korkun olmasaydı ne yapardın?","Kendinde en sevdiğin küçük özellik ne?","Bugün hangi konuda kendine haksızlık ettin?","Şu an çözmek zorunda olmadığın şey ne?","Bugün bir şeyi yeniden yapabilsen neyi farklı yapardın?",
+.title{
+text-align:center;
+font-size:29px;
+margin:15px 0 7px
+}
 
-"Son bir ayda sende değişen bir şey var mı?","Bugün hangi sınırını korumak isterdin?","Şu an bırakman gereken küçük yük ne?","Bugün seni en çok kim anladı?","Bugün sen kimi gerçekten dinledin?",
+.desc{
+text-align:center;
+color:#aab3c9;
+line-height:1.5;
+margin-bottom:22px
+}
 
-"Hayatında daha fazla yer açmak istediğin şey ne?","Bugün kendin için yaptığın en iyi şey neydi?","Şu an bir cümleyle ruh hâlini nasıl anlatırsın?","Bugün seni zorlayan şeyin sana öğrettiği ne var?","Yarın için tek bir niyet seçsen ne olurdu?",
+.progress{
+height:7px;
+background:#28304b;
+border-radius:10px;
+overflow:hidden;
+margin:10px 0 35px
+}
 
-"Bugün hangi anda zaman hızlı geçti?","Bugün hangi anda zaman yavaşladı?","Kendine daha çok güvenseydin hangi adımı atardın?","Şu an hayatında sadeleştirebileceğin ne var?","Bugün hangi küçük başarıyı görmezden geldin?",
+.progress div{
+height:100%;
+background:#8b55ff
+}
 
-"Birine sarılabilseydin şu an kim olurdu?","Bugün duymaya ihtiyacın olan cümle ne?","Şu an neyi kontrol etmeye çalışıyorsun?","Kontrolün dışında olan neyi bırakabilirsin?","Bugün seni en çok hangi düşünce ziyaret etti?",
+.question{
+text-align:center;
+font-size:25px
+}
 
-"Son zamanlarda neyi özlüyorsun?","Bugün bir fotoğraf çekseydin neyin fotoğrafını çekerdin?","Bugünün bir rengi olsaydı hangisi olurdu?","Bugünün bir şarkısı olsaydı hangisi olurdu?","Bugün hangi karar seni rahatlattı?",
+.opts{
+display:grid;
+gap:10px
+}
 
-"Şu an hayatında kime daha fazla zaman ayırmak istersin?","Bugün kendini ne zaman güçlü hissettin?","Bugün kendini ne zaman yorgun hissettin?","Bir ay sonraki kendine ne söylemek istersin?","Bir yıl önceki kendine ne söylemek isterdin?",
+.opt{
+background:#161e36;
+color:#fff;
+border:1px solid #303b5c;
+text-align:left
+}
 
-"Bugün seni ne meraklandırdı?","Bugün neye hayır demek isterdin?","Bugün neye daha çok evet demek isterdin?","Şu an hayatında en çok neyi bekliyorsun?","Bugün seni rahatlatan bir ses neydi?",
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:11px
+}
 
-"Bugün fark ettiğin güzel bir ayrıntı neydi?","Şu an kendine 20 dakika ayırsan ne yapardın?","Bugün hangi konuşma sende kaldı?","Bugün bir şeyi fazla ciddiye aldın mı?","Şu an gülümsemene neden olabilecek şey ne?",
+.mini{
+min-height:145px;
+display:flex;
+flex-direction:column;
+justify-content:space-between
+}
 
-"Bugün kendinle gurur duyduğun şey ne?","Bugün hangi alışkanlığın sana yardımcı oldu?","Hangi alışkanlığın işini zorlaştırdı?","Bugün bir şeyi affedebilseydin ne olurdu?","Şu an en çok hangi duyguyu hissediyorsun?",
+.mini i{
+font-style:normal;
+font-size:35px
+}
 
-"Bu duygunun senden istediği şey ne olabilir?","Bugün kendine verdiğin sözü tuttun mu?","Yarın için kendine hangi küçük sözü verebilirsin?","Bugün hayatını kolaylaştıran biri oldu mu?","Sen bugün kimin hayatını biraz kolaylaştırdın?",
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px
+}
 
-"Şu an önceliğin gerçekten ne?","Bugün neyi erteledin ve neden?","Bugün başladığın küçük bir şey var mı?","Şu an zihnini boşaltmak için ne yapabilirsin?","Bugün hangi anı saklamak isterdin?",
+.stat{
+background:#121a30;
+border-radius:15px;
+padding:13px;
+text-align:center
+}
 
-"Bugün kendine kaç puanlık anlayış gösterdin?","Şu an seni ileri taşıyacak en küçük adım ne?","Bugün bir şeyi olduğu gibi kabul edebildin mi?","Bugün neye gereğinden az zaman ayırdın?","90 gün sonraki kendinin sana teşekkür edeceği şey ne?"
+.stat strong{
+display:block;
+font-size:21px
+}
 
-]
+input,textarea,select{
+width:100%;
+padding:15px;
+margin:7px 0;
+border:1px solid #303b5c;
+border-radius:14px;
+background:#151d34;
+color:#fff
+}
 
-focuses = [
+textarea{resize:vertical}
+
+.toast{
+position:fixed;
+bottom:100px;
+left:50%;
+transform:translateX(-50%);
+background:#fff;
+color:#111;
+padding:12px 16px;
+border-radius:13px;
+z-index:99;
+max-width:90%;
+text-align:center
+}
+
+.percentGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+.percentBox{
+background:#151d35;
+border:1px solid #303b5c;
+border-radius:20px;
+padding:17px;
+text-align:center
+}
+
+.percentBox strong{
+display:block;
+font-size:34px;
+background:linear-gradient(90deg,#8d5cff,#5ce0b2);
+-webkit-background-clip:text;
+color:transparent
+}
+
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:6px
+}
+
+.day{
+aspect-ratio:1;
+border-radius:10px;
+background:#151d35;
+display:grid;
+place-items:center;
+font-size:12px
+}
+
+.today{
+border:1px solid #8d5cff
+}
+
+.goalDays{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px
+}
+
+.goalDay{
+background:#121a30;
+border-radius:15px;
+padding:14px 5px;
+text-align:center
+}
+
+.goalDone{
+background:#174232
+}
+
+.breath{
+width:180px;
+height:180px;
+border-radius:50%;
+margin:35px auto;
+background:linear-gradient(135deg,#8150ff,#55d5a5);
+display:grid;
+place-items:center;
+font-weight:900;
+animation:b 8s infinite ease-in-out
+}
+
+@keyframes b{
+0%,100%{transform:scale(.72)}
+50%{transform:scale(1)}
+}
+
+.mail{
+display:block;
+text-decoration:none;
+color:#fff
+}
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+<section id="home">
+
+<div class="head">
+<button class="circle">☰</button>
+<div class="logo">KAFA <b>MOLA</b></div>
+<button class="circle" onclick="show('profile')">🧠</button>
+</div>
+
+<div class="hero">
+<div class="emo">🌙☁️</div>
+<h1>Kafa Mola</h1>
+<p>
+Günde birkaç dakika. Kendini fark et,
+zihnini kısa süreliğine başka yere taşı,
+değişimini gör.
+</p>
+</div>
+
+<div class="rank">
+
+<div class="row">
+<b id="rankName">Rütbe: Çaylak</b>
+<span id="energyText">⚡ 0</span>
+</div>
+
+<div class="rankline">
+<div class="rankfill" id="rankFill"></div>
+</div>
+
+<small class="muted" id="rankNext"></small>
+
+</div>
+
+<div class="card purple">
+
+<div class="row">
+<h2>Bugünün Check-in'i</h2>
+<span class="badge">+20 ⚡</span>
+</div>
+
+<p>Şu an kendini nasıl hissediyorsun?</p>
+
+<button class="primary" onclick="startTest()">
+Check-in'i Başlat →
+</button>
+
+</div>
+
+<div class="card" onclick="show('goal')">
+<div class="row">
+<h2>3 Günlük Mini Hedef</h2>
+<span>🎯</span>
+</div>
+<p class="muted" id="homeGoalText">
+Küçük bir hedef seç ve 3 gün boyunca dene.
+</p>
+</div>
+
+<div class="card" onclick="show('weather')">
+<div class="row">
+<h2>Ruh Hâli Hava Durumu</h2>
+<span>🌤️</span>
+</div>
+<p class="muted">
+Bugünkü zihinsel havanı gör.
+</p>
+</div>
+
+<div class="card" onclick="show('calendarScreen')">
+<div class="row">
+<h2>Ruh Hâli Takvimi</h2>
+<span>📅</span>
+</div>
+<p class="muted">
+Ayın nasıl geçtiğini tek bakışta gör.
+</p>
+</div>
+
+<div class="card" onclick="show('dailyQuestion')">
+<div class="row">
+<h2>Günün Tek Sorusu</h2>
+<span>💭</span>
+</div>
+<p class="muted" id="homeQuestionPreview">
+Bugün için tek bir düşündüren soru.
+</p>
+</div>
+
+<div class="card" onclick="show('capsule')">
+<div class="row">
+<h2>Sürpriz Kapsül</h2>
+<span>🎁</span>
+</div>
+<p class="muted">
+Her gün farklı küçük bir sürpriz.
+</p>
+</div>
+
+<div class="card gold">
+<div class="row">
+<h2>90 Günlük Yolculuk</h2>
+<span>✨</span>
+</div>
+
+<p>
+Her gün değişen sorular, görevler ve kısa deneyimlerle
+kendi yolculuğunu oluştur.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="row">
+<h2>Fikirlerinizi paylaşın</h2>
+<span>💌</span>
+</div>
+
+<p class="muted">
+Önerileriniz, eleştirileriniz veya yeni özellik fikirleriniz varsa
+bize yazabilirsiniz.
+</p>
+
+<a
+class="mail"
+href="mailto:mehmettirpan1@yandex.com?subject=Kafa%20Mola%20Öneri"
+>
+<button class="dark">
+📧 mehmettirpan1@yandex.com
+</button>
+</a>
+
+</div>
+
+</section>
+
+
+<section id="test" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">CHECK-<b>IN</b></div>
+<div></div>
+</div>
+
+<h1 class="title">Kısa Check-in</h1>
+
+<p class="desc">
+Beş kısa soruyla bugünkü durumuna bakalım.
+</p>
+
+<div id="qCount" class="muted"></div>
+
+<div class="progress">
+<div id="qBar"></div>
+</div>
+
+<div id="qArea"></div>
+
+</section>
+
+
+<section id="result" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">SONUÇ <b>ÖZETİ</b></div>
+<div></div>
+</div>
+
+<div class="hero">
+
+<div class="emo" id="resultEmoji">🌤️</div>
+
+<h1 id="resultTitle"></h1>
+
+<p id="resultText"></p>
+
+</div>
+
+<div class="card">
+
+<h2>Bugün sana uygun mola</h2>
+
+<p id="resultSuggestion" class="muted"></p>
+
+<button class="green" onclick="show('experiences')">
+Bir Mola Seç
+</button>
+
+</div>
+
+</section>
+
+
+<section id="experiences" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">DENEYİM<b>LER</b></div>
+<div></div>
+</div>
+
+<h1 class="title">Kısa Molalar</h1>
+
+<p class="desc">
+Her gün değişen küçük deneyimler.
+</p>
+
+<div class="grid">
+
+<div class="card mini" onclick="show('focus')">
+<i>🎯</i>
+<div>
+<h3>Günlük Odak</h3>
+<small class="muted">Bugüne özel görev.</small>
+</div>
+</div>
+
+<div class="card mini" onclick="startBreath()">
+<i>🌬️</i>
+<div>
+<h3>Nefes Ritmi</h3>
+<small class="muted">2 dakikalık mola.</small>
+</div>
+</div>
+
+<div class="card mini" onclick="show('memory')">
+<i>🧠</i>
+<div>
+<h3>Hafıza</h3>
+<small class="muted">Günlük kelime seti.</small>
+</div>
+</div>
+
+<div class="card mini" onclick="show('goodThings')">
+<i>🌱</i>
+<div>
+<h3>3 İyi Şey</h3>
+<small class="muted">Günlük farklı sorular.</small>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="focus" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('experiences')">←</button>
+<div class="logo">ODAK <b>MOLASI</b></div>
+<div></div>
+</div>
+
+<h1 class="title">Bugünün Odak Görevi</h1>
+
+<div class="card">
+<h2 id="focusText"></h2>
+</div>
+
+<button class="green" onclick="finishExp('Odak Molası')">
+Tamamladım +15 ⚡
+</button>
+
+</section>
+
+
+<section id="breath" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('experiences')">←</button>
+<div class="logo">NEFES <b>RİTMİ</b></div>
+<div></div>
+</div>
+
+<h1 class="title">Daireyi takip et</h1>
+
+<p class="desc">
+Büyürken nefes al, küçülürken ver.
+</p>
+
+<div class="breath" id="breathCircle">
+Nefes Al
+</div>
+
+<p class="desc" id="breathTimer">
+02:00
+</p>
+
+<button class="green" onclick="finishExp('Nefes Ritmi')">
+Tamamladım
+</button>
+
+</section>
+
+
+<section id="memory" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('experiences')">←</button>
+<div class="logo">HAFIZA <b>OYUNU</b></div>
+<div></div>
+</div>
+
+<h1 class="title">10 saniye bak</h1>
+
+<div class="card"
+id="memoryWords"
+style="text-align:center;font-size:22px;line-height:2">
+</div>
+
+<button class="primary" onclick="hideMemoryWords()">
+Hazırım
+</button>
+
+<div id="memoryQuestion" class="hidden">
+
+<h2 class="question">
+Listede hangisi vardı?
+</h2>
+
+<div class="opts" id="memoryOptions"></div>
+
+</div>
+
+</section>
+
+
+<section id="goodThings" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('experiences')">←</button>
+<div class="logo">3 İYİ <b>ŞEY</b></div>
+<div></div>
+</div>
+
+<h1 class="title">Bugünden kalanlar</h1>
+
+<p class="desc">
+Her gün farklı üç küçük soru.
+</p>
+
+<input id="g1">
+<input id="g2">
+<input id="g3">
+
+<button class="green" onclick="saveGoodThings()">
+Kaydet +10 ⚡
+</button>
+
+</section>
+
+
+<section id="dailyQuestion" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">TEK <b>SORU</b></div>
+<div></div>
+</div>
+
+<h1 class="title">Bugünün sorusu</h1>
+
+<div class="card">
+<h2 id="dailyQuestionText"></h2>
+</div>
+
+<textarea
+id="dailyAnswer"
+rows="6"
+placeholder="İstersen birkaç kelime yaz...">
+</textarea>
+
+<button class="green" onclick="saveDailyAnswer()">
+Cevabımı Kaydet +10 ⚡
+</button>
+
+</section>
+
+
+<section id="capsule" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">SÜRPRİZ <b>KAPSÜL</b></div>
+<div></div>
+</div>
+
+<div class="hero">
+
+<div class="emo">🎁</div>
+
+<h1>Bugünün kapsülü</h1>
+
+<p>
+Her gün farklı bir sürpriz.
+</p>
+
+</div>
+
+<div class="card" id="capsuleText">
+<p class="muted">
+Açmak için butona dokun.
+</p>
+</div>
+
+<button class="primary" onclick="openCapsule()">
+Kapsülü Aç
+</button>
+
+</section>
+
+
+<section id="goal" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">MİNİ <b>HEDEF</b></div>
+<div></div>
+</div>
+
+<h1 class="title">3 Günlük Mini Hedef</h1>
+
+<p class="desc">
+Küçük bir değişikliği üç gün dene.
+</p>
+
+<div id="goalChoose" class="opts">
+
+<button class="opt"
+onclick="chooseGoal('Telefonu daha az kullanacağım','📵')">
+📵 Telefonu daha az kullanacağım
+</button>
+
+<button class="opt"
+onclick="chooseGoal('Her gün 15 dakika yürüyeceğim','🚶')">
+🚶 Her gün 15 dakika yürüyeceğim
+</button>
+
+<button class="opt"
+onclick="chooseGoal('Yatmadan önce ekranı bırakacağım','🌙')">
+🌙 Yatmadan önce ekranı bırakacağım
+</button>
+
+<button class="opt"
+onclick="chooseGoal('Her gün kendime 10 dakika ayıracağım','🌱')">
+🌱 Kendime zaman ayıracağım
+</button>
+
+</div>
+
+<div id="goalActive" class="hidden">
+
+<div class="card purple">
+
+<div style="font-size:45px" id="goalEmoji"></div>
+
+<h2 id="goalTitle"></h2>
+
+<p id="goalStatus"></p>
+
+</div>
+
+<div class="goalDays" id="goalDays"></div>
+
+<button class="green" onclick="goalDoneToday()">
+Bugün Başardım ✓
+</button>
+
+<button class="dark" onclick="resetGoal()">
+Hedefi Değiştir
+</button>
+
+</div>
+
+</section>
+
+
+<section id="weather" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">ZİHİNSEL <b>HAVA</b></div>
+<div></div>
+</div>
+
+<div class="hero">
+
+<div class="emo" id="weatherEmoji">🌤️</div>
+
+<h1 id="weatherTitle">
+Henüz veri yok
+</h1>
+
+<p id="weatherText">
+Check-in tamamladığında yorum oluşacak.
+</p>
+
+</div>
+
+</section>
+
+
+<section id="calendarScreen" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">RUH HÂLİ <b>TAKVİMİ</b></div>
+<div></div>
+</div>
+
+<h1 class="title" id="calendarTitle"></h1>
+
+<div class="card">
+<div class="calendar" id="calendarGrid"></div>
+</div>
+
+</section>
+
+
+<section id="history" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">GEÇMİŞ<b>İM</b></div>
+<div></div>
+</div>
+
+<h1 class="title">Aktiviteler</h1>
+
+<div class="card" id="historyList"></div>
+
+</section>
+
+
+<section id="profile" class="hidden">
+
+<div class="head">
+<button class="circle" onclick="show('home')">←</button>
+<div class="logo">PROF<b>İL</b></div>
+<div></div>
+</div>
+
+<div class="hero">
+<div class="emo">🧠</div>
+<h1 id="profileRank">Çaylak</h1>
+<p>Kafa Mola Yolculuğun</p>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="pEnergy">0</strong>
+<small>Enerji</small>
+</div>
+
+<div class="stat">
+<strong id="pCheck">0</strong>
+<small>Check-in</small>
+</div>
+
+<div class="stat">
+<strong id="pExp">0</strong>
+<small>Mola</small>
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<nav class="nav">
+
+<div onclick="show('home')">
+<span>⌂</span>
+Ana Sayfa
+</div>
+
+<div onclick="show('experiences')">
+<span>✨</span>
+Deneyimler
+</div>
+
+<div onclick="show('history')">
+<span>📊</span>
+Geçmiş
+</div>
+
+<div onclick="show('profile')">
+<span>♙</span>
+Profil
+</div>
+
+</nav>
+
+
+<script>
+
+const $ = id => document.getElementById(id);
+
+const screens = [
+"home",
+"test",
+"result",
+"experiences",
+"focus",
+"breath",
+"memory",
+"goodThings",
+"dailyQuestion",
+"capsule",
+"goal",
+"weather",
+"calendarScreen",
+"history",
+"profile"
+];
+
+
+const ranks = [
+["Çaylak",0],
+["Gözcü",100],
+["Kaşif",250],
+["Öncü",500],
+["Uzman",850],
+["Kaptan",1300],
+["Komutan",2000],
+["Mareşal",3000]
+];
+
+
+const questions = [
+
+"Bugün tekrar yaşayabilsen hangi 10 dakikayı seçerdin?",
+"Bugün seni en çok ne rahatlattı?",
+"Bugün kendinle ilgili ne fark ettin?",
+"Şu an hayatında neyi biraz azaltmak isterdin?",
+"Bugün hangi küçük şey beklediğinden daha iyi geçti?",
+"Son zamanlarda sana enerji veren şey ne?",
+"Bugün kime teşekkür etmek isterdin?",
+"Şu an zihninde en fazla yer kaplayan konu ne?",
+"Bugün kendine daha nazik davransaydın neyi farklı yapardın?",
+"Bugün seni gülümseten en küçük şey neydi?",
+
+"Bir alışkanlığını değiştirebilseydin hangisi olurdu?",
+"Bugün hangi anda gerçekten oradaydın?",
+"Şu an en çok neye ihtiyacın var?",
+"Bugün öğrendiğin küçük bir şey ne?",
+"Hangi işi bitirmek sana en fazla rahatlama getirirdi?",
+"Bugün birine söylemek istediğin şey ne?",
+"Son günlerde seni şaşırtan şey ne oldu?",
+"Bugün hangi düşünceyi yanında taşımak istemezdin?",
+"Kendine tek bir tavsiye verecek olsan ne derdin?",
+"Şu an hayatındaki hangi şey için minnettarsın?",
+
+"Bugün neyi gereğinden fazla düşündün?",
+"Son zamanlarda hangi anı tekrar hatırlıyorsun?",
+"Bugün enerjini en çok ne tüketti?",
+"Bugün enerjini en çok ne yükseltti?",
+"Yarın daha iyi hissetmek için bu akşam ne yapabilirsin?",
+"Bugün korkun olmasaydı ne yapardın?",
+"Kendinde en sevdiğin küçük özellik ne?",
+"Bugün hangi konuda kendine haksızlık ettin?",
+"Şu an çözmek zorunda olmadığın şey ne?",
+"Bugün neyi farklı yapmak isterdin?",
+
+"Son bir ayda sende değişen bir şey var mı?",
+"Bugün hangi sınırını korumak isterdin?",
+"Şu an bırakman gereken küçük yük ne?",
+"Bugün seni en çok kim anladı?",
+"Bugün sen kimi gerçekten dinledin?",
+"Hayatında daha fazla yer açmak istediğin şey ne?",
+"Bugün kendin için yaptığın en iyi şey neydi?",
+"Ruh hâlini tek cümleyle nasıl anlatırsın?",
+"Bugün seni zorlayan şey sana ne öğretti?",
+"Yarın için tek bir niyet seçsen ne olurdu?",
+
+"Bugün hangi anda zaman hızlı geçti?",
+"Bugün hangi anda zaman yavaşladı?",
+"Kendine daha çok güvenseydin hangi adımı atardın?",
+"Hayatında sadeleştirebileceğin ne var?",
+"Bugün hangi küçük başarıyı görmezden geldin?",
+"Şu an kime sarılmak isterdin?",
+"Bugün duymaya ihtiyacın olan cümle ne?",
+"Şu an neyi kontrol etmeye çalışıyorsun?",
+"Kontrolün dışında olan neyi bırakabilirsin?",
+"Bugün seni en çok hangi düşünce ziyaret etti?",
+
+"Son zamanlarda neyi özlüyorsun?",
+"Bugün bir fotoğraf çekseydin neyin fotoğrafını çekerdin?",
+"Bugünün bir rengi olsaydı hangisi olurdu?",
+"Bugünün bir şarkısı olsaydı hangisi olurdu?",
+"Bugün hangi karar seni rahatlattı?",
+"Kime daha fazla zaman ayırmak istersin?",
+"Bugün kendini ne zaman güçlü hissettin?",
+"Bugün kendini ne zaman yorgun hissettin?",
+"Bir ay sonraki kendine ne söylemek istersin?",
+"Bir yıl önceki kendine ne söylemek isterdin?",
+
+"Bugün seni ne meraklandırdı?",
+"Bugün neye hayır demek isterdin?",
+"Bugün neye daha çok evet demek isterdin?",
+"Şu an hayatında en çok neyi bekliyorsun?",
+"Bugün seni rahatlatan bir ses neydi?",
+"Bugün fark ettiğin güzel bir ayrıntı neydi?",
+"Kendine 20 dakika ayırsan ne yapardın?",
+"Bugün hangi konuşma sende kaldı?",
+"Bugün bir şeyi fazla ciddiye aldın mı?",
+"Şu an seni ne gülümsetebilir?",
+
+"Bugün kendinle gurur duyduğun şey ne?",
+"Bugün hangi alışkanlığın sana yardımcı oldu?",
+"Hangi alışkanlığın işini zorlaştırdı?",
+"Bugün bir şeyi affedebilseydin ne olurdu?",
+"Şu an en çok hangi duyguyu hissediyorsun?",
+"Bu duygunun senden istediği şey ne olabilir?",
+"Bugün kendine verdiğin sözü tuttun mu?",
+"Yarın için kendine hangi küçük sözü verebilirsin?",
+"Bugün hayatını kolaylaştıran biri oldu mu?",
+"Sen bugün kimin hayatını kolaylaştırdın?",
+
+"Şu an önceliğin gerçekten ne?",
+"Bugün neyi erteledin ve neden?",
+"Bugün başladığın küçük bir şey var mı?",
+"Zihnini boşaltmak için ne yapabilirsin?",
+"Bugün hangi anı saklamak isterdin?",
+"Bugün kendine ne kadar anlayış gösterdin?",
+"Seni ileri taşıyacak en küçük adım ne?",
+"Bugün bir şeyi olduğu gibi kabul edebildin mi?",
+"Bugün neye gereğinden az zaman ayırdın?",
+"90 gün sonraki kendin sana ne için teşekkür ederdi?"
+
+];
+
+
+const capsules = [
+
+"5 dakika boyunca telefonunu başka bir odada bırak.",
+"Bir şarkıyı hiçbir şey yapmadan sadece dinle.",
+"Bir kişiye içten bir teşekkür mesajı gönder.",
+"10 dakikalık kısa bir yürüyüş yap.",
+"Ertelediğin küçük bir işe 2 dakikalığına başla.",
+"Bugün gökyüzüne 2 dakika bak.",
+"Uzun zamandır konuşmadığın birine mesaj gönder.",
+"Bir bardak suyu yavaşça iç.",
+"Bulunduğun yerde gördüğün 5 rengi say.",
+"Kendin için küçük bir şeyi ertelemeden yap.",
+
+"Gereksiz 10 ekran görüntüsünü sil.",
+"Sevdiğin bir fotoğrafı bul.",
+"Birine samimi bir iltifat et.",
+"5 dakika sessizce otur.",
+"Bir işi normalden daha yavaş yap.",
+"Bir pencere aç ve temiz havayı fark et.",
+"Çocukken sevdiğin bir şarkıyı dinle.",
+"Bugün bir şikâyetini olumlu cümleyle ifade et.",
+"Küçük bir alanı düzenle.",
+"Aklını meşgul eden şeyi bir kâğıda yaz.",
+
+"Çayını veya kahveni telefonsuz iç.",
+"Bir kişiye teşekkür etmek için neden bul.",
+"5 dakika yürüyüşüne odaklan.",
+"Kendine iyi yaptığın bir şeyi söyle.",
+"Ertelediğin küçük bir mesajı gönder.",
+"Bedenindeki gergin yerleri fark et.",
+"Bir öğünün ilk 5 dakikasını ekransız ye.",
+"Kullanmadığın bir şeyi ayır.",
+"Bir arkadaşına güzel bir anınızı hatırlat.",
+"Bir işi bitirdikten sonra 30 saniye bekle.",
+
+"Daha önce fark etmediğin 3 ayrıntı bul.",
+"Kendine geleceğe yönelik kısa bir not yaz.",
+"Bir kişiyi sözünü kesmeden dinle.",
+"Sevdiğin bir müziğe eşlik et.",
+"Bugün yapmayacağın bir şeyi bilinçli seç.",
+"Bildirimleri 30 dakika sessize al.",
+"Bir ağaca veya gökyüzüne dikkatle bak.",
+"Birine küçük bir yardım yap.",
+"Kendine sevdiğin bir içecek hazırla.",
+"Seni güldüren bir şeyi not et.",
+
+"Bir çekmeceyi 5 dakika düzenle.",
+"Bir karar öncesi gerçekten isteyip istemediğini sor.",
+"Bir kişiye iyi dilek mesajı gönder.",
+"Omuzlarını ve boynunu rahatlat.",
+"Sosyal medyaya girişini bir kez ertele.",
+"Bir çocukluk anını hatırla.",
+"Duyduğun güzel bir cümleyi not et.",
+"Kendine 10 dakika boş zaman oluştur.",
+"Bir işi mükemmel değil, yeterince iyi bitir.",
+"Birinin işini kolaylaştır.",
+
+"5 dakika pencereden dışarıyı izle.",
+"Telefonunun ana ekranını sadeleştir.",
+"Bir kişiye neden değer verdiğini söyle.",
+"Bir dakika esneme yap.",
+"Seni yoran düşünceyi yaz.",
+"Sevdiğin bir kokuyu fark et.",
+"Bir yere 10 dakika erken hazırlan.",
+"Bir arkadaşının güzel özelliğini ona söyle.",
+"Yürüyüşte adımlarını say.",
+"Bir işi sekme değiştirmeden bitir.",
+
+"Eski bir fotoğrafa bak.",
+"Kendine küçük bir ödül belirle.",
+"Birine gerçekten merak ettiğin soru sor.",
+"Nefesinin doğal ritmini 2 dakika izle.",
+"Gereksiz bir tartışmadan uzak dur.",
+"Ortamın ışığını değiştir.",
+"Tamamladığın üç küçük şeyi say.",
+"Birine komik bir şey gönder.",
+"5 dakika tek bir işe odaklan.",
+"Bir şeyi sonra demeden hemen yap.",
+
+"Şu an istediğin üç şeyi yaz.",
+"Birine teşekkür ederken nedenini söyle.",
+"Kulaklığı çıkar ve çevreni dinle.",
+"Bir bardak daha fazla su iç.",
+"Kendini kıyasladığını fark ettiğinde dur.",
+"Sevdiğin bir yeri zihninde canlandır.",
+"Bir kişiye nasıl yardımcı olabileceğini sor.",
+"5 dakika haber akışından uzak dur.",
+"Yarın için tek bir öncelik belirle.",
+"Seni rahatlatan bir hareket yap.",
+
+"Bir şarkının enstrümanlarına dikkat et.",
+"Geçmişte yaptığın iyi bir seçimi hatırla.",
+"Bir kişiye kısa bir sesli mesaj gönder.",
+"Yuvarlak, kare ve üçgen nesneler bul.",
+"Bir gereksiz harcamayı ertele.",
+"Yüz kaslarını bilinçli olarak gevşet.",
+"Seni motive eden bir cümle yaz.",
+"Birine küçük bir sürpriz yap.",
+"10 dakika telefonsuz kal.",
+"Bugün iyi ki yaptım diyeceğin bir şey yap."
+
+];
+
+
+const focusTasks = [
 
 "Çevrende 5 şey gör, 4 şeye dokun, 3 ses duy, 2 koku fark et ve 1 düşünceni isimlendir.",
-
-"60 saniye boyunca yalnızca bulunduğun yerdeki sesleri say.",
-
+"60 saniye boyunca bulunduğun yerdeki sesleri say.",
 "Çevrende aynı renkte 7 nesne bul.",
-
-"2 dakika boyunca ayaklarının yere temasını fark ederek yürü.",
-
-"Bir nesneyi eline al ve şeklini, sıcaklığını, dokusunu incele.",
-
+"2 dakika ayaklarının yere temasını fark ederek yürü.",
+"Bir nesnenin dokusunu ve sıcaklığını incele.",
 "30'dan geriye üçer üçer say.",
+"Bir dakika nefesini değiştirmeden izle.",
+"Daha önce fark etmediğin 5 ayrıntı bul.",
+"Bir şarkının yalnızca ritmini takip et.",
+"Tek bir noktaya bak ve çevresel görüşünü fark et.",
 
-"Bir dakika boyunca nefes alışını değiştirmeden sadece izle.",
+"Bir harf seç ve o harfle başlayan 10 kelime bul.",
+"Üç farklı dokuya dokun.",
+"Duyduğun en uzak sesi bul.",
+"20'den geriye yavaşça say.",
+"Köşeli 5 nesne bul.",
+"Bir bardak suyu 10 yudumda iç.",
+"Bir dakika sağ elindeki hisleri fark et.",
+"Bir dakika sol elindeki hisleri fark et.",
+"Işık ve gölgelerde 5 ton bul.",
+"Bir kelimeyle ilgili 8 çağrışım yaz.",
 
-"Bulunduğun yerde daha önce fark etmediğin 5 ayrıntı bul.",
+"2 dakika yaptığın işi yarı hızında yap.",
+"Çevrende üç farklı sıcaklık hissi bul.",
+"Bir nesneyi incele, gözünü kapat ve hatırla.",
+"1'den 20'ye yavaşça say.",
+"A, E ve K harfiyle başlayan nesneler bul.",
+"Bir dakika omuzlarını gevşet.",
+"Telefonu ters çevir ve 3 dakika tek işe odaklan.",
+"Bir sesi kaybolana kadar takip et.",
+"Beş nesneyi boyut sırasına koy.",
+"Bir dakika sadece gördüğün hareketleri fark et."
 
-"Bir şarkıyı aç ve yalnızca ritim bölümünü takip et.",
+];
 
-"2 dakika boyunca tek bir noktaya bakıp çevresel görüşünü fark et.",
 
-"Alfabeden rastgele bir harf seç ve o harfle başlayan 10 kelime bul.",
-
-"Çevrende 3 farklı dokuya dokun ve aralarındaki farkı fark et.",
-
-"Bir dakika boyunca duyduğun en uzak sesi bulmaya çalış.",
-
-"20'den geriye sayarken her sayıda yavaşça nefes ver.",
-
-"Bulunduğun odada köşeli 5 nesne bul.",
-
-"Bir bardak suyu 10 yudumda, her yudumu fark ederek iç.",
-
-"Bir dakika boyunca sadece sağ elindeki hislere dikkat et.",
-
-"Sonra bir dakika sadece sol elindeki hislere dikkat et.",
-
-"Çevrendeki ışık ve gölgelerde 5 farklı ton bul.",
-
-"Bir kelime seç ve o kelimeyle ilgili 8 çağrışım yaz.",
-
-"2 dakika boyunca yaptığın işi yarı hızında yap.",
-
-"Bulunduğun yerde üç farklı sıcaklık hissi bul.",
-
-"Bir nesnenin ayrıntılarını 30 saniye incele, sonra gözünü kapatıp hatırla.",
-
-"1'den 20'ye say; her çift sayıda nefes al, tek sayıda ver.",
-
-"Çevrende A, E ve K harfiyle başlayan nesneler bul.",
-
-"Bir dakika boyunca çeneni ve omuzlarını gevşetmeye odaklan.",
-
-"Telefonu ters çevir ve 3 dakika tek bir işe devam et.",
-
-"Bir ses seç ve kaybolana kadar onu takip et.",
-
-"Çevrendeki beş nesneyi zihninde boyut sırasına koy.",
-
-"Bir dakika boyunca yalnızca gördüğün hareketleri fark et."
-
-]
-
-good_prompts = [
+const goodSets = [
 
 ["Bugün iyi gelen...","Teşekkür ettiğin...","Gülümsediğin..."],
 
@@ -166,106 +1261,1393 @@ good_prompts = [
 
 ["Bugün tamamladığın...","Duyduğun güzel söz...","Kendine teşekkür ettiğin şey..."],
 
-["Bugün tattığın güzel şey...","Gördüğün güzel şey...","Hissettiğin güzel şey..."],
+["Bugün gördüğün güzel şey...","Duyduğun güzel şey...","Hissettiğin güzel şey..."],
 
 ["Bugün cesaret ettiğin...","Bırakabildiğin...","Kabul edebildiğin..."],
 
 ["Bugün sana enerji veren...","Sakinleştiren...","Umutlandıran..."]
 
+];
+
+
+const memorySets = [
+
+["Limon","Saat","Köprü","Mavi","Anahtar","Bulut"],
+["Kalem","Deniz","Masa","Yeşil","Kapı","Yıldız"],
+["Kitap","Kedi","Güneş","Bardak","Sarı","Tren"],
+["Ağaç","Telefon","Kırmızı","Ay","Çanta","Nehir"],
+["Bisiklet","Kahve","Mor","Pencere","Kuş","Taş"],
+["Balon","Orman","Saat","Turuncu","Kutu","Yol"],
+["Mum","Deniz","Elma","Beyaz","Köprü","Radyo"],
+["Çiçek","Bulut","Sandalye","Mavi","Anahtar","Gemi"],
+["Karpuz","Dağ","Kalem","Sarı","Kapı","Yıldız"],
+["Kitap","Kahve","Ay","Yeşil","Telefon","Nehir"]
+
+];
+
+
+const qs = [
+
+[
+"Bugünkü ruh hâlin nasıl?",
+"ruh_hali",
+[
+["😞 Çok kötü",1],
+["🙁 Kötü",2],
+["😐 Orta",3],
+["🙂 İyi",4],
+["😄 Çok iyi",5]
+]
+],
+
+[
+"Stres seviyen nasıl?",
+"stres",
+[
+["😌 Çok düşük",1],
+["🙂 Düşük",2],
+["😐 Orta",3],
+["😟 Yüksek",4],
+["😵 Çok yüksek",5]
+]
+],
+
+[
+"Enerjin nasıl?",
+"enerji",
+[
+["🪫 Çok düşük",1],
+["😴 Düşük",2],
+["😐 Orta",3],
+["⚡ İyi",4],
+["🔥 Çok yüksek",5]
+]
+],
+
+[
+"Zihnin ne kadar dolu?",
+"zihin",
+[
+["🌤️ Rahat",1],
+["☁️ Biraz dolu",2],
+["🌥️ Karışık",3],
+["🌧️ Çok dolu",4],
+["🌪️ Aşırı yoğun",5]
+]
+],
+
+[
+"Şu an neye ihtiyacın var?",
+"ihtiyac",
+[
+["🌬️ Sakinleşmek",1],
+["🎯 Odaklanmak",2],
+["✨ Kafamı dağıtmak",3]
+]
 ]
 
-def js_array(x):
+];
 
-    return json.dumps(x, ensure_ascii=False)
 
-# Replace capsule array block inside openCapsule
+let q = 0;
+let answers = {};
+let breathInterval = null;
+let memoryCorrect = "";
 
-text = re.sub(r'function openCapsule\(\)\{\s*const arr=\[.*?\];\s*const d=new Date\(\)\.getDate\(\);',
-
-              'function openCapsule(){\nconst arr='+js_array(capsules)+';\nconst d=dayIndex();',
-
-              text, count=1, flags=re.S)
-
-text = text.replace('arr[d%arr.length]', 'arr[d%arr.length]')
-
-# Add dayIndex helper before show
-
-helper = '''
 
 function dayIndex(){
 
-const start=new Date(2026,0,1);
+const start = new Date(2026,0,1);
 
-const now=new Date();
+const now = new Date();
 
-const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+const today = new Date(
+now.getFullYear(),
+now.getMonth(),
+now.getDate()
+);
 
-return Math.floor((today-start)/86400000);
+return Math.floor(
+(today - start) / 86400000
+);
 
 }
 
-const dailyQuestions='''+js_array(questions)+''';
 
-const dailyFocus='''+js_array(focuses)+''';
+function dailyIndex(length){
 
-const dailyGoodPrompts='''+js_array(good_prompts)+''';
+const d = dayIndex();
+
+return ((d % length) + length) % length;
+
+}
+
+
+function show(id){
+
+screens.forEach(name=>{
+
+const el = $(name);
+
+if(el){
+el.classList.add("hidden");
+}
+
+});
+
+const target = $(id);
+
+if(!target){
+console.error("Ekran bulunamadı:",id);
+return;
+}
+
+target.classList.remove("hidden");
+
+if(id==="history"){
+renderHistory();
+}
+
+if(id==="profile"){
+renderProfile();
+}
+
+if(id==="weather"){
+renderWeather();
+}
+
+if(id==="calendarScreen"){
+renderCalendar();
+}
+
+if(id==="goal"){
+renderGoal();
+}
+
+if(id==="focus"){
+renderFocus();
+}
+
+if(id==="memory"){
+prepareMemory();
+}
+
+if(id==="goodThings"){
+prepareGoodThings();
+}
+
+window.scrollTo(0,0);
+
+}
+
 
 function applyDailyContent(){
 
-const d=dayIndex();
+const question =
+questions[dailyIndex(questions.length)];
 
-const dq=document.querySelector("#dailyQuestion .card h2");
+$("dailyQuestionText").textContent = question;
 
-if(dq) dq.textContent=dailyQuestions[((d%dailyQuestions.length)+dailyQuestions.length)%dailyQuestions.length];
+$("homeQuestionPreview").textContent =
+question.length > 65
+? question.slice(0,65)+"..."
+: question;
 
-const fd=document.querySelector("#focus .desc");
+renderFocus();
 
-if(fd) fd.textContent=dailyFocus[((d%dailyFocus.length)+dailyFocus.length)%dailyFocus.length];
-
-const gp=dailyGoodPrompts[((d%dailyGoodPrompts.length)+dailyGoodPrompts.length)%dailyGoodPrompts.length];
-
-const g1=document.getElementById("g1"),g2=document.getElementById("g2"),g3=document.getElementById("g3");
-
-if(g1) g1.placeholder=gp[0];
-
-if(g2) g2.placeholder=gp[1];
-
-if(g3) g3.placeholder=gp[2];
+prepareGoodThings();
 
 }
 
-'''
 
-text=text.replace('function show(id){', helper+'\nfunction show(id){',1)
+function startTest(){
 
-# Ensure daily content on enter
+q = 0;
 
-text=text.replace('function enterApp(){\nrefresh();', 'function enterApp(){\napplyDailyContent();\nrefresh();',1)
+answers = {};
 
-# Add feedback card before closing home section, just before test section
+show("test");
 
-feedback = '''
+renderQuestion();
 
-<div class="card">
+}
 
-<div class="row"><h2>Fikirlerinizi paylaşın</h2><span>💌</span></div>
 
-<p class="muted">Önerileriniz, eleştirileriniz veya yeni özellik fikirleriniz varsa bize yazabilirsiniz.</p>
+function renderQuestion(){
 
-<a href="mailto:mehmettirpan1@yandex.com?subject=Kafa%20Mola%20Öneri" style="text-decoration:none">
+const item = qs[q];
 
-<button class="dark">📧 mehmettirpan1@yandex.com</button>
+$("qCount").textContent =
+(q+1)+" / "+qs.length;
 
-</a>
+$("qBar").style.width =
+((q+1)/qs.length*100)+"%";
 
-</div>
+$("qArea").innerHTML =
 
-'''
+'<h2 class="question">'+
+item[0]+
+'</h2>'+
 
-text=text.replace('</section>\n\n\n<section id="test"', feedback+'</section>\n\n\n<section id="test"',1)
+'<div class="opts">'+
 
-out=Path("/mnt/data/index-90gun.html")
+item[2].map(option=>
 
-out.write_text(text,encoding="utf-8")
+'<button class="opt" onclick="answerQuestion(\''+
+item[1]+
+'\','+
+option[1]+
+')">'+
+option[0]+
+'</button>'
 
-print(f"Hazırlandı: {out.name}, kapsül={len(capsules)}, soru={len(questions)}, odak={len(focuses)}, iyi şey seti={len(good_prompts)}")
+).join("")+
+
+'</div>';
+
+}
+
+
+function answerQuestion(key,value){
+
+answers[key] = value;
+
+q++;
+
+if(q < qs.length){
+
+renderQuestion();
+
+}else{
+
+finishTest();
+
+}
+
+}
+
+
+function finishTest(){
+
+localStorage.setItem(
+"lastAnswers",
+JSON.stringify(answers)
+);
+
+inc("checks",1);
+
+addEnergy(20);
+
+addHistory(
+"Check-in tamamlandı",
+"📝"
+);
+
+saveMoodDay(
+answers.ruh_hali
+);
+
+
+const resultVariations = {
+
+stress:[
+
+"Bugün zihnin biraz fazla yük taşıyor gibi görünüyor.",
+"Bugün tempo seni biraz zorlamış olabilir.",
+"Zihinsel hava bugün biraz yoğun görünüyor.",
+"Bugün kendine biraz daha alan açman iyi olabilir."
+
+],
+
+good:[
+
+"Bugünün havası açık görünüyor.",
+"Bugün enerjin olumlu tarafta.",
+"Bugün iç dengen güçlü görünüyor.",
+"Bugün hareket etmek için güzel bir enerjin var."
+
+],
+
+middle:[
+
+"Bugün dengeli ama biraz değişken görünüyorsun.",
+"Bugünün havası parçalı bulutlu.",
+"Bugün kendini zorlamadan ilerlemek iyi olabilir.",
+"Bugün küçük molalar sana iyi gelebilir."
+
+]
+
+};
+
+
+const d = dayIndex();
+
+
+if(answers.stres >= 4){
+
+$("resultEmoji").textContent = "🌧️";
+
+$("resultTitle").textContent =
+resultVariations.stress[
+d % resultVariations.stress.length
+];
+
+$("resultSuggestion").textContent =
+"Bugünkü odak görevini veya nefes ritmini deneyebilirsin.";
+
+}else if(answers.ruh_hali >= 4){
+
+$("resultEmoji").textContent = "☀️";
+
+$("resultTitle").textContent =
+resultVariations.good[
+d % resultVariations.good.length
+];
+
+$("resultSuggestion").textContent =
+"Hafıza oyunu veya günlük odak görevi sana uygun olabilir.";
+
+}else{
+
+$("resultEmoji").textContent = "🌤️";
+
+$("resultTitle").textContent =
+resultVariations.middle[
+d % resultVariations.middle.length
+];
+
+$("resultSuggestion").textContent =
+"Kısa ve hafif bir mola seçebilirsin.";
+
+}
+
+
+$("resultText").textContent =
+"Bu yorum bugünkü cevaplarının kısa bir özetidir.";
+
+show("result");
+
+refresh();
+
+}
+
+
+function renderFocus(){
+
+$("focusText").textContent =
+focusTasks[
+dailyIndex(focusTasks.length)
+];
+
+}
+
+
+function startBreath(){
+
+show("breath");
+
+clearInterval(breathInterval);
+
+let seconds = 120;
+
+$("breathTimer").textContent = "02:00";
+
+breathInterval = setInterval(()=>{
+
+seconds--;
+
+$("breathTimer").textContent =
+
+String(
+Math.floor(seconds/60)
+).padStart(2,"0")
+
++ ":" +
+
+String(
+seconds%60
+).padStart(2,"0");
+
+
+$("breathCircle").textContent =
+seconds%8 < 4
+? "Nefes Al"
+: "Nefes Ver";
+
+
+if(seconds <= 0){
+
+clearInterval(breathInterval);
+
+$("breathTimer").textContent = "00:00";
+
+}
+
+},1000);
+
+}
+
+
+function finishExp(name){
+
+inc("exps",1);
+
+addEnergy(15);
+
+addHistory(
+name+" tamamlandı",
+"✨"
+);
+
+toast(
+name+" tamamlandı 🎉"
+);
+
+refresh();
+
+setTimeout(()=>{
+show("home");
+},700);
+
+}
+
+
+function prepareMemory(){
+
+const set =
+memorySets[
+dailyIndex(memorySets.length)
+];
+
+$("memoryWords").innerHTML =
+set.slice(0,3).join(" · ")
++
+"<br>"
++
+set.slice(3).join(" · ");
+
+$("memoryQuestion").classList.add("hidden");
+
+memoryCorrect =
+set[
+dayIndex() % set.length
+];
+
+}
+
+
+function hideMemoryWords(){
+
+$("memoryWords").textContent = "••••••";
+
+const wrongPool = [
+"Bisiklet",
+"Kitap",
+"Radyo",
+"Orman",
+"Balon",
+"Karpuz",
+"Çiçek",
+"Tren",
+"Gemi"
+].filter(x=>x!==memoryCorrect);
+
+const wrong1 =
+wrongPool[
+(dayIndex()+2)%wrongPool.length
+];
+
+const wrong2 =
+wrongPool[
+(dayIndex()+5)%wrongPool.length
+];
+
+const options = [
+memoryCorrect,
+wrong1,
+wrong2
+].sort(()=>0.5-Math.random());
+
+
+$("memoryOptions").innerHTML =
+options.map(x=>
+
+'<button class="opt" onclick="memoryAnswer(\''+
+x+
+'\')">'+
+x+
+'</button>'
+
+).join("");
+
+
+$("memoryQuestion").classList.remove("hidden");
+
+}
+
+
+function memoryAnswer(value){
+
+if(value===memoryCorrect){
+
+toast("Doğru! 🧠");
+
+}else{
+
+toast(
+"Doğru cevap: "+
+memoryCorrect
+);
+
+}
+
+finishExp("Hafıza Oyunu");
+
+}
+
+
+function prepareGoodThings(){
+
+const set =
+goodSets[
+dailyIndex(goodSets.length)
+];
+
+$("g1").placeholder = set[0];
+
+$("g2").placeholder = set[1];
+
+$("g3").placeholder = set[2];
+
+}
+
+
+function saveGoodThings(){
+
+const values = [
+
+$("g1").value.trim(),
+
+$("g2").value.trim(),
+
+$("g3").value.trim()
+
+];
+
+
+if(!values.some(Boolean)){
+
+toast("En az bir şey yaz.");
+
+return;
+
+}
+
+
+localStorage.setItem(
+"goodThings-"+new Date().toISOString().slice(0,10),
+JSON.stringify(values)
+);
+
+addEnergy(10);
+
+addHistory(
+"3 İyi Şey kaydedildi",
+"🌱"
+);
+
+toast("Kaydedildi 🌱");
+
+refresh();
+
+setTimeout(()=>{
+show("home");
+},700);
+
+}
+
+
+function saveDailyAnswer(){
+
+const value =
+$("dailyAnswer").value.trim();
+
+if(!value){
+
+toast("Önce birkaç kelime yaz.");
+
+return;
+
+}
+
+const key =
+"dailyAnswer-"+
+new Date().toISOString().slice(0,10);
+
+localStorage.setItem(
+key,
+value
+);
+
+addEnergy(10);
+
+addHistory(
+"Günün sorusu cevaplandı",
+"💭"
+);
+
+toast("Cevabın kaydedildi");
+
+refresh();
+
+setTimeout(()=>{
+show("home");
+},700);
+
+}
+
+
+function openCapsule(){
+
+const task =
+capsules[
+dailyIndex(capsules.length)
+];
+
+$("capsuleText").innerHTML =
+
+"<h2>🎁 Görevin</h2>"+
+"<p>"+task+"</p>";
+
+const key =
+"capsuleEnergy-"+
+new Date().toISOString().slice(0,10);
+
+
+if(!localStorage.getItem(key)){
+
+localStorage.setItem(key,"1");
+
+addEnergy(5);
+
+addHistory(
+"Sürpriz Kapsül açıldı",
+"🎁"
+);
+
+refresh();
+
+}
+
+}
+
+
+function chooseGoal(title,emoji){
+
+const goal = {
+
+title:title,
+
+emoji:emoji,
+
+done:[],
+
+started:new Date().toISOString()
+
+};
+
+localStorage.setItem(
+"miniGoal",
+JSON.stringify(goal)
+);
+
+renderGoal();
+
+refresh();
+
+}
+
+
+function renderGoal(){
+
+let goal = null;
+
+try{
+
+goal =
+JSON.parse(
+localStorage.getItem("miniGoal")
+);
+
+}catch(e){}
+
+
+if(!goal){
+
+$("goalChoose").classList.remove("hidden");
+
+$("goalActive").classList.add("hidden");
+
+$("homeGoalText").textContent =
+"Küçük bir hedef seç ve 3 gün boyunca dene.";
+
+return;
+
+}
+
+
+$("goalChoose").classList.add("hidden");
+
+$("goalActive").classList.remove("hidden");
+
+$("goalEmoji").textContent =
+goal.emoji;
+
+$("goalTitle").textContent =
+goal.title;
+
+$("goalStatus").textContent =
+goal.done.length+
+" / 3 gün tamamlandı";
+
+
+$("goalDays").innerHTML =
+
+[1,2,3].map((day,index)=>
+
+'<div class="goalDay '+
+(goal.done[index]?"goalDone":"")+
+'">'+
+
+'<b>Gün '+
+day+
+'</b><br>'+
+
+(goal.done[index]?"✓":"○")+
+
+'</div>'
+
+).join("");
+
+
+$("homeGoalText").textContent =
+
+goal.emoji+
+" "+
+goal.title+
+" · "+
+goal.done.length+
+"/3";
+
+}
+
+
+function goalDoneToday(){
+
+let goal = null;
+
+try{
+
+goal =
+JSON.parse(
+localStorage.getItem("miniGoal")
+);
+
+}catch(e){}
+
+
+if(!goal){
+return;
+}
+
+
+const today =
+new Date().toISOString().slice(0,10);
+
+
+if(goal.done.includes(today)){
+
+toast("Bugünü zaten tamamladın 😄");
+
+return;
+
+}
+
+
+if(goal.done.length>=3){
+
+toast("Bu hedef tamamlandı 🎉");
+
+return;
+
+}
+
+
+goal.done.push(today);
+
+
+localStorage.setItem(
+"miniGoal",
+JSON.stringify(goal)
+);
+
+
+addEnergy(20);
+
+addHistory(
+"Mini hedef günü tamamlandı",
+"🎯"
+);
+
+
+if(goal.done.length===3){
+
+addEnergy(40);
+
+toast(
+"3 günlük hedef tamamlandı! 🎉"
+);
+
+}else{
+
+toast("Bugün tamamlandı ✓");
+
+}
+
+
+renderGoal();
+
+refresh();
+
+}
+
+
+function resetGoal(){
+
+localStorage.removeItem(
+"miniGoal"
+);
+
+renderGoal();
+
+refresh();
+
+}
+
+
+function renderWeather(){
+
+let data = {};
+
+try{
+
+data =
+JSON.parse(
+localStorage.getItem("lastAnswers") || "{}"
+);
+
+}catch(e){}
+
+
+if(!data.stres){
+
+$("weatherEmoji").textContent = "🌤️";
+
+$("weatherTitle").textContent =
+"Henüz veri yok";
+
+$("weatherText").textContent =
+"Check-in tamamladığında burada yorum oluşacak.";
+
+return;
+
+}
+
+
+const d = dayIndex();
+
+
+const stressTexts = [
+
+"Bugün zihinsel hava biraz yağmurlu.",
+"Bugün bulutlar biraz yoğun görünüyor.",
+"Bugün zihnin dinlenmek istiyor olabilir.",
+"Bugün tempoyu biraz azaltmak iyi olabilir."
+
+];
+
+
+const goodTexts = [
+
+"Bugün zihinsel hava açık.",
+"Bugün iç dünyanda güneşli bir hava var.",
+"Bugün enerjin olumlu görünüyor.",
+"Bugün zihinsel hava hareketli ve açık."
+
+];
+
+
+const middleTexts = [
+
+"Bugün parçalı bulutlu.",
+"Bugün dengeli ama değişken bir hava var.",
+"Bugün sakin ve hareketli anlar karışık.",
+"Bugün kendini gözlemlemek için güzel bir gün."
+
+];
+
+
+if(data.stres>=4){
+
+$("weatherEmoji").textContent = "🌧️";
+
+$("weatherTitle").textContent =
+stressTexts[
+d%stressTexts.length
+];
+
+$("weatherText").textContent =
+"Kısa bir nefes veya odak molası deneyebilirsin.";
+
+}else if(data.ruh_hali>=4){
+
+$("weatherEmoji").textContent = "☀️";
+
+$("weatherTitle").textContent =
+goodTexts[
+d%goodTexts.length
+];
+
+$("weatherText").textContent =
+"Bu enerjiyi küçük ve anlamlı bir işe yönlendirebilirsin.";
+
+}else{
+
+$("weatherEmoji").textContent = "🌤️";
+
+$("weatherTitle").textContent =
+middleTexts[
+d%middleTexts.length
+];
+
+$("weatherText").textContent =
+"Kendini zorlamadan küçük adımlarla ilerleyebilirsin.";
+
+}
+
+}
+
+
+function saveMoodDay(mood){
+
+let data = {};
+
+try{
+
+data =
+JSON.parse(
+localStorage.getItem("moodCalendar") || "{}"
+);
+
+}catch(e){}
+
+
+const key =
+new Date().toISOString().slice(0,10);
+
+data[key] = mood;
+
+
+localStorage.setItem(
+"moodCalendar",
+JSON.stringify(data)
+);
+
+}
+
+
+function renderCalendar(){
+
+const now = new Date();
+
+const year =
+now.getFullYear();
+
+const month =
+now.getMonth();
+
+
+$("calendarTitle").textContent =
+now.toLocaleDateString(
+"tr-TR",
+{
+month:"long",
+year:"numeric"
+}
+);
+
+
+let data = {};
+
+try{
+
+data =
+JSON.parse(
+localStorage.getItem("moodCalendar") || "{}"
+);
+
+}catch(e){}
+
+
+const days =
+new Date(
+year,
+month+1,
+0
+).getDate();
+
+
+let html = "";
+
+
+for(let i=1;i<=days;i++){
+
+const key =
+
+year+
+"-"+
+String(month+1).padStart(2,"0")+
+"-"+
+String(i).padStart(2,"0");
+
+
+const mood =
+data[key];
+
+
+let value = i;
+
+
+if(mood){
+
+if(mood>=4){
+value="🙂";
+}
+
+else if(mood===3){
+value="😐";
+}
+
+else{
+value="🙁";
+}
+
+}
+
+
+const todayClass =
+i===now.getDate()
+? "today"
+: "";
+
+
+html +=
+
+'<div class="day '+
+todayClass+
+'">'+
+value+
+'</div>';
+
+}
+
+
+$("calendarGrid").innerHTML =
+html;
+
+}
+
+
+function addHistory(text,emoji){
+
+let history = [];
+
+try{
+
+history =
+JSON.parse(
+localStorage.getItem("history") || "[]"
+);
+
+}catch(e){}
+
+
+history.unshift({
+
+text:text,
+
+emoji:emoji,
+
+date:new Date().toLocaleString("tr-TR")
+
+});
+
+
+localStorage.setItem(
+
+"history",
+
+JSON.stringify(
+history.slice(0,50)
+)
+
+);
+
+}
+
+
+function renderHistory(){
+
+let history = [];
+
+try{
+
+history =
+JSON.parse(
+localStorage.getItem("history") || "[]"
+);
+
+}catch(e){}
+
+
+if(!history.length){
+
+$("historyList").innerHTML =
+'<p class="muted">Henüz aktivite yok.</p>';
+
+return;
+
+}
+
+
+$("historyList").innerHTML =
+
+history.map(item=>
+
+'<div class="row" style="padding:13px 0;border-bottom:1px solid #ffffff15">'+
+
+'<span>'+
+item.emoji+
+" "+
+item.text+
+'</span>'+
+
+'<small class="muted">'+
+item.date+
+'</small>'+
+
+'</div>'
+
+).join("");
+
+}
+
+
+function inc(key,value){
+
+const old =
+Number(
+localStorage.getItem(key) || 0
+);
+
+localStorage.setItem(
+key,
+old+value
+);
+
+}
+
+
+function addEnergy(value){
+
+const old =
+Number(
+localStorage.getItem("energy") || 0
+);
+
+localStorage.setItem(
+"energy",
+old+value
+);
+
+}
+
+
+function rankInfo(){
+
+const energy =
+Number(
+localStorage.getItem("energy") || 0
+);
+
+
+let index = 0;
+
+
+for(let i=0;i<ranks.length;i++){
+
+if(energy>=ranks[i][1]){
+
+index=i;
+
+}
+
+}
+
+
+const current =
+ranks[index];
+
+
+const next =
+ranks[
+Math.min(
+index+1,
+ranks.length-1
+)
+];
+
+
+const percent =
+
+index===ranks.length-1
+
+? 100
+
+: (
+(energy-current[1]) /
+(next[1]-current[1])
+) * 100;
+
+
+return{
+
+energy:energy,
+
+name:current[0],
+
+next:next[0],
+
+percent:
+Math.max(
+0,
+Math.min(100,percent)
+)
+
+};
+
+}
+
+
+function refresh(){
+
+const rank =
+rankInfo();
+
+
+$("rankName").textContent =
+"Rütbe: "+
+rank.name;
+
+
+$("energyText").textContent =
+"⚡ "+
+rank.energy+
+" Enerji";
+
+
+$("rankFill").style.width =
+rank.percent+
+"%";
+
+
+$("rankNext").textContent =
+
+rank.name===rank.next
+
+? "En yüksek rütbedesin."
+
+: "Sonraki rütbe: "+
+rank.next;
+
+
+renderGoal();
+
+}
+
+
+function renderProfile(){
+
+const rank =
+rankInfo();
+
+
+$("profileRank").textContent =
+rank.name;
+
+
+$("pEnergy").textContent =
+rank.energy;
+
+
+$("pCheck").textContent =
+localStorage.getItem("checks") || 0;
+
+
+$("pExp").textContent =
+localStorage.getItem("exps") || 0;
+
+}
+
+
+function toast(text){
+
+const element =
+document.createElement("div");
+
+element.className =
+"toast";
+
+element.textContent =
+text;
+
+document.body.appendChild(
+element
+);
+
+setTimeout(()=>{
+
+element.remove();
+
+},2200);
+
+}
+
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+applyDailyContent();
+
+refresh();
+
+show("home");
+
+}
+);
+
+</script>
+
+</body>
+</html>
