@@ -1,141 +1,271 @@
 from pathlib import Path
 
-import re
+import re, json
 
-src = Path("/mnt/data/index.html.txt")
+p=Path("/mnt/data/index.html")
 
-text = src.read_text(encoding="utf-8")
+text=p.read_text(encoding="utf-8")
 
-# Üyelik ekranını HTML'den tamamen kaldır.
+capsules = [
 
-text = re.sub(
+"5 dakika boyunca telefonunu başka bir odada bırak.","Bir şarkıyı hiçbir şey yapmadan sadece dinle.","Bir kişiye içten bir teşekkür mesajı gönder.","10 dakikalık kısa bir yürüyüş yap ve üç ayrıntı fark et.","Ertelediğin küçük bir işe yalnızca 2 dakikalığına başla.",
 
-    r'\s*<section id="auth">.*?</section>\s*(?=<section id="home")',
+"Bugün gökyüzüne 2 dakika bak.","Uzun zamandır konuşmadığın birine nasılsın diye yaz.","Bir bardak suyu yavaşça ve fark ederek iç.","Bulunduğun yerde gördüğün 5 rengi say.","Bugün kendin için küçük bir şeyi ertelemeden yap.",
 
-    '\n\n',
+"Telefonundaki gereksiz 10 ekran görüntüsünü sil.","Sevdiğin bir fotoğrafı bul ve neden sevdiğini düşün.","Birine samimi bir iltifat et.","5 dakika sessizce otur ve çevrendeki sesleri dinle.","Bugün bir işi normalden daha yavaş ve dikkatli yap.",
 
-    text,
+"Bir pencere aç ve 10 derin, rahat nefes al.","Çocukken sevdiğin bir şarkıyı dinle.","Bugün şikâyet etmek üzereyken bir kez durup yeniden ifade et.","Masandaki veya odandaki küçük bir alanı düzenle.","Bir kâğıda bugün aklını en çok meşgul eden şeyi yaz.",
 
-    count=1,
+"Bir fincan çay veya kahveyi telefona bakmadan iç.","Bugün bir kişiye teşekkür etmek için özel bir neden bul.","5 dakika boyunca sadece yürüyüşüne odaklan.","Kendine bugün iyi yaptığın bir şeyi söyle.","Uzun zamandır ertelediğin küçük bir mesajı gönder.",
 
-    flags=re.S
+"Bir dakika gözlerini kapatıp bedenindeki gergin yerleri fark et.","Bugün bir öğünü ilk 5 dakika ekransız ye.","Evin içinde kullanmadığın bir şeyi ayır.","Bir arkadaşına güzel bir anınızı hatırlatan mesaj gönder.","Bugün bir işi bitirince 30 saniye hiçbir şeye geçmeden bekle.",
 
-)
+"Çevrende daha önce fark etmediğin üç ayrıntı bul.","Kendine küçük bir gelecek notu yaz.","Bugün bir kişiyi sözünü kesmeden dikkatle dinle.","5 dakika sevdiğin bir müziğe eşlik et.","Bugün yapmayacağın bir şeyi bilinçli olarak seç.",
 
-# Home ekranı doğrudan görünür olsun.
+"Telefonunun bildirimlerini 30 dakikalığına sessize al.","Bir bitkiye, ağaca veya gökyüzüne birkaç dakika dikkatle bak.","Bugün birine yardım edebileceğin küçük bir şey bul.","Kendine sevdiğin bir içecek hazırla ve acele etmeden iç.","Bugün seni güldüren bir şeyi not et.",
 
-text = text.replace('<section id="home" class="hidden">', '<section id="home">', 1)
+"Bir çekmeceyi 5 dakika düzenle.","Bugün bir karar verirken kendine 'Bunu gerçekten istiyor muyum?' diye sor.","Bir kişiye sebepsiz yere iyi dilek mesajı gönder.","3 dakika boyunca omuzlarını ve boynunu rahatlat.","Bugün sosyal medyaya girişini bir kez ertele.",
 
-# Supabase sabitlerini kaldır.
+"Bir çocukluk anını ayrıntılarıyla hatırlamaya çalış.","Bugün duyduğun en güzel cümleyi not et.","Kendin için 10 dakikalık boş zaman oluştur.","Bir işi mükemmel yapmak yerine yeterince iyi bitir.","Bugün çevrendeki birine küçük bir kolaylık sağla.",
 
-text = re.sub(r'const SUPABASE_URL=.*?;\s*const SUPABASE_KEY=.*?;\s*', '', text, count=1, flags=re.S)
+"Sabah veya akşam 5 dakika pencereden dışarıyı izle.","Telefonundaki ana ekranı sadeleştir.","Bugün bir kişiye onu neden sevdiğini veya değer verdiğini söyle.","Bir dakikalık esneme yap.","Bugün seni yoran bir düşünceyi yazıp kapat.",
 
-# auth ekranını ekran listesinden çıkar.
+"Sevdiğin bir kokuyu bilinçli olarak fark et.","Bugün 10 dakika erken hazırlanmayı dene.","Bir arkadaşının güzel bir özelliğini ona söyle.","Kısa bir yürüyüşte adımlarını say.","Bugün bir işi tek seferde, sekme değiştirmeden bitir.",
 
-text = text.replace('"auth","home"', '"home"')
+"Eski bir fotoğrafa bak ve o günkü haline bir cümle söyle.","Bugün kendine küçük bir ödül belirle.","Bir kişiye gerçekten merak ettiğin bir soru sor.","2 dakika boyunca sadece nefesinin doğal ritmini izle.","Bugün gereksiz bir tartışmadan bilinçli olarak uzak dur.",
 
-# Auth state değişkenlerini kaldır / sadeleştir.
+"Bir odadaki ışığı değiştirip ortamın nasıl hissettirdiğini fark et.","Bugün tamamladığın üç küçük şeyi say.","Birine komik bir şey gönder.","5 dakika boyunca elindeki tek işe odaklan.","Bugün bir şeyi 'sonra' demeden hemen yap.",
 
-text = text.replace('let authType="login";\nlet currentUser=null;\nlet accessToken=null;\n', '')
+"Bir kâğıda şu an istediğin üç şeyi yaz.","Bugün birine teşekkür ederken nedenini de söyle.","Kısa süreliğine kulaklığı çıkarıp çevreni dinle.","Bir bardak daha fazla su iç.","Bugün kendini başkasıyla kıyasladığını fark ettiğinde konuyu değiştir.",
 
-# authMode'dan enterApp öncesine kadar üyelik fonksiyonlarını kaldır.
+"Sevdiğin bir yeri zihninde ayrıntılarıyla canlandır.","Bugün bir kişiye 'Sana nasıl yardımcı olabilirim?' diye sor.","5 dakika boyunca haber ve sosyal medya akışından uzak dur.","Yarın için tek bir küçük öncelik belirle.","Bugün seni rahatlatan bir hareketi tekrar et.",
 
-text = re.sub(
+"Bir şarkının sözlerinden çok enstrümanlarına dikkat et.","Bugün geçmişte yaptığın iyi bir seçimi hatırla.","Bir kişiye kısa bir sesli mesaj gönder.","Çevrende yuvarlak, kare ve üçgen birer nesne bul.","Bugün bir gereksiz harcamayı ertele.",
 
-    r'function authMode\(mode\)\{.*?(?=function enterApp\(\))',
+"Bir dakika boyunca yüz kaslarını bilinçli olarak gevşet.","Bugün seni motive eden bir cümle yaz.","Birine küçük bir sürpriz yap.","10 dakika boyunca tek bir ortamda telefonsuz kal.","Bugünün sonunda 'iyi ki yaptım' diyebileceğin küçük bir şey yap."
 
-    '',
+]
 
-    text,
+questions = [
 
-    count=1,
+"Bugün tekrar yaşayabilsen hangi 10 dakikayı seçerdin?","Bugün seni en çok ne rahatlattı?","Bugün kendinle ilgili ne fark ettin?","Şu an hayatında neyi biraz daha azaltmak isterdin?","Bugün hangi küçük şey beklediğinden daha iyi geçti?",
 
-    flags=re.S
+"Son zamanlarda sana enerji veren şey ne?","Bugün kime teşekkür etmek isterdin ve neden?","Şu an zihninde en fazla yer kaplayan konu ne?","Bugün kendine daha nazik davransaydın neyi farklı yapardın?","Bugün seni gülümseten en küçük şey neydi?",
 
-)
+"Bir haftalığına tek bir alışkanlığını değiştirebilseydin hangisi olurdu?","Bugün hangi anda gerçekten oradaydın?","Şu an en çok neye ihtiyacın var?","Bugün öğrendiğin küçük bir şey ne?","Hangi işi bitirmek sana en fazla rahatlama getirirdi?",
 
-# enterApp fonksiyonunu sadeleştir.
+"Bugün birine söyleyemediğin ama söylemek istediğin şey ne?","Son günlerde seni şaşırtan şey ne oldu?","Bugün hangi düşünceyi yanında taşımak istemezdin?","Kendine bugün tek bir tavsiye verecek olsan ne derdin?","Şu an hayatındaki hangi şey için minnettarsın?",
 
-text = re.sub(
+"Bugün neyi gereğinden fazla düşündün?","Son zamanlarda hangi anı tekrar hatırlıyorsun?","Bugün enerjini en çok ne tüketti?","Bugün enerjini en çok ne yükseltti?","Yarın sabah daha iyi hissetmek için bu akşam ne yapabilirsin?",
 
-    r'function enterApp\(\)\{\s*refresh\(\);\s*show\("home"\);\s*\}',
+"Bugün bir korkun olmasaydı ne yapardın?","Kendinde en sevdiğin küçük özellik ne?","Bugün hangi konuda kendine haksızlık ettin?","Şu an çözmek zorunda olmadığın şey ne?","Bugün bir şeyi yeniden yapabilsen neyi farklı yapardın?",
 
-    'function enterApp(){\nrefresh();\nshow("home");\n}',
+"Son bir ayda sende değişen bir şey var mı?","Bugün hangi sınırını korumak isterdin?","Şu an bırakman gereken küçük yük ne?","Bugün seni en çok kim anladı?","Bugün sen kimi gerçekten dinledin?",
 
-    text,
+"Hayatında daha fazla yer açmak istediğin şey ne?","Bugün kendin için yaptığın en iyi şey neydi?","Şu an bir cümleyle ruh hâlini nasıl anlatırsın?","Bugün seni zorlayan şeyin sana öğrettiği ne var?","Yarın için tek bir niyet seçsen ne olurdu?",
 
-    count=1,
+"Bugün hangi anda zaman hızlı geçti?","Bugün hangi anda zaman yavaşladı?","Kendine daha çok güvenseydin hangi adımı atardın?","Şu an hayatında sadeleştirebileceğin ne var?","Bugün hangi küçük başarıyı görmezden geldin?",
 
-    flags=re.S
+"Birine sarılabilseydin şu an kim olurdu?","Bugün duymaya ihtiyacın olan cümle ne?","Şu an neyi kontrol etmeye çalışıyorsun?","Kontrolün dışında olan neyi bırakabilirsin?","Bugün seni en çok hangi düşünce ziyaret etti?",
 
-)
+"Son zamanlarda neyi özlüyorsun?","Bugün bir fotoğraf çekseydin neyin fotoğrafını çekerdin?","Bugünün bir rengi olsaydı hangisi olurdu?","Bugünün bir şarkısı olsaydı hangisi olurdu?","Bugün hangi karar seni rahatlattı?",
 
-# show() içindeki currentUser koşulunu kaldır.
+"Şu an hayatında kime daha fazla zaman ayırmak istersin?","Bugün kendini ne zaman güçlü hissettin?","Bugün kendini ne zaman yorgun hissettin?","Bir ay sonraki kendine ne söylemek istersin?","Bir yıl önceki kendine ne söylemek isterdin?",
 
-text = text.replace(
+"Bugün seni ne meraklandırdı?","Bugün neye hayır demek isterdin?","Bugün neye daha çok evet demek isterdin?","Şu an hayatında en çok neyi bekliyorsun?","Bugün seni rahatlatan bir ses neydi?",
 
-    'if(currentUser && navScreens.includes(id)){',
+"Bugün fark ettiğin güzel bir ayrıntı neydi?","Şu an kendine 20 dakika ayırsan ne yapardın?","Bugün hangi konuşma sende kaldı?","Bugün bir şeyi fazla ciddiye aldın mı?","Şu an gülümsemene neden olabilecek şey ne?",
 
-    'if(navScreens.includes(id)){'
+"Bugün kendinle gurur duyduğun şey ne?","Bugün hangi alışkanlığın sana yardımcı oldu?","Hangi alışkanlığın işini zorlaştırdı?","Bugün bir şeyi affedebilseydin ne olurdu?","Şu an en çok hangi duyguyu hissediyorsun?",
 
-)
+"Bu duygunun senden istediği şey ne olabilir?","Bugün kendine verdiğin sözü tuttun mu?","Yarın için kendine hangi küçük sözü verebilirsin?","Bugün hayatını kolaylaştıran biri oldu mu?","Sen bugün kimin hayatını biraz kolaylaştırdın?",
 
-# Profilde e-posta satırını kaldır.
+"Şu an önceliğin gerçekten ne?","Bugün neyi erteledin ve neden?","Bugün başladığın küçük bir şey var mı?","Şu an zihnini boşaltmak için ne yapabilirsin?","Bugün hangi anı saklamak isterdin?",
 
-text = text.replace('<p id="profileEmail"></p>', '<p>Kafa Mola Yolculuğun</p>')
+"Bugün kendine kaç puanlık anlayış gösterdin?","Şu an seni ileri taşıyacak en küçük adım ne?","Bugün bir şeyi olduğu gibi kabul edebildin mi?","Bugün neye gereğinden az zaman ayırdın?","90 gün sonraki kendinin sana teşekkür edeceği şey ne?"
 
-text = re.sub(r'\s*profileEmail\.textContent=currentUser\?currentUser\.email:"";', '', text)
+]
 
-# Çıkış butonunu değiştir.
+focuses = [
 
-text = text.replace(
+"Çevrende 5 şey gör, 4 şeye dokun, 3 ses duy, 2 koku fark et ve 1 düşünceni isimlendir.",
 
-    '<button class="red" onclick="logout()">Çıkış Yap</button>',
+"60 saniye boyunca yalnızca bulunduğun yerdeki sesleri say.",
 
-    '<button class="dark" onclick="show(\'home\')">Ana Sayfaya Dön</button>'
+"Çevrende aynı renkte 7 nesne bul.",
 
-)
+"2 dakika boyunca ayaklarının yere temasını fark ederek yürü.",
 
-# Supabase kaydet fonksiyonunu kaldır.
+"Bir nesneyi eline al ve şeklini, sıcaklığını, dokusunu incele.",
 
-text = re.sub(
+"30'dan geriye üçer üçer say.",
 
-    r'\nasync function kaydet\(veri\)\{.*?\n\}\n',
+"Bir dakika boyunca nefes alışını değiştirmeden sadece izle.",
 
-    '\n',
+"Bulunduğun yerde daha önce fark etmediğin 5 ayrıntı bul.",
 
-    text,
+"Bir şarkıyı aç ve yalnızca ritim bölümünü takip et.",
 
-    count=1,
+"2 dakika boyunca tek bir noktaya bakıp çevresel görüşünü fark et.",
 
-    flags=re.S
+"Alfabeden rastgele bir harf seç ve o harfle başlayan 10 kelime bul.",
 
-)
+"Çevrende 3 farklı dokuya dokun ve aralarındaki farkı fark et.",
 
-# kaydet(...) çağrılarını kaldır.
+"Bir dakika boyunca duyduğun en uzak sesi bulmaya çalış.",
 
-text = re.sub(r'\s*kaydet\(\{\s*durum:"checkin".*?\}\);\s*', '\n', text, count=1, flags=re.S)
+"20'den geriye sayarken her sayıda yavaşça nefes ver.",
 
-text = re.sub(r'\s*kaydet\(\{\s*durum:"deneyim".*?\}\);\s*', '\n', text, count=1, flags=re.S)
+"Bulunduğun odada köşeli 5 nesne bul.",
 
-# En alttaki session kontrolünü doğrudan uygulama başlangıcına çevir.
+"Bir bardak suyu 10 yudumda, her yudumu fark ederek iç.",
 
-text = re.sub(
+"Bir dakika boyunca sadece sağ elindeki hislere dikkat et.",
 
-    r'if\(loadSession\(\)\)\{\s*enterApp\(\);\s*\}else\{\s*show\("auth"\);\s*\}',
+"Sonra bir dakika sadece sol elindeki hislere dikkat et.",
 
-    'enterApp();',
+"Çevrendeki ışık ve gölgelerde 5 farklı ton bul.",
 
-    text,
+"Bir kelime seç ve o kelimeyle ilgili 8 çağrışım yaz.",
 
-    count=1,
+"2 dakika boyunca yaptığın işi yarı hızında yap.",
 
-    flags=re.S
+"Bulunduğun yerde üç farklı sıcaklık hissi bul.",
 
-)
+"Bir nesnenin ayrıntılarını 30 saniye incele, sonra gözünü kapatıp hatırla.",
 
-out = Path("/mnt/data/index.html")
+"1'den 20'ye say; her çift sayıda nefes al, tek sayıda ver.",
 
-out.write_text(text, encoding="utf-8")
+"Çevrende A, E ve K harfiyle başlayan nesneler bul.",
 
-print("Hazır: index.html")
+"Bir dakika boyunca çeneni ve omuzlarını gevşetmeye odaklan.",
+
+"Telefonu ters çevir ve 3 dakika tek bir işe devam et.",
+
+"Bir ses seç ve kaybolana kadar onu takip et.",
+
+"Çevrendeki beş nesneyi zihninde boyut sırasına koy.",
+
+"Bir dakika boyunca yalnızca gördüğün hareketleri fark et."
+
+]
+
+good_prompts = [
+
+["Bugün iyi gelen...","Teşekkür ettiğin...","Gülümsediğin..."],
+
+["Bugün başardığın küçük şey...","Sana iyi davranan biri...","Fark ettiğin güzel ayrıntı..."],
+
+["Bugün öğrendiğin...","Rahatladığın an...","Kendinde takdir ettiğin..."],
+
+["Bugün keyif aldığın...","Sana destek olan...","Yarın taşımak istediğin his..."],
+
+["Bugün iyi ki dediğin...","Kendin için yaptığın...","Hatırlamak istediğin an..."],
+
+["Bugün seni güldüren...","Kolaylaştırdığın bir şey...","Şanslı hissettiğin konu..."],
+
+["Bugün tamamladığın...","Duyduğun güzel söz...","Kendine teşekkür ettiğin şey..."],
+
+["Bugün tattığın güzel şey...","Gördüğün güzel şey...","Hissettiğin güzel şey..."],
+
+["Bugün cesaret ettiğin...","Bırakabildiğin...","Kabul edebildiğin..."],
+
+["Bugün sana enerji veren...","Sakinleştiren...","Umutlandıran..."]
+
+]
+
+def js_array(x):
+
+    return json.dumps(x, ensure_ascii=False)
+
+# Replace capsule array block inside openCapsule
+
+text = re.sub(r'function openCapsule\(\)\{\s*const arr=\[.*?\];\s*const d=new Date\(\)\.getDate\(\);',
+
+              'function openCapsule(){\nconst arr='+js_array(capsules)+';\nconst d=dayIndex();',
+
+              text, count=1, flags=re.S)
+
+text = text.replace('arr[d%arr.length]', 'arr[d%arr.length]')
+
+# Add dayIndex helper before show
+
+helper = '''
+
+function dayIndex(){
+
+const start=new Date(2026,0,1);
+
+const now=new Date();
+
+const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+
+return Math.floor((today-start)/86400000);
+
+}
+
+const dailyQuestions='''+js_array(questions)+''';
+
+const dailyFocus='''+js_array(focuses)+''';
+
+const dailyGoodPrompts='''+js_array(good_prompts)+''';
+
+function applyDailyContent(){
+
+const d=dayIndex();
+
+const dq=document.querySelector("#dailyQuestion .card h2");
+
+if(dq) dq.textContent=dailyQuestions[((d%dailyQuestions.length)+dailyQuestions.length)%dailyQuestions.length];
+
+const fd=document.querySelector("#focus .desc");
+
+if(fd) fd.textContent=dailyFocus[((d%dailyFocus.length)+dailyFocus.length)%dailyFocus.length];
+
+const gp=dailyGoodPrompts[((d%dailyGoodPrompts.length)+dailyGoodPrompts.length)%dailyGoodPrompts.length];
+
+const g1=document.getElementById("g1"),g2=document.getElementById("g2"),g3=document.getElementById("g3");
+
+if(g1) g1.placeholder=gp[0];
+
+if(g2) g2.placeholder=gp[1];
+
+if(g3) g3.placeholder=gp[2];
+
+}
+
+'''
+
+text=text.replace('function show(id){', helper+'\nfunction show(id){',1)
+
+# Ensure daily content on enter
+
+text=text.replace('function enterApp(){\nrefresh();', 'function enterApp(){\napplyDailyContent();\nrefresh();',1)
+
+# Add feedback card before closing home section, just before test section
+
+feedback = '''
+
+<div class="card">
+
+<div class="row"><h2>Fikirlerinizi paylaşın</h2><span>💌</span></div>
+
+<p class="muted">Önerileriniz, eleştirileriniz veya yeni özellik fikirleriniz varsa bize yazabilirsiniz.</p>
+
+<a href="mailto:mehmettirpan1@yandex.com?subject=Kafa%20Mola%20Öneri" style="text-decoration:none">
+
+<button class="dark">📧 mehmettirpan1@yandex.com</button>
+
+</a>
+
+</div>
+
+'''
+
+text=text.replace('</section>\n\n\n<section id="test"', feedback+'</section>\n\n\n<section id="test"',1)
+
+out=Path("/mnt/data/index-90gun.html")
+
+out.write_text(text,encoding="utf-8")
+
+print(f"Hazırlandı: {out.name}, kapsül={len(capsules)}, soru={len(questions)}, odak={len(focuses)}, iyi şey seti={len(good_prompts)}")
