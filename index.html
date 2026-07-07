@@ -48,14 +48,13 @@ font-size:16px;font-weight:800
 .primary{background:linear-gradient(90deg,#7143ff,#a058ff);color:#fff}
 .green{background:linear-gradient(90deg,#43ca7d,#65e29a);color:#06150c}
 .dark{background:#1b2440;color:#fff}
-.red{background:#3b1720;color:#ff9ba9}
 .nav{
 position:fixed;bottom:0;left:50%;transform:translateX(-50%);
 width:min(480px,100%);display:flex;justify-content:space-around;
 background:#080c1df2;border-top:1px solid #ffffff17;
 padding:11px 3px 18px;z-index:9
 }
-.nav div{text-align:center;color:#8e97ad;font-size:11px}
+.nav div{text-align:center;color:#8e97ad;font-size:11px;cursor:pointer}
 .nav span{display:block;font-size:21px}
 .title{text-align:center;font-size:29px;margin:15px 0 7px}
 .desc{text-align:center;color:#aab3c9;line-height:1.5;margin-bottom:22px}
@@ -75,10 +74,6 @@ width:100%;padding:15px;margin:7px 0;border:1px solid #303b5c;
 border-radius:14px;background:#151d34;color:#fff
 }
 textarea{resize:vertical}
-.authbox{max-width:430px;margin:40px auto}
-.authTabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:15px}
-.authTabs button{background:#171e35;color:#aab3c9}
-.authTabs button.active{background:#7143ff;color:#fff}
 .toast{
 position:fixed;bottom:95px;left:50%;transform:translateX(-50%);
 background:#fff;color:#111;padding:12px 16px;border-radius:13px;
@@ -108,7 +103,6 @@ background:#121a30;border-radius:15px;padding:14px 5px;text-align:center
 }
 .goalDone{background:#174232}
 .timerBig{text-align:center;font-size:52px;font-weight:900;margin:25px}
-.choice{border:1px solid #303b5c;border-radius:16px;padding:15px;margin:10px 0}
 .medals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .medal{text-align:center;background:#121a30;border-radius:15px;padding:13px 5px;font-size:12px}
 .medal i{display:block;font-style:normal;font-size:30px}
@@ -130,40 +124,7 @@ animation:b 8s infinite ease-in-out
 
 <main class="app">
 
-<section id="auth">
-
-<div class="authbox">
-
-<div class="hero">
-<div class="emo">🌙☁️</div>
-<h1>Kafa Mola</h1>
-<p>Kendine birkaç dakika ayır.</p>
-</div>
-
-<div class="card">
-
-<div class="authTabs">
-<button id="loginTab" class="active" onclick="authMode('login')">Giriş Yap</button>
-<button id="signupTab" onclick="authMode('signup')">Kayıt Ol</button>
-</div>
-
-<h2 id="authTitle">Tekrar hoş geldin</h2>
-
-<input id="authEmail" type="email" placeholder="E-posta adresin">
-<input id="authPassword" type="password" placeholder="Şifren">
-
-<button id="authButton" class="primary" onclick="authAction()">Giriş Yap</button>
-
-<button class="dark smallBtn" onclick="forgotPassword()">Şifremi Unuttum</button>
-
-<p id="authMessage" class="muted"></p>
-
-</div>
-</div>
-</section>
-
-
-<section id="home" class="hidden">
+<section id="home">
 
 <div class="head">
 <button class="circle">☰</button>
@@ -228,7 +189,6 @@ animation:b 8s infinite ease-in-out
 
 </section>
 
-
 <section id="test" class="hidden">
 <div class="head">
 <button class="circle" onclick="show('home')">←</button>
@@ -240,7 +200,6 @@ animation:b 8s infinite ease-in-out
 <div class="progress"><div id="qBar"></div></div>
 <div id="qArea"></div>
 </section>
-
 
 <section id="result" class="hidden">
 <div class="head">
@@ -255,10 +214,9 @@ animation:b 8s infinite ease-in-out
 <div class="card">
 <h2>Bugün sana uygun mola</h2>
 <p id="resultSuggestion" class="muted"></p>
-<button class="green" onclick="show('mystery')">Önerilen Molayı Başlat</button>
+<button class="green" onclick="show('experiences')">Önerilen Molayı Başlat</button>
 </div>
 </section>
-
 
 <section id="experiences" class="hidden">
 <div class="head">
@@ -270,7 +228,6 @@ animation:b 8s infinite ease-in-out
 <p class="desc">O an ihtiyacına göre bir mola seç.</p>
 
 <div class="grid">
-
 <div class="card mini" onclick="show('mystery')">
 <i>🕵️</i><div><h3>Mini Gizem</h3><small class="muted">İpuçlarını çöz.</small></div>
 </div>
@@ -302,10 +259,8 @@ animation:b 8s infinite ease-in-out
 <div class="card mini" onclick="show('goodThings')">
 <i>🌱</i><div><h3>3 İyi Şey</h3><small class="muted">Bugünden kalanlar.</small></div>
 </div>
-
 </div>
 </section>
-
 
 <section id="mystery" class="hidden">
 <div class="head">
@@ -338,7 +293,6 @@ Ece: “Anahtar ben geldiğimde zaten yoktu.”
 </div>
 </section>
 
-
 <section id="breath" class="hidden">
 <div class="head">
 <button class="circle" onclick="show('experiences')">←</button>
@@ -350,7 +304,6 @@ Ece: “Anahtar ben geldiğimde zaten yoktu.”
 <p class="desc" id="breathTimer">02:00</p>
 <button class="green" onclick="finishExp('Nefes Ritmi')">Tamamladım</button>
 </section>
-
 
 <section id="focus" class="hidden">
 <div class="head">
@@ -365,7 +318,6 @@ Ece: “Anahtar ben geldiğimde zaten yoktu.”
 </div>
 <button class="green" onclick="finishExp('Odak Molası')">Tamamladım</button>
 </section>
-
 
 <section id="memory" class="hidden">
 <div class="head">
@@ -388,7 +340,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 </div>
 </section>
 
-
 <section id="goodThings" class="hidden">
 <div class="head">
 <button class="circle" onclick="show('experiences')">←</button>
@@ -402,7 +353,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <button class="green" onclick="saveGood()">Kaydet</button>
 </section>
 
-
 <section id="mindClean" class="hidden">
 <div class="head">
 <button class="circle" onclick="show('experiences')">←</button>
@@ -413,7 +363,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <p class="desc">Düzgün yazmak zorunda değilsin. Aklından geçenleri olduğu gibi yaz.</p>
 
 <div class="timerBig" id="cleanTimer">01:00</div>
-
 <textarea id="cleanText" rows="10" placeholder="Şu an aklımda..."></textarea>
 
 <div class="grid">
@@ -421,7 +370,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <button class="primary" onclick="deleteClean()">🌬️ Sil ve Bırak</button>
 </div>
 </section>
-
 
 <section id="energyBudget" class="hidden">
 <div class="head">
@@ -457,10 +405,8 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 </select>
 
 <button class="green" onclick="compareEnergy()">Karşılaştır</button>
-
 <div id="energyResult" class="card hidden"></div>
 </section>
-
 
 <section id="decision" class="hidden">
 <div class="head">
@@ -489,10 +435,8 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 </div>
 
 <button class="primary" onclick="decisionResult()">Düşüncemi Göster</button>
-
 <div id="decisionOutput" class="card hidden"></div>
 </section>
-
 
 <section id="goal" class="hidden">
 <div class="head">
@@ -521,12 +465,10 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 </div>
 
 <div class="goalDays" id="goalDays"></div>
-
 <button class="green" onclick="goalDoneToday()">Bugün Başardım ✓</button>
 <button class="dark smallBtn" onclick="resetGoal()">Hedefi Değiştir</button>
 </div>
 </section>
-
 
 <section id="weather" class="hidden">
 <div class="head">
@@ -539,7 +481,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <p id="weatherText">Check-in tamamladığında burada kısa bir yorum oluşacak.</p>
 </div>
 </section>
-
 
 <section id="report" class="hidden">
 <div class="head">
@@ -580,7 +521,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 </div>
 </section>
 
-
 <section id="calendarScreen" class="hidden">
 <div class="head">
 <button class="circle" onclick="show('home')">←</button>
@@ -601,7 +541,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 </div>
 </section>
 
-
 <section id="dailyQuestion" class="hidden">
 <div class="head">
 <button class="circle" onclick="show('home')">←</button>
@@ -614,7 +553,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <textarea id="dailyAnswer" rows="5" placeholder="İstersen birkaç kelime yaz..."></textarea>
 <button class="green" onclick="saveDaily()">Cevabımı Kaydet</button>
 </section>
-
 
 <section id="capsule" class="hidden">
 <div class="head">
@@ -630,7 +568,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <button class="primary" onclick="openCapsule()">Kapsülü Aç</button>
 </section>
 
-
 <section id="history" class="hidden">
 <div class="head">
 <button class="circle" onclick="show('home')">←</button>
@@ -639,7 +576,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <h1 class="title">Aktiviteler</h1>
 <div class="card" id="historyList"></div>
 </section>
-
 
 <section id="badges" class="hidden">
 <div class="head">
@@ -651,7 +587,6 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <div class="medals" id="medalGrid"></div>
 </section>
 
-
 <section id="profile" class="hidden">
 <div class="head">
 <button class="circle" onclick="show('home')">←</button>
@@ -661,7 +596,7 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <div class="hero">
 <div class="emo">🧠</div>
 <h1 id="profileRank">Çaylak</h1>
-<p id="profileEmail"></p>
+<p>Kafa Mola Yolculuğun</p>
 </div>
 
 <div class="stats">
@@ -684,9 +619,8 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 <div class="row"><h2>Ruh Hâli Takvimim</h2><span>📅 →</span></div>
 </div>
 
-<button class="red" onclick="logout()">Çıkış Yap</button>
+<button class="dark" onclick="show('home')">Ana Sayfaya Dön</button>
 </section>
-
 
 <section id="premium" class="hidden">
 <div class="head">
@@ -718,34 +652,27 @@ Limon · Saat · Köprü<br>Mavi · Anahtar · Bulut
 
 </main>
 
-
-<nav class="nav hidden" id="nav">
+<nav class="nav" id="nav">
 <div onclick="show('home')"><span>⌂</span>Ana Sayfa</div>
 <div onclick="show('experiences')"><span>✨</span>Deneyimler</div>
 <div onclick="show('history')"><span>📊</span>Geçmiş</div>
 <div onclick="show('profile')"><span>♙</span>Profil</div>
 </nav>
 
-
 <script>
-
-const SUPABASE_URL="https://isthfqyddzikcuudiuvp.supabase.co";
-const SUPABASE_KEY="sb_publishable_FbABn8glu-CdoNWfofbBfA_gSv9wPv6";
+const $ = id => document.getElementById(id);
 
 const allScreens=[
-"auth","home","test","result","experiences","mystery","breath",
+"home","test","result","experiences","mystery","breath",
 "focus","memory","goodThings","mindClean","energyBudget","decision",
 "goal","weather","report","calendarScreen","dailyQuestion","capsule",
 "history","badges","profile","premium"
 ];
 
-let authType="login";
-let currentUser=null;
-let accessToken=null;
 let q=0;
 let ans={};
-let breathInt;
-let cleanInt;
+let breathInt=null;
+let cleanInt=null;
 
 const ranks=[
 ["Çaylak",0],["Gözcü",100],["Kaşif",250],["Öncü",500],
@@ -777,192 +704,32 @@ const qs=[
 ]]
 ];
 
-
-function authMode(mode){
-authType=mode;
-loginTab.classList.toggle("active",mode==="login");
-signupTab.classList.toggle("active",mode==="signup");
-authTitle.textContent=mode==="login"?"Tekrar hoş geldin":"Kendine bir alan aç";
-authButton.textContent=mode==="login"?"Giriş Yap":"Kayıt Ol";
-authMessage.textContent="";
-}
-
-
-async function authAction(){
-
-const email=authEmail.value.trim();
-const password=authPassword.value;
-
-if(!email || password.length<6){
-authMessage.textContent="E-posta adresini ve en az 6 karakterlik şifreni gir.";
-return;
-}
-
-authButton.disabled=true;
-authMessage.textContent="İşlem yapılıyor...";
-
-try{
-
-if(authType==="signup"){
-
-const r=await fetch(SUPABASE_URL+"/auth/v1/signup",{;
-method:"POST",
-headers:{
-"apikey":SUPABASE_KEY,
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-  email,
-  password
-})
-});
-  JavaScript
-const d=await r.json();
-
-if(!r.ok) throw new Error(d.msg||d.message||"Kayıt oluşturulamadı.");
-
-authMessage.textContent="Kayıt oluşturuldu 🎉 E-postana gelen doğrulama bağlantısına dokun, sonra giriş yap.";
-
-}else{
-
-const r=await fetch(SUPABASE_URL+"/auth/v1/token?grant_type=password",{
-method:"POST",
-headers:{
-"apikey":SUPABASE_KEY,
-"Content-Type":"application/json"
-},
-body:JSON.stringify({email,password})
-});
-
-const d=await r.json();
-
-if(!r.ok) throw new Error(d.error_description||d.msg||d.message||"Giriş yapılamadı.");
-
-saveSession(d);
-enterApp();
-
-}
-
-}catch(e){
-authMessage.textContent=e.message;
-}
-
-authButton.disabled=false;
-}
-
-
-function saveSession(d){
-accessToken=d.access_token;
-currentUser=d.user;
-localStorage.setItem("km_session",JSON.stringify(d));
-}
-
-
-function loadSession(){
-try{
-const s=JSON.parse(localStorage.getItem("km_session"));
-if(s && s.access_token && s.user){
-accessToken=s.access_token;
-currentUser=s.user;
-return true;
-}
-}catch(e){}
-return false;
-}
-
-
-async function forgotPassword(){
-
-const email=authEmail.value.trim();
-
-if(!email){
-authMessage.textContent="Önce e-posta adresini yaz.";
-return;
-}
-
-try{
-
-const r=await fetch(SUPABASE_URL+"/auth/v1/recover",{
-method:"POST",
-headers:{
-"apikey":SUPABASE_KEY,
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-email,
-redirect_to:"https://kafa-mola.vercel.app/"
-})
-});
-
-if(!r.ok) throw new Error("Bağlantı gönderilemedi.");
-
-authMessage.textContent="Şifre yenileme bağlantısı e-postana gönderildi.";
-
-}catch(e){
-authMessage.textContent=e.message;
-}
-}
-
-
-async function logout(){
-
-try{
-if(accessToken){
-await fetch(SUPABASE_URL+"/auth/v1/logout",{
-method:"POST",
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+accessToken
-}
-});
-}
-}catch(e){}
-
-localStorage.removeItem("km_session");
-accessToken=null;
-currentUser=null;
-nav.classList.add("hidden");
-show("auth");
-}
-
-
-function enterApp(){
-refresh();
-show("home");
-}
-
-
 function show(id){
-
 allScreens.forEach(x=>{
-document.getElementById(x).classList.add("hidden");
+const el=$(x);
+if(el) el.classList.add("hidden");
 });
 
-document.getElementById(id).classList.remove("hidden");
-
-const navScreens=["home","experiences","history","profile"];
-
-if(currentUser && navScreens.includes(id)){
-nav.classList.remove("hidden");
-nav.style.display="flex";
-}else{
-nav.classList.add("hidden");
-nav.style.display="none";
+const target=$(id);
+if(!target){
+console.error("Ekran bulunamadı:",id);
+return;
 }
 
-if(id==="history")renderHistory();
-if(id==="profile")renderProfile();
-if(id==="badges")renderBadges();
-if(id==="report")renderReport();
-if(id==="weather")renderWeather();
-if(id==="calendarScreen")renderCalendar();
-if(id==="goal")renderGoal();
-if(id==="mindClean")startCleanTimer();
-if(id==="energyBudget")renderEnergyPlan();
+target.classList.remove("hidden");
+
+if(id==="history") renderHistory();
+if(id==="profile") renderProfile();
+if(id==="badges") renderBadges();
+if(id==="report") renderReport();
+if(id==="weather") renderWeather();
+if(id==="calendarScreen") renderCalendar();
+if(id==="goal") renderGoal();
+if(id==="mindClean") startCleanTimer();
+if(id==="energyBudget") renderEnergyPlan();
 
 window.scrollTo(0,0);
 }
-
 
 function startTest(){
 q=0;
@@ -971,15 +738,13 @@ show("test");
 renderQ();
 }
 
-
 function renderQ(){
+const x=qs[q];
 
-let x=qs[q];
+$("qCount").textContent=(q+1)+" / "+qs.length;
+$("qBar").style.width=((q+1)/qs.length*100)+"%";
 
-qCount.textContent=(q+1)+" / "+qs.length;
-qBar.style.width=((q+1)/qs.length*100)+"%";
-
-qArea.innerHTML=
+$("qArea").innerHTML=
 '<h2 class="question">'+x[0]+'</h2>'+
 '<div class="opts">'+
 x[2].map(o=>
@@ -988,17 +753,18 @@ x[2].map(o=>
 '</div>';
 }
 
-
 function answer(k,v){
 ans[k]=v;
 q++;
-if(q<qs.length)renderQ();
-else finishTest();
+
+if(q<qs.length){
+renderQ();
+}else{
+finishTest();
+}
 }
 
-
 function finishTest(){
-
 localStorage.setItem("lastAnswers",JSON.stringify(ans));
 
 inc("checks",1);
@@ -1006,103 +772,90 @@ addEnergy(20);
 addHistory("Check-in tamamlandı","📝");
 saveMoodDay(ans.ruh_hali);
 
-kaydet({
-durum:"checkin",
-cevaplar:ans,
-tarih:new Date().toISOString()
-});
-
 if(ans.stres>=4){
-
-resultEmoji.textContent="🌧️";
-resultTitle.textContent="Bugün biraz yoğun görünüyorsun.";
-resultSuggestion.textContent="Kısa bir dikkat değişimi veya nefes molası iyi gelebilir.";
-
+$("resultEmoji").textContent="🌧️";
+$("resultTitle").textContent="Bugün biraz yoğun görünüyorsun.";
+$("resultSuggestion").textContent="Kısa bir dikkat değişimi veya nefes molası iyi gelebilir.";
 }else if(ans.ruh_hali>=4){
-
-resultEmoji.textContent="☀️";
-resultTitle.textContent="Bugünün havası açık.";
-resultSuggestion.textContent="Enerjini kısa bir odak veya hafıza oyununda kullanabilirsin.";
-
+$("resultEmoji").textContent="☀️";
+$("resultTitle").textContent="Bugünün havası açık.";
+$("resultSuggestion").textContent="Enerjini kısa bir odak veya hafıza oyununda kullanabilirsin.";
 }else{
-
-resultEmoji.textContent="🌤️";
-resultTitle.textContent="Bugün dengeli ama değişken.";
-resultSuggestion.textContent="Birkaç dakikalık hafif bir mola iyi gelebilir.";
+$("resultEmoji").textContent="🌤️";
+$("resultTitle").textContent="Bugün dengeli ama değişken.";
+$("resultSuggestion").textContent="Birkaç dakikalık hafif bir mola iyi gelebilir.";
 }
 
-resultText.textContent="Bu yorum verdiğin cevapların kısa bir özetidir.";
+$("resultText").textContent="Bu yorum verdiğin cevapların kısa bir özetidir.";
+
 show("result");
 refresh();
 }
 
-
 function mysteryAnswer(a){
-toast(a==="Ece"?
-"Doğru! Ece bilmemesi gereken ayrıntıyı biliyordu 🎉":
-"En güçlü ipucu Ece'yi gösteriyordu 👀");
+toast(a==="Ece"
+?"Doğru! Ece bilmemesi gereken ayrıntıyı biliyordu 🎉"
+:"En güçlü ipucu Ece'yi gösteriyordu 👀");
+
 finishExp("Mini Gizem");
 }
 
-
 function finishExp(name){
-
 inc("exps",1);
 addEnergy(15);
 addHistory(name+" tamamlandı","✨");
-
-kaydet({
-durum:"deneyim",
-deneyim:name,
-tarih:new Date().toISOString()
-});
-
 refresh();
 
 setTimeout(()=>show("home"),700);
 }
 
-
 function startBreath(){
-
 show("breath");
 
 let n=120;
 clearInterval(breathInt);
 
-breathInt=setInterval(()=>{
+$("breathTimer").textContent="02:00";
 
+breathInt=setInterval(()=>{
 n--;
 
-breathTimer.textContent=
+$("breathTimer").textContent=
 String(Math.floor(n/60)).padStart(2,"0")+":"+
 String(n%60).padStart(2,"0");
 
-breathCircle.textContent=n%8<4?"Nefes Al":"Nefes Ver";
+$("breathCircle").textContent=n%8<4?"Nefes Al":"Nefes Ver";
 
-if(n<=0)clearInterval(breathInt);
-
+if(n<=0){
+clearInterval(breathInt);
+$("breathTimer").textContent="00:00";
+}
 },1000);
 }
 
-
 function hideWords(){
-words.textContent="••••••";
-memoryQ.classList.remove("hidden");
+$("words").textContent="••••••";
+$("memoryQ").classList.remove("hidden");
 }
-
 
 function mem(ok){
 toast(ok?"Doğru! 🧠":"Cevap Köprü'ydü 🌉");
 finishExp("Hafıza Oyunu");
 }
 
-
 function saveGood(){
+const values=[
+$("g1").value,
+$("g2").value,
+$("g3").value
+];
 
-localStorage.setItem("goodThings",JSON.stringify([
-g1.value,g2.value,g3.value
-]));
+if(!values.some(x=>x.trim())){
+toast("En az bir şey yaz.");
+return;
+}
+
+localStorage.setItem("goodThings",JSON.stringify(values));
 
 addEnergy(10);
 addHistory("3 İyi Şey kaydedildi","🌱");
@@ -1112,58 +865,52 @@ refresh();
 setTimeout(()=>show("home"),700);
 }
 
-
 function startCleanTimer(){
-
 clearInterval(cleanInt);
 
 let n=60;
-cleanTimer.textContent="01:00";
+$("cleanTimer").textContent="01:00";
 
 cleanInt=setInterval(()=>{
-
 n--;
 
-cleanTimer.textContent=
+$("cleanTimer").textContent=
 "00:"+String(Math.max(n,0)).padStart(2,"0");
 
 if(n<=0){
 clearInterval(cleanInt);
-cleanTimer.textContent="Süre doldu";
+$("cleanTimer").textContent="Süre doldu";
 }
-
 },1000);
 }
 
-
 function saveClean(){
+const text=$("cleanText").value.trim();
 
-if(!cleanText.value.trim()){
+if(!text){
 toast("Önce birkaç kelime yaz.");
 return;
 }
 
-localStorage.setItem("mindCleanLast",cleanText.value);
+localStorage.setItem("mindCleanLast",text);
 addEnergy(10);
 addHistory("Zihin Temizliği tamamlandı","🧹");
 toast("Yazın saklandı 💾");
-cleanText.value="";
+$("cleanText").value="";
 refresh();
 }
 
-
 function deleteClean(){
-
-if(!cleanText.value.trim()){
+if(!$("cleanText").value.trim()){
 toast("Bırakmak istediğin düşünceleri önce yaz.");
 return;
 }
 
-cleanText.classList.add("fadeAway");
+$("cleanText").classList.add("fadeAway");
 
 setTimeout(()=>{
-cleanText.value="";
-cleanText.classList.remove("fadeAway");
+$("cleanText").value="";
+$("cleanText").classList.remove("fadeAway");
 toast("Bıraktın 🌬️");
 addEnergy(10);
 addHistory("Bir düşünce bırakıldı","🌬️");
@@ -1171,36 +918,36 @@ refresh();
 },1400);
 }
 
-
 function setEnergyPlan(x){
 localStorage.setItem("energyPlan",x);
 renderEnergyPlan();
 toast("Bugünkü enerji planın kaydedildi 🔋");
 }
 
-
 function renderEnergyPlan(){
 const x=localStorage.getItem("energyPlan");
-energyPlanText.textContent=x||"Henüz seçim yapmadın.";
+$("energyPlanText").textContent=x||"Henüz seçim yapmadın.";
 }
 
-
 function compareEnergy(){
-
 const plan=localStorage.getItem("energyPlan");
-const actual=actualEnergy.value;
+const actual=$("actualEnergy").value;
 
 if(!plan || !actual){
 toast("Önce planını ve gerçekleşeni seç.");
 return;
 }
 
-energyResult.classList.remove("hidden");
+$("energyResult").classList.remove("hidden");
 
 if(plan===actual){
-energyResult.innerHTML="<h2>🎯 Enerji uyumu yüksek</h2><p>Planladığın alan ile enerjinin gittiği alan aynı.</p>";
+$("energyResult").innerHTML=
+"<h2>🎯 Enerji uyumu yüksek</h2><p>Planladığın alan ile enerjinin gittiği alan aynı.</p>";
 }else{
-energyResult.innerHTML="<h2>🔄 Plan ve gerçek farklı</h2><p>Enerjini <b>"+plan+"</b> için ayırmak istemiştin ama bugün daha çok <b>"+actual+"</b> tarafına gitmiş.</p>";
+$("energyResult").innerHTML=
+"<h2>🔄 Plan ve gerçek farklı</h2><p>Enerjini <b>"+
+plan+"</b> için ayırmak istemiştin ama bugün daha çok <b>"+
+actual+"</b> tarafına gitmiş.</p>";
 }
 
 addHistory("Enerji bütçesi karşılaştırıldı","🔋");
@@ -1208,35 +955,44 @@ addEnergy(5);
 refresh();
 }
 
-
 function decisionResult(){
-
-const a=optionA.value.trim();
-const b=optionB.value.trim();
+const a=$("optionA").value.trim();
+const b=$("optionB").value.trim();
 
 if(!a || !b){
 toast("İki seçeneği de yaz.");
 return;
 }
 
-const vals=[d1.value,d2.value,d3.value,d4.value];
+const vals=[
+$("d1").value,
+$("d2").value,
+$("d3").value,
+$("d4").value
+];
 
 if(vals.includes("0")){
 toast("Dört soruyu da cevapla.");
 return;
 }
 
-let A=vals.filter(x=>x==="1").length;
-let B=vals.filter(x=>x==="2").length;
+const A=vals.filter(x=>x==="1").length;
+const B=vals.filter(x=>x==="2").length;
 
-decisionOutput.classList.remove("hidden");
+$("decisionOutput").classList.remove("hidden");
 
 if(A>B){
-decisionOutput.innerHTML="<h2>🧭 Şu an "+a+" seçeneğine daha yakın görünüyorsun.</h2><p class='muted'>Bu bir karar değil; verdiğin cevapların yönünü gösteren küçük bir ayna.</p>";
+$("decisionOutput").innerHTML=
+"<h2>🧭 Şu an "+a+" seçeneğine daha yakın görünüyorsun.</h2>"+
+"<p class='muted'>Bu bir karar değil; verdiğin cevapların yönünü gösteren küçük bir ayna.</p>";
 }else if(B>A){
-decisionOutput.innerHTML="<h2>🧭 Şu an "+b+" seçeneğine daha yakın görünüyorsun.</h2><p class='muted'>Bu bir karar değil; verdiğin cevapların yönünü gösteren küçük bir ayna.</p>";
+$("decisionOutput").innerHTML=
+"<h2>🧭 Şu an "+b+" seçeneğine daha yakın görünüyorsun.</h2>"+
+"<p class='muted'>Bu bir karar değil; verdiğin cevapların yönünü gösteren küçük bir ayna.</p>";
 }else{
-decisionOutput.innerHTML="<h2>⚖️ İki seçenek gerçekten dengede.</h2><p class='muted'>Belki de asıl soru hangi seçeneğin daha iyi olduğu değil, hangi bedeli ödemeye daha hazır olduğundur.</p>";
+$("decisionOutput").innerHTML=
+"<h2>⚖️ İki seçenek gerçekten dengede.</h2>"+
+"<p class='muted'>Belki de asıl soru hangi seçeneğin daha iyi olduğu değil, hangi bedeli ödemeye daha hazır olduğundur.</p>";
 }
 
 addHistory("Karar Yardımcısı kullanıldı","🧭");
@@ -1244,12 +1000,10 @@ addEnergy(10);
 refresh();
 }
 
-
 function chooseGoal(title,emoji){
-
 const goal={
-title,
-emoji,
+title:title,
+emoji:emoji,
 done:[],
 started:new Date().toISOString()
 };
@@ -1259,9 +1013,7 @@ renderGoal();
 refresh();
 }
 
-
 function renderGoal(){
-
 let goal=null;
 
 try{
@@ -1269,34 +1021,36 @@ goal=JSON.parse(localStorage.getItem("miniGoal"));
 }catch(e){}
 
 if(!goal){
-
-goalChoose.classList.remove("hidden");
-goalActive.classList.add("hidden");
-homeGoalText.textContent="Küçük bir hedef seç ve 3 gün boyunca dene.";
+$("goalChoose").classList.remove("hidden");
+$("goalActive").classList.add("hidden");
+$("homeGoalText").textContent="Küçük bir hedef seç ve 3 gün boyunca dene.";
 return;
 }
 
-goalChoose.classList.add("hidden");
-goalActive.classList.remove("hidden");
+$("goalChoose").classList.add("hidden");
+$("goalActive").classList.remove("hidden");
 
-goalEmoji.textContent=goal.emoji;
-goalTitle.textContent=goal.title;
-goalStatus.textContent=goal.done.length+" / 3 gün tamamlandı";
+$("goalEmoji").textContent=goal.emoji;
+$("goalTitle").textContent=goal.title;
+$("goalStatus").textContent=goal.done.length+" / 3 gün tamamlandı";
 
-goalDays.innerHTML=[1,2,3].map((d,i)=>
+$("goalDays").innerHTML=[1,2,3].map((d,i)=>
 '<div class="goalDay '+(goal.done[i]?"goalDone":"")+'">'+
 '<b>Gün '+d+'</b><br><span>'+(goal.done[i]?"✓":"○")+'</span></div>'
 ).join("");
 
-homeGoalText.textContent=goal.emoji+" "+goal.title+" · "+goal.done.length+"/3";
+$("homeGoalText").textContent=
+goal.emoji+" "+goal.title+" · "+goal.done.length+"/3";
 }
 
-
 function goalDoneToday(){
+let goal=null;
 
-let goal=JSON.parse(localStorage.getItem("miniGoal")||"null");
+try{
+goal=JSON.parse(localStorage.getItem("miniGoal"));
+}catch(e){}
 
-if(!goal)return;
+if(!goal) return;
 
 const today=new Date().toISOString().slice(0,10);
 
@@ -1327,68 +1081,70 @@ refresh();
 renderGoal();
 }
 
-
 function resetGoal(){
 localStorage.removeItem("miniGoal");
 renderGoal();
 refresh();
 }
 
-
 function renderWeather(){
+let a={};
 
-let a=JSON.parse(localStorage.getItem("lastAnswers")||"{}");
+try{
+a=JSON.parse(localStorage.getItem("lastAnswers")||"{}");
+}catch(e){}
 
 if(!a.stres){
-weatherEmoji.textContent="🌤️";
-weatherTitle.textContent="Henüz veri yok";
-weatherText.textContent="Check-in tamamladığında burada kısa bir yorum oluşacak.";
+$("weatherEmoji").textContent="🌤️";
+$("weatherTitle").textContent="Henüz veri yok";
+$("weatherText").textContent="Check-in tamamladığında burada kısa bir yorum oluşacak.";
 return;
 }
 
 if(a.stres>=4){
-weatherEmoji.textContent="🌧️";
-weatherTitle.textContent="Yoğun ve yağmurlu";
-weatherText.textContent="Stres ve zihinsel yoğunluk puanların yüksek. Kısa bir dikkat değişimi deneyebilirsin.";
+$("weatherEmoji").textContent="🌧️";
+$("weatherTitle").textContent="Yoğun ve yağmurlu";
+$("weatherText").textContent="Stres ve zihinsel yoğunluk puanların yüksek. Kısa bir dikkat değişimi deneyebilirsin.";
 }else if(a.ruh_hali>=4){
-weatherEmoji.textContent="☀️";
-weatherTitle.textContent="Açık ve enerjik";
-weatherText.textContent="Ruh hâlin olumlu tarafta. Enerjini küçük bir göreve yönlendirebilirsin.";
+$("weatherEmoji").textContent="☀️";
+$("weatherTitle").textContent="Açık ve enerjik";
+$("weatherText").textContent="Ruh hâlin olumlu tarafta. Enerjini küçük bir göreve yönlendirebilirsin.";
 }else{
-weatherEmoji.textContent="🌤️";
-weatherTitle.textContent="Parçalı bulutlu";
-weatherText.textContent="Bugünkü cevapların dengeli ama değişken bir tablo gösteriyor.";
+$("weatherEmoji").textContent="🌤️";
+$("weatherTitle").textContent="Parçalı bulutlu";
+$("weatherText").textContent="Bugünkü cevapların dengeli ama değişken bir tablo gösteriyor.";
 }
 }
-
 
 function pctWord(n){
-if(n>=80)return"Çok iyi";
-if(n>=60)return"İyi";
-if(n>=40)return"Orta";
-if(n>=20)return"Düşük";
-return"Çok düşük";
+if(n>=80) return "Çok iyi";
+if(n>=60) return "İyi";
+if(n>=40) return "Orta";
+if(n>=20) return "Düşük";
+return "Çok düşük";
 }
 
-
 function renderReport(){
+let a={};
 
-let a=JSON.parse(localStorage.getItem("lastAnswers")||"{}");
+try{
+a=JSON.parse(localStorage.getItem("lastAnswers")||"{}");
+}catch(e){}
 
 const mood=(a.ruh_hali||0)*20;
 const en=(a.enerji||0)*20;
 const calm=a.stres?(6-a.stres)*20:0;
 const mind=a.zihin?(6-a.zihin)*20:0;
 
-moodPct.textContent="%"+mood;
-energyPct.textContent="%"+en;
-calmPct.textContent="%"+calm;
-mindPct.textContent="%"+mind;
+$("moodPct").textContent="%"+mood;
+$("energyPct").textContent="%"+en;
+$("calmPct").textContent="%"+calm;
+$("mindPct").textContent="%"+mind;
 
-moodWord.textContent=pctWord(mood);
-energyWord.textContent=pctWord(en);
-calmWord.textContent=pctWord(calm);
-mindWord.textContent=pctWord(mind);
+$("moodWord").textContent=pctWord(mood);
+$("energyWord").textContent=pctWord(en);
+$("calmWord").textContent=pctWord(calm);
+$("mindWord").textContent=pctWord(mind);
 
 const values=[
 ["Ruh hâli",mood],
@@ -1399,83 +1155,109 @@ const values=[
 
 const balance=Math.round((mood+en+calm+mind)/4);
 
-balancePct.textContent="%"+balance;
+$("balancePct").textContent="%"+balance;
 
-balanceText.textContent=
-balance>=70?"Bugünkü genel dengen güçlü görünüyor.":
-balance>=45?"Bugün orta ve değişken bir dengedesin.":
-"Bugün biraz daha hafif ilerlemek sana iyi gelebilir.";
+$("balanceText").textContent=
+balance>=70
+?"Bugünkü genel dengen güçlü görünüyor."
+:balance>=45
+?"Bugün orta ve değişken bir dengedesin."
+:"Bugün biraz daha hafif ilerlemek sana iyi gelebilir.";
 
 const sorted=[...values].sort((x,y)=>y[1]-x[1]);
 
-strongArea.textContent=sorted[0][0]+" bugün en güçlü alanın.";
-weakArea.textContent=sorted[sorted.length-1][0]+" bugün biraz daha dikkat isteyebilir.";
+$("strongArea").textContent=sorted[0][0]+" bugün en güçlü alanın.";
+$("weakArea").textContent=sorted[sorted.length-1][0]+" bugün biraz daha dikkat isteyebilir.";
 
 if(calm<50){
-personalAdvice.textContent="Zihinsel yoğunluğu azaltacak kısa bir nefes veya odak molası deneyebilirsin.";
+$("personalAdvice").textContent=
+"Zihinsel yoğunluğu azaltacak kısa bir nefes veya odak molası deneyebilirsin.";
 }else if(en<50){
-personalAdvice.textContent="Enerjin düşük görünüyor. Zorlayıcı olmayan kısa bir deneyim seçebilirsin.";
+$("personalAdvice").textContent=
+"Enerjin düşük görünüyor. Zorlayıcı olmayan kısa bir deneyim seçebilirsin.";
 }else{
-personalAdvice.textContent="Bugünkü enerjini kısa bir hafıza veya odak deneyiminde kullanabilirsin.";
+$("personalAdvice").textContent=
+"Bugünkü enerjini kısa bir hafıza veya odak deneyiminde kullanabilirsin.";
 }
 }
-
 
 function saveMoodDay(mood){
+let data={};
 
-let data=JSON.parse(localStorage.getItem("moodCalendar")||"{}");
+try{
+data=JSON.parse(localStorage.getItem("moodCalendar")||"{}");
+}catch(e){}
+
 const key=new Date().toISOString().slice(0,10);
 data[key]=mood;
+
 localStorage.setItem("moodCalendar",JSON.stringify(data));
 }
 
-
 function renderCalendar(){
-
 const now=new Date();
 const year=now.getFullYear();
 const month=now.getMonth();
 
-calendarTitle.textContent=now.toLocaleDateString("tr-TR",{month:"long",year:"numeric"});
+$("calendarTitle").textContent=
+now.toLocaleDateString("tr-TR",{month:"long",year:"numeric"});
 
-const data=JSON.parse(localStorage.getItem("moodCalendar")||"{}");
+let data={};
+
+try{
+data=JSON.parse(localStorage.getItem("moodCalendar")||"{}");
+}catch(e){}
+
 const days=new Date(year,month+1,0).getDate();
 
-let good=0,mid=0,hard=0;
+let good=0;
+let mid=0;
+let hard=0;
 let html="";
 
 for(let i=1;i<=days;i++){
-
 const key=
 year+"-"+String(month+1).padStart(2,"0")+"-"+String(i).padStart(2,"0");
 
 const mood=data[key];
-
 let emoji="";
 
 if(mood){
-if(mood>=4){emoji="🙂";good++}
-else if(mood===3){emoji="😐";mid++}
-else{emoji="🙁";hard++}
+if(mood>=4){
+emoji="🙂";
+good++;
+}else if(mood===3){
+emoji="😐";
+mid++;
+}else{
+emoji="🙁";
+hard++;
+}
 }
 
 const isToday=i===now.getDate();
 
-html+='<div class="day '+(isToday?"today":"")+'">'+(emoji||i)+'</div>';
+html+=
+'<div class="day '+(isToday?"today":"")+'">'+
+(emoji||i)+
+'</div>';
 }
 
-calendarGrid.innerHTML=html;
-goodDays.textContent=good;
-midDays.textContent=mid;
-hardDays.textContent=hard;
+$("calendarGrid").innerHTML=html;
+$("goodDays").textContent=good;
+$("midDays").textContent=mid;
+$("hardDays").textContent=hard;
 }
-
 
 function saveDaily(){
+const answer=$("dailyAnswer").value.trim();
 
-if(!dailyAnswer.value.trim())return;
+if(!answer){
+toast("Önce birkaç kelime yaz.");
+return;
+}
 
-localStorage.setItem("dailyAnswer",dailyAnswer.value);
+localStorage.setItem("dailyAnswer",answer);
 addEnergy(10);
 addHistory("Günün sorusu cevaplandı","💭");
 toast("Cevabın kaydedildi");
@@ -1484,9 +1266,7 @@ refresh();
 setTimeout(()=>show("home"),700);
 }
 
-
 function openCapsule(){
-
 const arr=[
 "Bugün 5 dakika boyunca telefonunu başka bir odada bırak.",
 "Bir şarkıyı hiçbir şey yapmadan sadece dinle.",
@@ -1497,129 +1277,126 @@ const arr=[
 
 const d=new Date().getDate();
 
-capsuleText.innerHTML="<h2>🎁 Görevin</h2><p>"+arr[d%arr.length]+"</p>";
+$("capsuleText").innerHTML=
+"<h2>🎁 Görevin</h2><p>"+arr[d%arr.length]+"</p>";
 
 addEnergy(5);
 refresh();
 }
 
-
 function addHistory(t,e){
+let h=[];
 
-let h=JSON.parse(localStorage.getItem("history")||"[]");
+try{
+h=JSON.parse(localStorage.getItem("history")||"[]");
+}catch(err){}
 
 h.unshift({
-t,
-e,
+t:t,
+e:e,
 d:new Date().toLocaleString("tr-TR")
 });
 
 localStorage.setItem("history",JSON.stringify(h.slice(0,50)));
 }
 
-
 function renderHistory(){
+let h=[];
 
-let h=JSON.parse(localStorage.getItem("history")||"[]");
+try{
+h=JSON.parse(localStorage.getItem("history")||"[]");
+}catch(e){}
 
-historyList.innerHTML=h.length?
-h.map(x=>
+$("historyList").innerHTML=h.length
+?h.map(x=>
 '<div class="row" style="padding:13px 0;border-bottom:1px solid #ffffff15">'+
 '<span>'+x.e+" "+x.t+'</span>'+
 '<small class="muted">'+x.d+'</small>'+
 '</div>'
-).join(""):
-'<p class="muted">Henüz aktivite yok.</p>';
+).join("")
+:'<p class="muted">Henüz aktivite yok.</p>';
 }
-
 
 function inc(k,n){
-localStorage.setItem(k,Number(localStorage.getItem(k)||0)+n);
+localStorage.setItem(
+k,
+Number(localStorage.getItem(k)||0)+n
+);
 }
-
 
 function addEnergy(n){
-localStorage.setItem("energy",Number(localStorage.getItem("energy")||0)+n);
+localStorage.setItem(
+"energy",
+Number(localStorage.getItem("energy")||0)+n
+);
 }
 
-
 function rankInfo(){
-
 const e=Number(localStorage.getItem("energy")||0);
 
 let idx=0;
 
 for(let i=0;i<ranks.length;i++){
-if(e>=ranks[i][1])idx=i;
+if(e>=ranks[i][1]) idx=i;
 }
 
 const cur=ranks[idx];
 const next=ranks[Math.min(idx+1,ranks.length-1)];
 
 const pct=
-idx===ranks.length-1?
-100:
-((e-cur[1])/(next[1]-cur[1]))*100;
+idx===ranks.length-1
+?100
+:((e-cur[1])/(next[1]-cur[1]))*100;
 
 return{
-e,
+e:e,
 name:cur[0],
 next:next[0],
 pct:Math.max(0,Math.min(100,pct))
 };
 }
 
-
 function refresh(){
-
 const r=rankInfo();
 
-rankName.textContent="Rütbe: "+r.name;
-energyText.textContent="⚡ "+r.e+" Enerji";
-rankFill.style.width=r.pct+"%";
+$("rankName").textContent="Rütbe: "+r.name;
+$("energyText").textContent="⚡ "+r.e+" Enerji";
+$("rankFill").style.width=r.pct+"%";
 
-rankNext.textContent=
-r.name===r.next?
-"En yüksek rütbedesin.":
-"Sonraki rütbe: "+r.next;
+$("rankNext").textContent=
+r.name===r.next
+?"En yüksek rütbedesin."
+:"Sonraki rütbe: "+r.next;
 
 renderGoal();
 }
 
-
 function renderProfile(){
-
 const r=rankInfo();
 
-profileRank.textContent=r.name;
-profileEmail.textContent=currentUser?currentUser.email:"";
-pEnergy.textContent=r.e;
-pCheck.textContent=localStorage.getItem("checks")||0;
-pExp.textContent=localStorage.getItem("exps")||0;
+$("profileRank").textContent=r.name;
+$("pEnergy").textContent=r.e;
+$("pCheck").textContent=localStorage.getItem("checks")||0;
+$("pExp").textContent=localStorage.getItem("exps")||0;
 }
 
-
 function renderBadges(){
-
 const total=
 Number(localStorage.getItem("checks")||0)+
 Number(localStorage.getItem("exps")||0);
 
-medalGrid.innerHTML=medals.map(m=>{
-
+$("medalGrid").innerHTML=medals.map(m=>{
 const locked=total<m[2];
 
 return '<div class="medal '+(locked?"locked":"")+'">'+
-'<i>'+m[0]+'</i>'+m[1]+'<br>'+
+'<i>'+m[0]+'</i>'+
+m[1]+'<br>'+
 '<small>'+(locked?m[2]+" aktivite":"Açıldı")+'</small>'+
 '</div>';
-
 }).join("");
 }
 
-
 function toast(t){
-
 const d=document.createElement("div");
 d.className="toast";
 d.textContent=t;
@@ -1628,35 +1405,11 @@ document.body.appendChild(d);
 setTimeout(()=>d.remove(),2200);
 }
 
-
-async function kaydet(veri){
-
-try{
-
-const headers={
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+(accessToken||SUPABASE_KEY),
-"Content-Type":"application/json"
-};
-
-await fetch(SUPABASE_URL+"/rest/v1/Kayitlar",{
-method:"POST",
-headers,
-body:JSON.stringify({veri})
+document.addEventListener("DOMContentLoaded",function(){
+refresh();
+show("home");
 });
-
-}catch(e){
-console.log(e);
-}
-}
-
-
-if(loadSession()){
-enterApp();
-}else{
-show("auth");
-}
-
 </script>
+
 </body>
 </html>
