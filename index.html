@@ -351,7 +351,7 @@ margin-top:5px;
 <section id="home">
 
 <div class="header">
-<button class="round">☰</button>
+<button class="round" onclick="showScreen('explore')">☰</button>
 <div class="logo">KAFA <b>MOLA</b></div>
 <button class="round" onclick="showScreen('profile')">🧠</button>
 </div>
@@ -359,7 +359,7 @@ margin-top:5px;
 <div class="hero">
 <div class="heroEmoji">🌙☁️</div>
 <h1>Kafa Mola</h1>
-<p>Günde birkaç dakika. Kendini fark et, zihnini kısa süreliğine başka yere taşı ve değişimini gör.</p>
+<p>Günde üç kısa check-in. Kendini fark et, birkaç dakika mola ver ve gün içindeki değişimini gör.</p>
 </div>
 
 <div class="rank">
@@ -375,71 +375,14 @@ margin-top:5px;
 
 <div class="card purple">
 <div class="row">
-<h2>Bugünün Check-in'i</h2>
+<h2 id="homeCheckinTitle">Bugünün Check-in'i</h2>
 <span class="badge">+20 ⚡</span>
 </div>
-<p>Şu an kendini nasıl hissediyorsun?</p>
+<p id="homeCheckinText">Test saatleri: 08:00 · 20:00 · 00:00</p>
 <button class="btn primary" onclick="startCheckin()">Check-in'i Başlat →</button>
 </div>
 
-<div class="card" onclick="showScreen('goal')">
-<div class="row">
-<h2>3 Günlük Mini Hedef</h2>
-<span>🎯</span>
-</div>
-<p class="muted" id="goalPreview">Küçük bir hedef seç ve 3 gün boyunca dene.</p>
-</div>
-
-<div class="card" onclick="showScreen('weather')">
-<div class="row">
-<h2>Ruh Hâli Hava Durumu</h2>
-<span>🌤️</span>
-</div>
-<p class="muted">Bugünkü zihinsel havanı gör.</p>
-</div>
-
-<div class="card" onclick="showScreen('calendar')">
-<div class="row">
-<h2>Ruh Hâli Takvimi</h2>
-<span>📅</span>
-</div>
-<p class="muted">Ayın nasıl geçtiğini tek bakışta gör.</p>
-</div>
-
-<div class="card" onclick="showScreen('dailyQuestion')">
-<div class="row">
-<h2>Günün Tek Sorusu</h2>
-<span>💭</span>
-</div>
-<p class="muted" id="questionPreview">Her gün farklı bir soru.</p>
-</div>
-
-<div class="card" onclick="showScreen('capsule')">
-<div class="row">
-<h2>Sürpriz Kapsül</h2>
-<span>🎁</span>
-</div>
-<p class="muted">90 gün boyunca farklı küçük görevler.</p>
-</div>
-
-<div class="card gold">
-<div class="row">
-<h2>90 Günlük Yolculuk</h2>
-<span>✨</span>
-</div>
-<p>Her gün değişen sorular, görevler, odak molaları ve küçük deneyimler.</p>
-</div>
-
-<div class="card">
-<div class="row">
-<h2>Fikirlerinizi paylaşın</h2>
-<span>💌</span>
-</div>
-<p class="muted">Önerileriniz, eleştirileriniz veya yeni özellik fikirleriniz varsa bana yazabilirsiniz.</p>
-<a class="mailLink" href="mailto:mehmettirpan1@yandex.com?subject=Kafa%20Mola%20Öneri">
-<button class="btn dark">📧 mehmettirpan1@yandex.com</button>
-</a>
-</div>
+<p class="desc">Diğer özellikler için menüden veya alttaki Keşfet bölümünden devam edebilirsin.</p>
 
 </section>
 
@@ -475,6 +418,16 @@ margin-top:5px;
 <h1 class="title">Kendine Bir Alan Seç</h1>
 <p class="desc">Ana sayfayı sade tuttuk. Diğer özelliklerin burada.</p>
 
+<div class="card" onclick="showScreen('experiences')">
+<div class="row"><h2>Kısa Molalar ve Deneyimler</h2><span>✨</span></div>
+<p class="muted">Odak Molası, Nefes Ritmi, Hafıza Oyunu ve 3 İyi Şey.</p>
+</div>
+
+<div class="card" onclick="showScreen('history')">
+<div class="row"><h2>Geçmişim</h2><span>📊</span></div>
+<p class="muted">Tamamladığın aktiviteleri tarihleriyle gör.</p>
+</div>
+
 <div class="card" onclick="showScreen('perspective')">
 <div class="row"><h2>Başka Bir Pencereden Bak</h2><span>🪟</span></div>
 <p class="muted">Aklındaki bir konuya farklı bir açıdan yaklaş.</p>
@@ -503,6 +456,11 @@ margin-top:5px;
 <div class="card" onclick="showScreen('capsule')">
 <div class="row"><h2>Sürpriz Kapsül</h2><span>🎁</span></div>
 <p class="muted">Her gün farklı küçük bir görev.</p>
+</div>
+
+<div class="card" onclick="showScreen('auth')">
+<div class="row"><h2>Üyelik / Giriş</h2><span>👤</span></div>
+<p class="muted">Hesap oluştur veya mevcut hesabınla giriş yap.</p>
 </div>
 
 <div class="card" onclick="showScreen('contact')">
@@ -1981,6 +1939,14 @@ $("rankNext").textContent="Sonraki rütbe: "+rank.next;
 }
 
 renderGoal();
+
+const currentSlot=getCheckinSlot();
+if($("homeCheckinTitle")){
+$("homeCheckinTitle").textContent=currentSlot ? currentSlot+" Check-in'i" : "Sıradaki Check-in";
+$("homeCheckinText").textContent=currentSlot
+? "Şu anki durumuna kısa bir göz atalım."
+: "Test saatleri: 08:00 · 20:00 · 00:00";
+}
 }
 
 function renderProfile(){
