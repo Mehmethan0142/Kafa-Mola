@@ -1,361 +1,345 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Kafa Mola</title>
 
 <style>
 *{box-sizing:border-box}
-
+html,body{margin:0;padding:0;min-height:100%;background:#070b18;color:#fff}
 body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 background:
-radial-gradient(circle at 85% 4%,#2b1763 0,transparent 26%),
-linear-gradient(#090d20,#060a15);
-color:#fff;
-min-height:100vh
+radial-gradient(circle at 85% 5%,#32146b 0,transparent 25%),
+linear-gradient(180deg,#090d20,#060914);
 }
-
-button,input,textarea,select{font:inherit}
-
+button,input,textarea{font:inherit}
 button{cursor:pointer}
-
-.app{
-max-width:480px;
-margin:auto;
-padding:22px 17px 120px
-}
-
 .hidden{display:none!important}
 
-.head{
+.app{
+width:100%;
+max-width:500px;
+margin:auto;
+padding:22px 18px 120px;
+}
+
+.header{
 display:flex;
-justify-content:space-between;
 align-items:center;
-margin-bottom:22px
+justify-content:space-between;
+margin-bottom:20px;
 }
 
 .logo{
+font-size:23px;
 font-weight:900;
-font-size:22px
+letter-spacing:.5px;
 }
 
-.logo b{color:#9462ff}
+.logo b{color:#9658ff}
 
-.circle{
+.round{
 width:44px;
 height:44px;
-border:0;
+border:none;
 border-radius:50%;
-background:#18213b;
+background:#18213c;
 color:#fff;
-font-size:21px
+font-size:22px;
 }
 
 .hero{
 text-align:center;
-padding:5px 0 18px
+padding:12px 0 18px;
 }
 
-.hero .emo{font-size:58px}
+.heroEmoji{font-size:58px}
 
 .hero h1{
-font-size:35px;
-margin:7px
+font-size:36px;
+margin:8px 0;
 }
 
 .hero p,.muted{
-color:#aab3c9;
-line-height:1.55
+color:#aeb7cf;
+line-height:1.55;
 }
 
 .card{
-background:linear-gradient(135deg,#151c35,#202147);
-border:1px solid #ffffff17;
+background:linear-gradient(135deg,#151d36,#202246);
+border:1px solid rgba(255,255,255,.1);
 border-radius:22px;
 padding:19px;
-margin:13px 0
+margin:14px 0;
 }
 
 .purple{
-background:linear-gradient(135deg,#3b287c,#7442e7)
+background:linear-gradient(135deg,#402883,#7542e7);
 }
 
 .gold{
-background:linear-gradient(135deg,#493008,#6a4307);
-border-color:#8c5b0c
+background:linear-gradient(135deg,#493108,#6b4609);
 }
 
 .row{
 display:flex;
-justify-content:space-between;
 align-items:center;
-gap:10px
+justify-content:space-between;
+gap:12px;
 }
 
 .badge{
 font-size:11px;
+background:rgba(0,0,0,.25);
 padding:6px 9px;
-border-radius:12px;
-background:#0004
+border-radius:20px;
+white-space:nowrap;
 }
 
 .rank{
-background:#171e35;
+background:#151d35;
 border-radius:18px;
-padding:15px;
-margin:14px 0
+padding:16px;
+margin:15px 0;
 }
 
-.rankline{
+.bar{
 height:8px;
-background:#2a3350;
-border-radius:10px;
+background:#2a3452;
+border-radius:20px;
 overflow:hidden;
-margin-top:10px
+margin:11px 0 6px;
 }
 
-.rankfill{
+.barFill{
 height:100%;
-background:linear-gradient(90deg,#8150ff,#55d5a5)
+width:0;
+background:linear-gradient(90deg,#8752ff,#55d8a7);
+transition:.3s;
 }
 
-button{
+.btn{
 width:100%;
 border:0;
-border-radius:15px;
+border-radius:16px;
 padding:15px;
 font-size:16px;
-font-weight:800
+font-weight:800;
+color:#fff;
 }
 
 .primary{
-background:linear-gradient(90deg,#7143ff,#a058ff);
-color:#fff
+background:linear-gradient(90deg,#7040ff,#a24eff);
 }
 
 .green{
-background:linear-gradient(90deg,#43ca7d,#65e29a);
-color:#06150c
+background:linear-gradient(90deg,#42c97b,#67e3a0);
+color:#07150d;
 }
 
-.dark{
-background:#1b2440;
-color:#fff
-}
-
-.nav{
-position:fixed;
-bottom:0;
-left:50%;
-transform:translateX(-50%);
-width:min(480px,100%);
-display:flex;
-justify-content:space-around;
-background:#080c1df2;
-border-top:1px solid #ffffff17;
-padding:11px 3px 18px;
-z-index:9
-}
-
-.nav div{
-text-align:center;
-color:#8e97ad;
-font-size:11px;
-cursor:pointer
-}
-
-.nav span{
-display:block;
-font-size:21px
-}
+.dark{background:#1a2441}
 
 .title{
+font-size:30px;
 text-align:center;
-font-size:29px;
-margin:15px 0 7px
+margin:18px 0 8px;
 }
 
 .desc{
 text-align:center;
-color:#aab3c9;
-line-height:1.5;
-margin-bottom:22px
+color:#aeb7cf;
+line-height:1.55;
+margin-bottom:24px;
 }
 
-.progress{
-height:7px;
-background:#28304b;
-border-radius:10px;
-overflow:hidden;
-margin:10px 0 35px
-}
-
-.progress div{
-height:100%;
-background:#8b55ff
-}
-
-.question{
-text-align:center;
-font-size:25px
-}
-
-.opts{
+.options{
 display:grid;
-gap:10px
+gap:11px;
 }
 
-.opt{
-background:#161e36;
+.option{
+width:100%;
+padding:16px;
+border-radius:16px;
+border:1px solid #34405f;
+background:#151d35;
 color:#fff;
-border:1px solid #303b5c;
-text-align:left
+text-align:left;
+font-weight:700;
 }
 
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:11px
+gap:12px;
 }
 
 .mini{
 min-height:145px;
 display:flex;
 flex-direction:column;
-justify-content:space-between
+justify-content:space-between;
+cursor:pointer;
 }
 
-.mini i{
-font-style:normal;
-font-size:35px
+.miniEmoji{font-size:36px}
+
+.progress{
+height:7px;
+background:#29334f;
+border-radius:20px;
+overflow:hidden;
+margin:10px 0 35px;
 }
 
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:8px
+.progressFill{
+height:100%;
+background:#9258ff;
 }
 
-.stat{
-background:#121a30;
-border-radius:15px;
-padding:13px;
-text-align:center
-}
-
-.stat strong{
-display:block;
-font-size:21px
-}
-
-input,textarea,select{
+input,textarea{
 width:100%;
 padding:15px;
+border:1px solid #34405f;
+border-radius:15px;
+background:#141d35;
+color:#fff;
 margin:7px 0;
-border:1px solid #303b5c;
-border-radius:14px;
-background:#151d34;
-color:#fff
 }
 
-textarea{resize:vertical}
+textarea{min-height:130px;resize:vertical}
+
+.nav{
+position:fixed;
+left:50%;
+bottom:0;
+transform:translateX(-50%);
+width:min(500px,100%);
+display:flex;
+justify-content:space-around;
+background:rgba(7,11,24,.97);
+border-top:1px solid rgba(255,255,255,.12);
+padding:12px 4px calc(16px + env(safe-area-inset-bottom));
+z-index:20;
+}
+
+.navItem{
+text-align:center;
+font-size:11px;
+color:#929bb3;
+cursor:pointer;
+}
+
+.navItem span{
+display:block;
+font-size:22px;
+margin-bottom:4px;
+}
 
 .toast{
 position:fixed;
-bottom:100px;
 left:50%;
+bottom:105px;
 transform:translateX(-50%);
 background:#fff;
 color:#111;
-padding:12px 16px;
-border-radius:13px;
-z-index:99;
+padding:13px 17px;
+border-radius:14px;
+z-index:100;
 max-width:90%;
-text-align:center
+text-align:center;
+font-weight:700;
 }
 
-.percentGrid{
+.breathCircle{
+width:190px;
+height:190px;
+margin:40px auto;
+border-radius:50%;
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
+place-items:center;
+font-weight:900;
+background:linear-gradient(135deg,#8552ff,#55d6a4);
+animation:breath 8s ease-in-out infinite;
 }
 
-.percentBox{
-background:#151d35;
-border:1px solid #303b5c;
-border-radius:20px;
-padding:17px;
-text-align:center
-}
-
-.percentBox strong{
-display:block;
-font-size:34px;
-background:linear-gradient(90deg,#8d5cff,#5ce0b2);
--webkit-background-clip:text;
-color:transparent
+@keyframes breath{
+0%,100%{transform:scale(.72)}
+50%{transform:scale(1)}
 }
 
 .calendar{
 display:grid;
 grid-template-columns:repeat(7,1fr);
-gap:6px
+gap:6px;
 }
 
 .day{
 aspect-ratio:1;
-border-radius:10px;
-background:#151d35;
 display:grid;
 place-items:center;
-font-size:12px
+background:#141d35;
+border-radius:10px;
+font-size:12px;
 }
 
-.today{
-border:1px solid #8d5cff
+.today{border:1px solid #9658ff}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
+}
+
+.stat{
+background:#121a30;
+border-radius:15px;
+padding:14px 5px;
+text-align:center;
+}
+
+.stat strong{
+display:block;
+font-size:22px;
 }
 
 .goalDays{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:10px
+gap:10px;
+margin:15px 0;
 }
 
 .goalDay{
+padding:17px 5px;
 background:#121a30;
 border-radius:15px;
-padding:14px 5px;
-text-align:center
+text-align:center;
 }
 
-.goalDone{
-background:#174232
-}
+.done{background:#174332}
 
-.breath{
-width:180px;
-height:180px;
-border-radius:50%;
-margin:35px auto;
-background:linear-gradient(135deg,#8150ff,#55d5a5);
-display:grid;
-place-items:center;
-font-weight:900;
-animation:b 8s infinite ease-in-out
-}
-
-@keyframes b{
-0%,100%{transform:scale(.72)}
-50%{transform:scale(1)}
-}
-
-.mail{
-display:block;
+.mailLink{
 text-decoration:none;
-color:#fff
+color:inherit;
+}
+
+.historyItem{
+padding:13px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.historyItem small{
+display:block;
+color:#929bb3;
+margin-top:5px;
+}
+
+@media(max-width:370px){
+.grid{grid-template-columns:1fr}
+.hero h1{font-size:31px}
 }
 </style>
 </head>
@@ -366,100 +350,76 @@ color:#fff
 
 <section id="home">
 
-<div class="head">
-<button class="circle">☰</button>
+<div class="header">
+<button class="round">☰</button>
 <div class="logo">KAFA <b>MOLA</b></div>
-<button class="circle" onclick="show('profile')">🧠</button>
+<button class="round" onclick="showScreen('profile')">🧠</button>
 </div>
 
 <div class="hero">
-<div class="emo">🌙☁️</div>
+<div class="heroEmoji">🌙☁️</div>
 <h1>Kafa Mola</h1>
-<p>
-Günde birkaç dakika. Kendini fark et,
-zihnini kısa süreliğine başka yere taşı,
-değişimini gör.
-</p>
+<p>Günde birkaç dakika. Kendini fark et, zihnini kısa süreliğine başka yere taşı ve değişimini gör.</p>
 </div>
 
 <div class="rank">
-
 <div class="row">
-<b id="rankName">Rütbe: Çaylak</b>
+<strong id="rankName">Rütbe: Çaylak</strong>
 <span id="energyText">⚡ 0</span>
 </div>
-
-<div class="rankline">
-<div class="rankfill" id="rankFill"></div>
+<div class="bar">
+<div class="barFill" id="rankBar"></div>
 </div>
-
 <small class="muted" id="rankNext"></small>
-
 </div>
 
 <div class="card purple">
-
 <div class="row">
 <h2>Bugünün Check-in'i</h2>
 <span class="badge">+20 ⚡</span>
 </div>
-
 <p>Şu an kendini nasıl hissediyorsun?</p>
-
-<button class="primary" onclick="startTest()">
-Check-in'i Başlat →
-</button>
-
+<button class="btn primary" onclick="startCheckin()">Check-in'i Başlat →</button>
 </div>
 
-<div class="card" onclick="show('goal')">
+<div class="card" onclick="showScreen('goal')">
 <div class="row">
 <h2>3 Günlük Mini Hedef</h2>
 <span>🎯</span>
 </div>
-<p class="muted" id="homeGoalText">
-Küçük bir hedef seç ve 3 gün boyunca dene.
-</p>
+<p class="muted" id="goalPreview">Küçük bir hedef seç ve 3 gün boyunca dene.</p>
 </div>
 
-<div class="card" onclick="show('weather')">
+<div class="card" onclick="showScreen('weather')">
 <div class="row">
 <h2>Ruh Hâli Hava Durumu</h2>
 <span>🌤️</span>
 </div>
-<p class="muted">
-Bugünkü zihinsel havanı gör.
-</p>
+<p class="muted">Bugünkü zihinsel havanı gör.</p>
 </div>
 
-<div class="card" onclick="show('calendarScreen')">
+<div class="card" onclick="showScreen('calendar')">
 <div class="row">
 <h2>Ruh Hâli Takvimi</h2>
 <span>📅</span>
 </div>
-<p class="muted">
-Ayın nasıl geçtiğini tek bakışta gör.
-</p>
+<p class="muted">Ayın nasıl geçtiğini tek bakışta gör.</p>
 </div>
 
-<div class="card" onclick="show('dailyQuestion')">
+<div class="card" onclick="showScreen('dailyQuestion')">
 <div class="row">
 <h2>Günün Tek Sorusu</h2>
 <span>💭</span>
 </div>
-<p class="muted" id="homeQuestionPreview">
-Bugün için tek bir düşündüren soru.
-</p>
+<p class="muted" id="questionPreview">Her gün farklı bir soru.</p>
 </div>
 
-<div class="card" onclick="show('capsule')">
+<div class="card" onclick="showScreen('capsule')">
 <div class="row">
 <h2>Sürpriz Kapsül</h2>
 <span>🎁</span>
 </div>
-<p class="muted">
-Her gün farklı küçük bir sürpriz.
-</p>
+<p class="muted">90 gün boyunca farklı küçük görevler.</p>
 </div>
 
 <div class="card gold">
@@ -467,93 +427,63 @@ Her gün farklı küçük bir sürpriz.
 <h2>90 Günlük Yolculuk</h2>
 <span>✨</span>
 </div>
-
-<p>
-Her gün değişen sorular, görevler ve kısa deneyimlerle
-kendi yolculuğunu oluştur.
-</p>
-
+<p>Her gün değişen sorular, görevler, odak molaları ve küçük deneyimler.</p>
 </div>
 
 <div class="card">
-
 <div class="row">
 <h2>Fikirlerinizi paylaşın</h2>
 <span>💌</span>
 </div>
-
-<p class="muted">
-Önerileriniz, eleştirileriniz veya yeni özellik fikirleriniz varsa
-bize yazabilirsiniz.
-</p>
-
-<a
-class="mail"
-href="mailto:mehmettirpan1@yandex.com?subject=Kafa%20Mola%20Öneri"
->
-<button class="dark">
-📧 mehmettirpan1@yandex.com
-</button>
+<p class="muted">Önerileriniz, eleştirileriniz veya yeni özellik fikirleriniz varsa bana yazabilirsiniz.</p>
+<a class="mailLink" href="mailto:mehmettirpan1@yandex.com?subject=Kafa%20Mola%20Öneri">
+<button class="btn dark">📧 mehmettirpan1@yandex.com</button>
 </a>
-
 </div>
 
 </section>
 
 
-<section id="test" class="hidden">
+<section id="checkin" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">CHECK-<b>IN</b></div>
 <div></div>
 </div>
 
 <h1 class="title">Kısa Check-in</h1>
+<p class="desc">Beş kısa soruyla bugünkü durumuna bakalım.</p>
 
-<p class="desc">
-Beş kısa soruyla bugünkü durumuna bakalım.
-</p>
-
-<div id="qCount" class="muted"></div>
+<div id="questionCount" class="muted"></div>
 
 <div class="progress">
-<div id="qBar"></div>
+<div class="progressFill" id="questionBar"></div>
 </div>
 
-<div id="qArea"></div>
+<div id="questionArea"></div>
 
 </section>
 
 
 <section id="result" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">SONUÇ <b>ÖZETİ</b></div>
 <div></div>
 </div>
 
 <div class="hero">
-
-<div class="emo" id="resultEmoji">🌤️</div>
-
+<div class="heroEmoji" id="resultEmoji">🌤️</div>
 <h1 id="resultTitle"></h1>
-
 <p id="resultText"></p>
-
 </div>
 
 <div class="card">
-
 <h2>Bugün sana uygun mola</h2>
-
-<p id="resultSuggestion" class="muted"></p>
-
-<button class="green" onclick="show('experiences')">
-Bir Mola Seç
-</button>
-
+<p class="muted" id="resultAdvice"></p>
+<button class="btn green" onclick="showScreen('experiences')">Bir Mola Seç</button>
 </div>
 
 </section>
@@ -561,22 +491,19 @@ Bir Mola Seç
 
 <section id="experiences" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">DENEYİM<b>LER</b></div>
 <div></div>
 </div>
 
 <h1 class="title">Kısa Molalar</h1>
-
-<p class="desc">
-Her gün değişen küçük deneyimler.
-</p>
+<p class="desc">Her gün değişen küçük deneyimler.</p>
 
 <div class="grid">
 
-<div class="card mini" onclick="show('focus')">
-<i>🎯</i>
+<div class="card mini" onclick="showScreen('focus')">
+<div class="miniEmoji">🎯</div>
 <div>
 <h3>Günlük Odak</h3>
 <small class="muted">Bugüne özel görev.</small>
@@ -584,26 +511,26 @@ Her gün değişen küçük deneyimler.
 </div>
 
 <div class="card mini" onclick="startBreath()">
-<i>🌬️</i>
+<div class="miniEmoji">🌬️</div>
 <div>
 <h3>Nefes Ritmi</h3>
 <small class="muted">2 dakikalık mola.</small>
 </div>
 </div>
 
-<div class="card mini" onclick="show('memory')">
-<i>🧠</i>
+<div class="card mini" onclick="showScreen('memory')">
+<div class="miniEmoji">🧠</div>
 <div>
-<h3>Hafıza</h3>
+<h3>Hafıza Oyunu</h3>
 <small class="muted">Günlük kelime seti.</small>
 </div>
 </div>
 
-<div class="card mini" onclick="show('goodThings')">
-<i>🌱</i>
+<div class="card mini" onclick="showScreen('goodThings')">
+<div class="miniEmoji">🌱</div>
 <div>
 <h3>3 İyi Şey</h3>
-<small class="muted">Günlük farklı sorular.</small>
+<small class="muted">Her gün farklı sorular.</small>
 </div>
 </div>
 
@@ -614,8 +541,8 @@ Her gün değişen küçük deneyimler.
 
 <section id="focus" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('experiences')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('experiences')">←</button>
 <div class="logo">ODAK <b>MOLASI</b></div>
 <div></div>
 </div>
@@ -626,69 +553,48 @@ Her gün değişen küçük deneyimler.
 <h2 id="focusText"></h2>
 </div>
 
-<button class="green" onclick="finishExp('Odak Molası')">
-Tamamladım +15 ⚡
-</button>
+<button class="btn green" onclick="finishExperience('Odak Molası')">Tamamladım +15 ⚡</button>
 
 </section>
 
 
 <section id="breath" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('experiences')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('experiences')">←</button>
 <div class="logo">NEFES <b>RİTMİ</b></div>
 <div></div>
 </div>
 
 <h1 class="title">Daireyi takip et</h1>
+<p class="desc">Büyürken nefes al, küçülürken ver.</p>
 
-<p class="desc">
-Büyürken nefes al, küçülürken ver.
-</p>
+<div class="breathCircle" id="breathCircle">Nefes Al</div>
 
-<div class="breath" id="breathCircle">
-Nefes Al
-</div>
+<p class="desc" id="breathTime">02:00</p>
 
-<p class="desc" id="breathTimer">
-02:00
-</p>
-
-<button class="green" onclick="finishExp('Nefes Ritmi')">
-Tamamladım
-</button>
+<button class="btn green" onclick="finishExperience('Nefes Ritmi')">Tamamladım</button>
 
 </section>
 
 
 <section id="memory" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('experiences')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('experiences')">←</button>
 <div class="logo">HAFIZA <b>OYUNU</b></div>
 <div></div>
 </div>
 
 <h1 class="title">10 saniye bak</h1>
 
-<div class="card"
-id="memoryWords"
-style="text-align:center;font-size:22px;line-height:2">
-</div>
+<div class="card" id="memoryWords" style="font-size:22px;text-align:center;line-height:2"></div>
 
-<button class="primary" onclick="hideMemoryWords()">
-Hazırım
-</button>
+<button class="btn primary" onclick="hideMemory()">Hazırım</button>
 
 <div id="memoryQuestion" class="hidden">
-
-<h2 class="question">
-Listede hangisi vardı?
-</h2>
-
-<div class="opts" id="memoryOptions"></div>
-
+<h2 class="title">Listede hangisi vardı?</h2>
+<div class="options" id="memoryOptions"></div>
 </div>
 
 </section>
@@ -696,33 +602,28 @@ Listede hangisi vardı?
 
 <section id="goodThings" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('experiences')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('experiences')">←</button>
 <div class="logo">3 İYİ <b>ŞEY</b></div>
 <div></div>
 </div>
 
 <h1 class="title">Bugünden kalanlar</h1>
+<p class="desc">Her gün farklı üç küçük yönlendirme.</p>
 
-<p class="desc">
-Her gün farklı üç küçük soru.
-</p>
+<input id="good1">
+<input id="good2">
+<input id="good3">
 
-<input id="g1">
-<input id="g2">
-<input id="g3">
-
-<button class="green" onclick="saveGoodThings()">
-Kaydet +10 ⚡
-</button>
+<button class="btn green" onclick="saveGoodThings()">Kaydet +10 ⚡</button>
 
 </section>
 
 
 <section id="dailyQuestion" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">TEK <b>SORU</b></div>
 <div></div>
 </div>
@@ -733,111 +634,74 @@ Kaydet +10 ⚡
 <h2 id="dailyQuestionText"></h2>
 </div>
 
-<textarea
-id="dailyAnswer"
-rows="6"
-placeholder="İstersen birkaç kelime yaz...">
-</textarea>
+<textarea id="dailyAnswer" placeholder="İstersen birkaç kelime yaz..."></textarea>
 
-<button class="green" onclick="saveDailyAnswer()">
-Cevabımı Kaydet +10 ⚡
-</button>
+<button class="btn green" onclick="saveDailyAnswer()">Cevabımı Kaydet +10 ⚡</button>
 
 </section>
 
 
 <section id="capsule" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">SÜRPRİZ <b>KAPSÜL</b></div>
 <div></div>
 </div>
 
 <div class="hero">
-
-<div class="emo">🎁</div>
-
+<div class="heroEmoji">🎁</div>
 <h1>Bugünün kapsülü</h1>
-
-<p>
-Her gün farklı bir sürpriz.
-</p>
-
+<p>Her gün küçük bir sürpriz.</p>
 </div>
 
-<div class="card" id="capsuleText">
-<p class="muted">
-Açmak için butona dokun.
-</p>
+<div class="card" id="capsuleBox">
+<p class="muted">Açmak için butona dokun.</p>
 </div>
 
-<button class="primary" onclick="openCapsule()">
-Kapsülü Aç
-</button>
+<button class="btn primary" onclick="openCapsule()">Kapsülü Aç</button>
 
 </section>
 
 
 <section id="goal" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">MİNİ <b>HEDEF</b></div>
 <div></div>
 </div>
 
 <h1 class="title">3 Günlük Mini Hedef</h1>
+<p class="desc">Küçük bir değişikliği üç gün dene.</p>
 
-<p class="desc">
-Küçük bir değişikliği üç gün dene.
-</p>
+<div id="goalChoose" class="options">
 
-<div id="goalChoose" class="opts">
+<button class="option" onclick="chooseGoal('Telefonu daha az kullanacağım','📵')">📵 Telefonu daha az kullanacağım</button>
 
-<button class="opt"
-onclick="chooseGoal('Telefonu daha az kullanacağım','📵')">
-📵 Telefonu daha az kullanacağım
-</button>
+<button class="option" onclick="chooseGoal('Her gün 15 dakika yürüyeceğim','🚶')">🚶 Her gün 15 dakika yürüyeceğim</button>
 
-<button class="opt"
-onclick="chooseGoal('Her gün 15 dakika yürüyeceğim','🚶')">
-🚶 Her gün 15 dakika yürüyeceğim
-</button>
+<button class="option" onclick="chooseGoal('Yatmadan önce ekranı bırakacağım','🌙')">🌙 Yatmadan önce ekranı bırakacağım</button>
 
-<button class="opt"
-onclick="chooseGoal('Yatmadan önce ekranı bırakacağım','🌙')">
-🌙 Yatmadan önce ekranı bırakacağım
-</button>
-
-<button class="opt"
-onclick="chooseGoal('Her gün kendime 10 dakika ayıracağım','🌱')">
-🌱 Kendime zaman ayıracağım
-</button>
+<button class="option" onclick="chooseGoal('Her gün kendime 10 dakika ayıracağım','🌱')">🌱 Kendime 10 dakika ayıracağım</button>
 
 </div>
 
 <div id="goalActive" class="hidden">
 
 <div class="card purple">
-
-<div style="font-size:45px" id="goalEmoji"></div>
-
+<div id="goalEmoji" style="font-size:45px"></div>
 <h2 id="goalTitle"></h2>
-
 <p id="goalStatus"></p>
-
 </div>
 
 <div class="goalDays" id="goalDays"></div>
 
-<button class="green" onclick="goalDoneToday()">
-Bugün Başardım ✓
-</button>
+<button class="btn green" onclick="completeGoalDay()">Bugün Başardım ✓</button>
 
-<button class="dark" onclick="resetGoal()">
-Hedefi Değiştir
-</button>
+<br><br>
+
+<button class="btn dark" onclick="resetGoal()">Hedefi Değiştir</button>
 
 </div>
 
@@ -846,33 +710,25 @@ Hedefi Değiştir
 
 <section id="weather" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">ZİHİNSEL <b>HAVA</b></div>
 <div></div>
 </div>
 
 <div class="hero">
-
-<div class="emo" id="weatherEmoji">🌤️</div>
-
-<h1 id="weatherTitle">
-Henüz veri yok
-</h1>
-
-<p id="weatherText">
-Check-in tamamladığında yorum oluşacak.
-</p>
-
+<div class="heroEmoji" id="weatherEmoji">🌤️</div>
+<h1 id="weatherTitle">Henüz veri yok</h1>
+<p id="weatherText">Check-in tamamladığında burada yorum oluşacak.</p>
 </div>
 
 </section>
 
 
-<section id="calendarScreen" class="hidden">
+<section id="calendar" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">RUH HÂLİ <b>TAKVİMİ</b></div>
 <div></div>
 </div>
@@ -888,8 +744,8 @@ Check-in tamamladığında yorum oluşacak.
 
 <section id="history" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">GEÇMİŞ<b>İM</b></div>
 <div></div>
 </div>
@@ -903,14 +759,14 @@ Check-in tamamladığında yorum oluşacak.
 
 <section id="profile" class="hidden">
 
-<div class="head">
-<button class="circle" onclick="show('home')">←</button>
+<div class="header">
+<button class="round" onclick="showScreen('home')">←</button>
 <div class="logo">PROF<b>İL</b></div>
 <div></div>
 </div>
 
 <div class="hero">
-<div class="emo">🧠</div>
+<div class="heroEmoji">🧠</div>
 <h1 id="profileRank">Çaylak</h1>
 <p>Kafa Mola Yolculuğun</p>
 </div>
@@ -918,17 +774,17 @@ Check-in tamamladığında yorum oluşacak.
 <div class="stats">
 
 <div class="stat">
-<strong id="pEnergy">0</strong>
+<strong id="profileEnergy">0</strong>
 <small>Enerji</small>
 </div>
 
 <div class="stat">
-<strong id="pCheck">0</strong>
+<strong id="profileChecks">0</strong>
 <small>Check-in</small>
 </div>
 
 <div class="stat">
-<strong id="pExp">0</strong>
+<strong id="profileExperiences">0</strong>
 <small>Mola</small>
 </div>
 
@@ -941,22 +797,22 @@ Check-in tamamladığında yorum oluşacak.
 
 <nav class="nav">
 
-<div onclick="show('home')">
+<div class="navItem" onclick="showScreen('home')">
 <span>⌂</span>
 Ana Sayfa
 </div>
 
-<div onclick="show('experiences')">
+<div class="navItem" onclick="showScreen('experiences')">
 <span>✨</span>
 Deneyimler
 </div>
 
-<div onclick="show('history')">
+<div class="navItem" onclick="showScreen('history')">
 <span>📊</span>
 Geçmiş
 </div>
 
-<div onclick="show('profile')">
+<div class="navItem" onclick="showScreen('profile')">
 <span>♙</span>
 Profil
 </div>
@@ -965,12 +821,13 @@ Profil
 
 
 <script>
+"use strict";
 
 const $ = id => document.getElementById(id);
 
 const screens = [
 "home",
-"test",
+"checkin",
 "result",
 "experiences",
 "focus",
@@ -981,11 +838,10 @@ const screens = [
 "capsule",
 "goal",
 "weather",
-"calendarScreen",
+"calendar",
 "history",
 "profile"
 ];
-
 
 const ranks = [
 ["Çaylak",0],
@@ -998,20 +854,17 @@ const ranks = [
 ["Mareşal",3000]
 ];
 
-
 const questions = [
-
 "Bugün tekrar yaşayabilsen hangi 10 dakikayı seçerdin?",
 "Bugün seni en çok ne rahatlattı?",
 "Bugün kendinle ilgili ne fark ettin?",
 "Şu an hayatında neyi biraz azaltmak isterdin?",
 "Bugün hangi küçük şey beklediğinden daha iyi geçti?",
 "Son zamanlarda sana enerji veren şey ne?",
-"Bugün kime teşekkür etmek isterdin?",
+"Bugün kime teşekkür etmek isterdin ve neden?",
 "Şu an zihninde en fazla yer kaplayan konu ne?",
 "Bugün kendine daha nazik davransaydın neyi farklı yapardın?",
 "Bugün seni gülümseten en küçük şey neydi?",
-
 "Bir alışkanlığını değiştirebilseydin hangisi olurdu?",
 "Bugün hangi anda gerçekten oradaydın?",
 "Şu an en çok neye ihtiyacın var?",
@@ -1020,20 +873,18 @@ const questions = [
 "Bugün birine söylemek istediğin şey ne?",
 "Son günlerde seni şaşırtan şey ne oldu?",
 "Bugün hangi düşünceyi yanında taşımak istemezdin?",
-"Kendine tek bir tavsiye verecek olsan ne derdin?",
+"Kendine bugün tek bir tavsiye versen ne derdin?",
 "Şu an hayatındaki hangi şey için minnettarsın?",
-
 "Bugün neyi gereğinden fazla düşündün?",
 "Son zamanlarda hangi anı tekrar hatırlıyorsun?",
 "Bugün enerjini en çok ne tüketti?",
 "Bugün enerjini en çok ne yükseltti?",
 "Yarın daha iyi hissetmek için bu akşam ne yapabilirsin?",
-"Bugün korkun olmasaydı ne yapardın?",
+"Bir korkun olmasaydı bugün ne yapardın?",
 "Kendinde en sevdiğin küçük özellik ne?",
 "Bugün hangi konuda kendine haksızlık ettin?",
 "Şu an çözmek zorunda olmadığın şey ne?",
-"Bugün neyi farklı yapmak isterdin?",
-
+"Bugünü yeniden yaşasan neyi farklı yapardın?",
 "Son bir ayda sende değişen bir şey var mı?",
 "Bugün hangi sınırını korumak isterdin?",
 "Şu an bırakman gereken küçük yük ne?",
@@ -1044,7 +895,6 @@ const questions = [
 "Ruh hâlini tek cümleyle nasıl anlatırsın?",
 "Bugün seni zorlayan şey sana ne öğretti?",
 "Yarın için tek bir niyet seçsen ne olurdu?",
-
 "Bugün hangi anda zaman hızlı geçti?",
 "Bugün hangi anda zaman yavaşladı?",
 "Kendine daha çok güvenseydin hangi adımı atardın?",
@@ -1055,7 +905,6 @@ const questions = [
 "Şu an neyi kontrol etmeye çalışıyorsun?",
 "Kontrolün dışında olan neyi bırakabilirsin?",
 "Bugün seni en çok hangi düşünce ziyaret etti?",
-
 "Son zamanlarda neyi özlüyorsun?",
 "Bugün bir fotoğraf çekseydin neyin fotoğrafını çekerdin?",
 "Bugünün bir rengi olsaydı hangisi olurdu?",
@@ -1066,7 +915,6 @@ const questions = [
 "Bugün kendini ne zaman yorgun hissettin?",
 "Bir ay sonraki kendine ne söylemek istersin?",
 "Bir yıl önceki kendine ne söylemek isterdin?",
-
 "Bugün seni ne meraklandırdı?",
 "Bugün neye hayır demek isterdin?",
 "Bugün neye daha çok evet demek isterdin?",
@@ -1077,7 +925,6 @@ const questions = [
 "Bugün hangi konuşma sende kaldı?",
 "Bugün bir şeyi fazla ciddiye aldın mı?",
 "Şu an seni ne gülümsetebilir?",
-
 "Bugün kendinle gurur duyduğun şey ne?",
 "Bugün hangi alışkanlığın sana yardımcı oldu?",
 "Hangi alışkanlığın işini zorlaştırdı?",
@@ -1087,8 +934,7 @@ const questions = [
 "Bugün kendine verdiğin sözü tuttun mu?",
 "Yarın için kendine hangi küçük sözü verebilirsin?",
 "Bugün hayatını kolaylaştıran biri oldu mu?",
-"Sen bugün kimin hayatını kolaylaştırdın?",
-
+"Sen bugün kimin hayatını biraz kolaylaştırdın?",
 "Şu an önceliğin gerçekten ne?",
 "Bugün neyi erteledin ve neden?",
 "Bugün başladığın küçük bir şey var mı?",
@@ -1099,179 +945,148 @@ const questions = [
 "Bugün bir şeyi olduğu gibi kabul edebildin mi?",
 "Bugün neye gereğinden az zaman ayırdın?",
 "90 gün sonraki kendin sana ne için teşekkür ederdi?"
-
 ];
 
-
 const capsules = [
-
 "5 dakika boyunca telefonunu başka bir odada bırak.",
 "Bir şarkıyı hiçbir şey yapmadan sadece dinle.",
 "Bir kişiye içten bir teşekkür mesajı gönder.",
 "10 dakikalık kısa bir yürüyüş yap.",
-"Ertelediğin küçük bir işe 2 dakikalığına başla.",
-"Bugün gökyüzüne 2 dakika bak.",
-"Uzun zamandır konuşmadığın birine mesaj gönder.",
-"Bir bardak suyu yavaşça iç.",
+"Ertelediğin küçük bir işe yalnızca 2 dakikalığına başla.",
+"2 dakika boyunca gökyüzüne bak.",
+"Uzun zamandır konuşmadığın birine nasılsın diye yaz.",
+"Bir bardak suyu yavaşça ve fark ederek iç.",
 "Bulunduğun yerde gördüğün 5 rengi say.",
 "Kendin için küçük bir şeyi ertelemeden yap.",
-
-"Gereksiz 10 ekran görüntüsünü sil.",
-"Sevdiğin bir fotoğrafı bul.",
+"Telefonundaki gereksiz 10 ekran görüntüsünü sil.",
+"Sevdiğin bir fotoğrafı bul ve neden sevdiğini düşün.",
 "Birine samimi bir iltifat et.",
-"5 dakika sessizce otur.",
-"Bir işi normalden daha yavaş yap.",
-"Bir pencere aç ve temiz havayı fark et.",
+"5 dakika sessizce otur ve çevrendeki sesleri dinle.",
+"Bir işi normalden daha yavaş ve dikkatli yap.",
+"Bir pencere aç ve 10 rahat nefes al.",
 "Çocukken sevdiğin bir şarkıyı dinle.",
-"Bugün bir şikâyetini olumlu cümleyle ifade et.",
-"Küçük bir alanı düzenle.",
-"Aklını meşgul eden şeyi bir kâğıda yaz.",
-
-"Çayını veya kahveni telefonsuz iç.",
-"Bir kişiye teşekkür etmek için neden bul.",
-"5 dakika yürüyüşüne odaklan.",
-"Kendine iyi yaptığın bir şeyi söyle.",
+"Bugün bir şikâyetini daha sakin bir cümleyle ifade et.",
+"Masandaki küçük bir alanı düzenle.",
+"Aklını en çok meşgul eden şeyi bir kâğıda yaz.",
+"Çayını veya kahveni telefona bakmadan iç.",
+"Bir kişiye teşekkür etmek için özel bir neden bul.",
+"5 dakika boyunca sadece yürüyüşüne odaklan.",
+"Kendine bugün iyi yaptığın bir şeyi söyle.",
 "Ertelediğin küçük bir mesajı gönder.",
-"Bedenindeki gergin yerleri fark et.",
+"Bir dakika bedenindeki gergin yerleri fark et.",
 "Bir öğünün ilk 5 dakikasını ekransız ye.",
 "Kullanmadığın bir şeyi ayır.",
-"Bir arkadaşına güzel bir anınızı hatırlat.",
-"Bir işi bitirdikten sonra 30 saniye bekle.",
-
-"Daha önce fark etmediğin 3 ayrıntı bul.",
+"Bir arkadaşına güzel bir anınızı hatırlatan mesaj gönder.",
+"Bir işi bitirdikten sonra 30 saniye hiçbir şeye geçmeden bekle.",
+"Çevrende daha önce fark etmediğin 3 ayrıntı bul.",
 "Kendine geleceğe yönelik kısa bir not yaz.",
-"Bir kişiyi sözünü kesmeden dinle.",
-"Sevdiğin bir müziğe eşlik et.",
-"Bugün yapmayacağın bir şeyi bilinçli seç.",
-"Bildirimleri 30 dakika sessize al.",
+"Bir kişiyi sözünü kesmeden dikkatle dinle.",
+"5 dakika sevdiğin bir müziğe eşlik et.",
+"Bugün yapmayacağın bir şeyi bilinçli olarak seç.",
+"Bildirimlerini 30 dakikalığına sessize al.",
 "Bir ağaca veya gökyüzüne dikkatle bak.",
 "Birine küçük bir yardım yap.",
 "Kendine sevdiğin bir içecek hazırla.",
-"Seni güldüren bir şeyi not et.",
-
+"Bugün seni güldüren bir şeyi not et.",
 "Bir çekmeceyi 5 dakika düzenle.",
-"Bir karar öncesi gerçekten isteyip istemediğini sor.",
-"Bir kişiye iyi dilek mesajı gönder.",
-"Omuzlarını ve boynunu rahatlat.",
+"Bir karar öncesi kendine gerçekten isteyip istemediğini sor.",
+"Bir kişiye sebepsiz yere iyi dilek mesajı gönder.",
+"3 dakika omuzlarını ve boynunu rahatlat.",
 "Sosyal medyaya girişini bir kez ertele.",
-"Bir çocukluk anını hatırla.",
-"Duyduğun güzel bir cümleyi not et.",
-"Kendine 10 dakika boş zaman oluştur.",
+"Bir çocukluk anını ayrıntılarıyla hatırla.",
+"Bugün duyduğun güzel bir cümleyi not et.",
+"Kendine 10 dakikalık boş zaman oluştur.",
 "Bir işi mükemmel değil, yeterince iyi bitir.",
-"Birinin işini kolaylaştır.",
-
+"Birinin işini küçük bir şekilde kolaylaştır.",
 "5 dakika pencereden dışarıyı izle.",
 "Telefonunun ana ekranını sadeleştir.",
 "Bir kişiye neden değer verdiğini söyle.",
 "Bir dakika esneme yap.",
-"Seni yoran düşünceyi yaz.",
-"Sevdiğin bir kokuyu fark et.",
-"Bir yere 10 dakika erken hazırlan.",
-"Bir arkadaşının güzel özelliğini ona söyle.",
-"Yürüyüşte adımlarını say.",
+"Seni yoran bir düşünceyi yazıp kâğıdı kapat.",
+"Sevdiğin bir kokuyu bilinçli olarak fark et.",
+"Bugün bir yere 10 dakika erken hazırlan.",
+"Bir arkadaşının güzel bir özelliğini ona söyle.",
+"Kısa yürüyüşte adımlarını say.",
 "Bir işi sekme değiştirmeden bitir.",
-
-"Eski bir fotoğrafa bak.",
+"Eski bir fotoğrafa bak ve o günkü kendine bir cümle söyle.",
 "Kendine küçük bir ödül belirle.",
-"Birine gerçekten merak ettiğin soru sor.",
-"Nefesinin doğal ritmini 2 dakika izle.",
-"Gereksiz bir tartışmadan uzak dur.",
-"Ortamın ışığını değiştir.",
-"Tamamladığın üç küçük şeyi say.",
+"Birine gerçekten merak ettiğin bir soru sor.",
+"2 dakika nefesinin doğal ritmini izle.",
+"Gereksiz bir tartışmadan bilinçli olarak uzak dur.",
+"Bulunduğun ortamın ışığını değiştir ve etkisini fark et.",
+"Bugün tamamladığın 3 küçük şeyi say.",
 "Birine komik bir şey gönder.",
-"5 dakika tek bir işe odaklan.",
+"5 dakika boyunca tek bir işe odaklan.",
 "Bir şeyi sonra demeden hemen yap.",
-
-"Şu an istediğin üç şeyi yaz.",
-"Birine teşekkür ederken nedenini söyle.",
-"Kulaklığı çıkar ve çevreni dinle.",
-"Bir bardak daha fazla su iç.",
-"Kendini kıyasladığını fark ettiğinde dur.",
-"Sevdiğin bir yeri zihninde canlandır.",
+"Şu an istediğin 3 şeyi yaz.",
+"Birine teşekkür ederken nedenini de söyle.",
+"Kulaklığını çıkar ve çevreni dinle.",
+"Bugün bir bardak daha fazla su iç.",
+"Kendini biriyle kıyasladığını fark ettiğinde düşünceyi bırak.",
+"Sevdiğin bir yeri zihninde ayrıntılarıyla canlandır.",
 "Bir kişiye nasıl yardımcı olabileceğini sor.",
-"5 dakika haber akışından uzak dur.",
-"Yarın için tek bir öncelik belirle.",
-"Seni rahatlatan bir hareket yap.",
-
-"Bir şarkının enstrümanlarına dikkat et.",
+"5 dakika haber ve sosyal medya akışından uzak dur.",
+"Yarın için tek bir küçük öncelik belirle.",
+"Seni rahatlatan bir hareketi tekrar et.",
+"Bir şarkının sözleri yerine enstrümanlarına dikkat et.",
 "Geçmişte yaptığın iyi bir seçimi hatırla.",
 "Bir kişiye kısa bir sesli mesaj gönder.",
-"Yuvarlak, kare ve üçgen nesneler bul.",
-"Bir gereksiz harcamayı ertele.",
-"Yüz kaslarını bilinçli olarak gevşet.",
+"Çevrende yuvarlak, kare ve üçgen birer nesne bul.",
+"Bugün gereksiz bir harcamayı ertele.",
+"Bir dakika yüz kaslarını bilinçli olarak gevşet.",
 "Seni motive eden bir cümle yaz.",
 "Birine küçük bir sürpriz yap.",
-"10 dakika telefonsuz kal.",
-"Bugün iyi ki yaptım diyeceğin bir şey yap."
-
+"10 dakika boyunca telefonsuz kal.",
+"Bugünün sonunda iyi ki yaptım diyebileceğin küçük bir şey yap."
 ];
 
-
 const focusTasks = [
-
 "Çevrende 5 şey gör, 4 şeye dokun, 3 ses duy, 2 koku fark et ve 1 düşünceni isimlendir.",
-"60 saniye boyunca bulunduğun yerdeki sesleri say.",
+"60 saniye boyunca yalnızca bulunduğun yerdeki sesleri say.",
 "Çevrende aynı renkte 7 nesne bul.",
 "2 dakika ayaklarının yere temasını fark ederek yürü.",
-"Bir nesnenin dokusunu ve sıcaklığını incele.",
+"Bir nesneyi eline al ve dokusunu dikkatle incele.",
 "30'dan geriye üçer üçer say.",
-"Bir dakika nefesini değiştirmeden izle.",
+"Bir dakika nefesini değiştirmeden sadece izle.",
 "Daha önce fark etmediğin 5 ayrıntı bul.",
 "Bir şarkının yalnızca ritmini takip et.",
 "Tek bir noktaya bak ve çevresel görüşünü fark et.",
-
 "Bir harf seç ve o harfle başlayan 10 kelime bul.",
-"Üç farklı dokuya dokun.",
-"Duyduğun en uzak sesi bul.",
+"Üç farklı yüzeye dokun ve farklarını hisset.",
+"Duyabildiğin en uzak sesi bulmaya çalış.",
 "20'den geriye yavaşça say.",
-"Köşeli 5 nesne bul.",
+"Çevrende köşeli 5 nesne bul.",
 "Bir bardak suyu 10 yudumda iç.",
-"Bir dakika sağ elindeki hisleri fark et.",
-"Bir dakika sol elindeki hisleri fark et.",
-"Işık ve gölgelerde 5 ton bul.",
-"Bir kelimeyle ilgili 8 çağrışım yaz.",
-
+"Bir dakika yalnızca sağ elindeki hisleri fark et.",
+"Bir dakika yalnızca sol elindeki hisleri fark et.",
+"Işık ve gölgelerde 5 farklı ton bul.",
+"Bir kelime seç ve 8 çağrışım bul.",
 "2 dakika yaptığın işi yarı hızında yap.",
 "Çevrende üç farklı sıcaklık hissi bul.",
-"Bir nesneyi incele, gözünü kapat ve hatırla.",
-"1'den 20'ye yavaşça say.",
+"Bir nesneyi incele, gözünü kapat ve ayrıntılarını hatırla.",
+"1'den 20'ye çok yavaş say.",
 "A, E ve K harfiyle başlayan nesneler bul.",
-"Bir dakika omuzlarını gevşet.",
+"Bir dakika çeneni ve omuzlarını gevşet.",
 "Telefonu ters çevir ve 3 dakika tek işe odaklan.",
-"Bir sesi kaybolana kadar takip et.",
-"Beş nesneyi boyut sırasına koy.",
-"Bir dakika sadece gördüğün hareketleri fark et."
-
+"Bir ses seç ve kaybolana kadar takip et.",
+"Beş nesneyi zihninde boyut sırasına koy.",
+"Bir dakika yalnızca çevrendeki hareketleri fark et."
 ];
-
 
 const goodSets = [
-
 ["Bugün iyi gelen...","Teşekkür ettiğin...","Gülümsediğin..."],
-
 ["Bugün başardığın küçük şey...","Sana iyi davranan biri...","Fark ettiğin güzel ayrıntı..."],
-
 ["Bugün öğrendiğin...","Rahatladığın an...","Kendinde takdir ettiğin..."],
-
 ["Bugün keyif aldığın...","Sana destek olan...","Yarın taşımak istediğin his..."],
-
 ["Bugün iyi ki dediğin...","Kendin için yaptığın...","Hatırlamak istediğin an..."],
-
 ["Bugün seni güldüren...","Kolaylaştırdığın bir şey...","Şanslı hissettiğin konu..."],
-
 ["Bugün tamamladığın...","Duyduğun güzel söz...","Kendine teşekkür ettiğin şey..."],
-
 ["Bugün gördüğün güzel şey...","Duyduğun güzel şey...","Hissettiğin güzel şey..."],
-
 ["Bugün cesaret ettiğin...","Bırakabildiğin...","Kabul edebildiğin..."],
-
 ["Bugün sana enerji veren...","Sakinleştiren...","Umutlandıran..."]
-
 ];
 
-
 const memorySets = [
-
 ["Limon","Saat","Köprü","Mavi","Anahtar","Bulut"],
 ["Kalem","Deniz","Masa","Yeşil","Kapı","Yıldız"],
 ["Kitap","Kedi","Güneş","Bardak","Sarı","Tren"],
@@ -1282,1371 +1097,682 @@ const memorySets = [
 ["Çiçek","Bulut","Sandalye","Mavi","Anahtar","Gemi"],
 ["Karpuz","Dağ","Kalem","Sarı","Kapı","Yıldız"],
 ["Kitap","Kahve","Ay","Yeşil","Telefon","Nehir"]
-
 ];
 
-
-const qs = [
-
-[
-"Bugünkü ruh hâlin nasıl?",
-"ruh_hali",
-[
+const checkinQuestions = [
+{
+text:"Bugünkü ruh hâlin nasıl?",
+key:"mood",
+options:[
 ["😞 Çok kötü",1],
 ["🙁 Kötü",2],
 ["😐 Orta",3],
 ["🙂 İyi",4],
 ["😄 Çok iyi",5]
 ]
-],
-
-[
-"Stres seviyen nasıl?",
-"stres",
-[
+},
+{
+text:"Stres seviyen nasıl?",
+key:"stress",
+options:[
 ["😌 Çok düşük",1],
 ["🙂 Düşük",2],
 ["😐 Orta",3],
 ["😟 Yüksek",4],
 ["😵 Çok yüksek",5]
 ]
-],
-
-[
-"Enerjin nasıl?",
-"enerji",
-[
+},
+{
+text:"Enerjin nasıl?",
+key:"energy",
+options:[
 ["🪫 Çok düşük",1],
 ["😴 Düşük",2],
 ["😐 Orta",3],
 ["⚡ İyi",4],
 ["🔥 Çok yüksek",5]
 ]
-],
-
-[
-"Zihnin ne kadar dolu?",
-"zihin",
-[
+},
+{
+text:"Zihnin ne kadar dolu?",
+key:"mind",
+options:[
 ["🌤️ Rahat",1],
 ["☁️ Biraz dolu",2],
 ["🌥️ Karışık",3],
 ["🌧️ Çok dolu",4],
 ["🌪️ Aşırı yoğun",5]
 ]
-],
-
-[
-"Şu an neye ihtiyacın var?",
-"ihtiyac",
-[
+},
+{
+text:"Şu an neye ihtiyacın var?",
+key:"need",
+options:[
 ["🌬️ Sakinleşmek",1],
 ["🎯 Odaklanmak",2],
 ["✨ Kafamı dağıtmak",3]
 ]
-]
-
+}
 ];
 
-
-let q = 0;
-let answers = {};
-let breathInterval = null;
+let currentQuestion = 0;
+let checkinAnswers = {};
+let breathTimer = null;
 let memoryCorrect = "";
 
-
-function dayIndex(){
-
-const start = new Date(2026,0,1);
-
-const now = new Date();
-
-const today = new Date(
-now.getFullYear(),
-now.getMonth(),
-now.getDate()
-);
-
-return Math.floor(
-(today - start) / 86400000
-);
-
+function localDateKey(){
+const d=new Date();
+return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 }
 
-
-function dailyIndex(length){
-
-const d = dayIndex();
-
-return ((d % length) + length) % length;
-
+function dayNumber(){
+const now=new Date();
+const start=new Date(2026,0,1);
+const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+return Math.floor((today-start)/86400000);
 }
 
+function indexFor(length){
+const n=dayNumber();
+return ((n%length)+length)%length;
+}
 
-function show(id){
-
+function showScreen(id){
 screens.forEach(name=>{
-
-const el = $(name);
-
-if(el){
-el.classList.add("hidden");
-}
-
+const el=$(name);
+if(el) el.classList.add("hidden");
 });
 
-const target = $(id);
-
-if(!target){
-console.error("Ekran bulunamadı:",id);
-return;
-}
+const target=$(id);
+if(!target) return;
 
 target.classList.remove("hidden");
 
-if(id==="history"){
-renderHistory();
-}
-
-if(id==="profile"){
-renderProfile();
-}
-
-if(id==="weather"){
-renderWeather();
-}
-
-if(id==="calendarScreen"){
-renderCalendar();
-}
-
-if(id==="goal"){
-renderGoal();
-}
-
-if(id==="focus"){
-renderFocus();
-}
-
-if(id==="memory"){
-prepareMemory();
-}
-
-if(id==="goodThings"){
-prepareGoodThings();
-}
+if(id==="focus") renderFocus();
+if(id==="memory") prepareMemory();
+if(id==="goodThings") prepareGoodThings();
+if(id==="weather") renderWeather();
+if(id==="calendar") renderCalendar();
+if(id==="history") renderHistory();
+if(id==="profile") renderProfile();
+if(id==="goal") renderGoal();
 
 window.scrollTo(0,0);
-
 }
-
 
 function applyDailyContent(){
-
-const question =
-questions[dailyIndex(questions.length)];
-
-$("dailyQuestionText").textContent = question;
-
-$("homeQuestionPreview").textContent =
-question.length > 65
-? question.slice(0,65)+"..."
-: question;
-
+const q=questions[indexFor(questions.length)];
+$("dailyQuestionText").textContent=q;
+$("questionPreview").textContent=q.length>70?q.slice(0,70)+"...":q;
 renderFocus();
-
 prepareGoodThings();
-
 }
 
-
-function startTest(){
-
-q = 0;
-
-answers = {};
-
-show("test");
-
-renderQuestion();
-
+function startCheckin(){
+currentQuestion=0;
+checkinAnswers={};
+showScreen("checkin");
+renderCheckinQuestion();
 }
 
+function renderCheckinQuestion(){
+const item=checkinQuestions[currentQuestion];
 
-function renderQuestion(){
+$("questionCount").textContent=(currentQuestion+1)+" / "+checkinQuestions.length;
+$("questionBar").style.width=((currentQuestion+1)/checkinQuestions.length*100)+"%";
 
-const item = qs[q];
+let html='<h2 class="title">'+item.text+'</h2><div class="options">';
 
-$("qCount").textContent =
-(q+1)+" / "+qs.length;
+item.options.forEach(option=>{
+html+='<button class="option" onclick="answerCheckin(\''+item.key+'\','+option[1]+')">'+option[0]+'</button>';
+});
 
-$("qBar").style.width =
-((q+1)/qs.length*100)+"%";
+html+="</div>";
 
-$("qArea").innerHTML =
-
-'<h2 class="question">'+
-item[0]+
-'</h2>'+
-
-'<div class="opts">'+
-
-item[2].map(option=>
-
-'<button class="opt" onclick="answerQuestion(\''+
-item[1]+
-'\','+
-option[1]+
-')">'+
-option[0]+
-'</button>'
-
-).join("")+
-
-'</div>';
-
+$("questionArea").innerHTML=html;
 }
 
+function answerCheckin(key,value){
+checkinAnswers[key]=value;
+currentQuestion++;
 
-function answerQuestion(key,value){
-
-answers[key] = value;
-
-q++;
-
-if(q < qs.length){
-
-renderQuestion();
-
+if(currentQuestion<checkinQuestions.length){
+renderCheckinQuestion();
 }else{
-
-finishTest();
-
+finishCheckin();
+}
 }
 
-}
+function finishCheckin(){
+localStorage.setItem("lastAnswers",JSON.stringify(checkinAnswers));
 
-
-function finishTest(){
-
-localStorage.setItem(
-"lastAnswers",
-JSON.stringify(answers)
-);
-
-inc("checks",1);
-
+increment("checks",1);
 addEnergy(20);
+addHistory("Check-in tamamlandı","📝");
+saveMood(checkinAnswers.mood);
 
-addHistory(
-"Check-in tamamlandı",
-"📝"
-);
+const d=dayNumber();
 
-saveMoodDay(
-answers.ruh_hali
-);
+const stressTitles=[
+"Bugün zihnin biraz fazla yük taşıyor gibi.",
+"Bugünkü tempo seni biraz zorlamış olabilir.",
+"Zihinsel hava bugün biraz yoğun.",
+"Kendine biraz daha alan açman iyi olabilir."
+];
 
-
-const resultVariations = {
-
-stress:[
-
-"Bugün zihnin biraz fazla yük taşıyor gibi görünüyor.",
-"Bugün tempo seni biraz zorlamış olabilir.",
-"Zihinsel hava bugün biraz yoğun görünüyor.",
-"Bugün kendine biraz daha alan açman iyi olabilir."
-
-],
-
-good:[
-
+const goodTitles=[
 "Bugünün havası açık görünüyor.",
 "Bugün enerjin olumlu tarafta.",
 "Bugün iç dengen güçlü görünüyor.",
 "Bugün hareket etmek için güzel bir enerjin var."
+];
 
-],
-
-middle:[
-
+const middleTitles=[
 "Bugün dengeli ama biraz değişken görünüyorsun.",
 "Bugünün havası parçalı bulutlu.",
 "Bugün kendini zorlamadan ilerlemek iyi olabilir.",
-"Bugün küçük molalar sana iyi gelebilir."
-
-]
-
-};
-
-
-const d = dayIndex();
-
-
-if(answers.stres >= 4){
-
-$("resultEmoji").textContent = "🌧️";
-
-$("resultTitle").textContent =
-resultVariations.stress[
-d % resultVariations.stress.length
+"Küçük molalar bugün sana iyi gelebilir."
 ];
 
-$("resultSuggestion").textContent =
-"Bugünkü odak görevini veya nefes ritmini deneyebilirsin.";
-
-}else if(answers.ruh_hali >= 4){
-
-$("resultEmoji").textContent = "☀️";
-
-$("resultTitle").textContent =
-resultVariations.good[
-d % resultVariations.good.length
-];
-
-$("resultSuggestion").textContent =
-"Hafıza oyunu veya günlük odak görevi sana uygun olabilir.";
-
+if(checkinAnswers.stress>=4){
+$("resultEmoji").textContent="🌧️";
+$("resultTitle").textContent=stressTitles[d%stressTitles.length];
+$("resultAdvice").textContent="Nefes Ritmi veya bugünün Odak Molası iyi gelebilir.";
+}else if(checkinAnswers.mood>=4){
+$("resultEmoji").textContent="☀️";
+$("resultTitle").textContent=goodTitles[d%goodTitles.length];
+$("resultAdvice").textContent="Hafıza Oyunu veya günlük Odak Molası sana uygun olabilir.";
 }else{
-
-$("resultEmoji").textContent = "🌤️";
-
-$("resultTitle").textContent =
-resultVariations.middle[
-d % resultVariations.middle.length
-];
-
-$("resultSuggestion").textContent =
-"Kısa ve hafif bir mola seçebilirsin.";
-
+$("resultEmoji").textContent="🌤️";
+$("resultTitle").textContent=middleTitles[d%middleTitles.length];
+$("resultAdvice").textContent="Kısa ve hafif bir deneyim seçebilirsin.";
 }
 
+$("resultText").textContent="Bu yorum bugünkü cevaplarının kısa bir özetidir.";
 
-$("resultText").textContent =
-"Bu yorum bugünkü cevaplarının kısa bir özetidir.";
-
-show("result");
-
-refresh();
-
+refreshHome();
+showScreen("result");
 }
-
 
 function renderFocus(){
-
-$("focusText").textContent =
-focusTasks[
-dailyIndex(focusTasks.length)
-];
-
+$("focusText").textContent=focusTasks[indexFor(focusTasks.length)];
 }
-
 
 function startBreath(){
+showScreen("breath");
 
-show("breath");
+clearInterval(breathTimer);
 
-clearInterval(breathInterval);
+let seconds=120;
 
-let seconds = 120;
+$("breathTime").textContent="02:00";
+$("breathCircle").textContent="Nefes Al";
 
-$("breathTimer").textContent = "02:00";
-
-breathInterval = setInterval(()=>{
-
+breathTimer=setInterval(()=>{
 seconds--;
 
-$("breathTimer").textContent =
+const min=String(Math.floor(seconds/60)).padStart(2,"0");
+const sec=String(seconds%60).padStart(2,"0");
 
-String(
-Math.floor(seconds/60)
-).padStart(2,"0")
+$("breathTime").textContent=min+":"+sec;
+$("breathCircle").textContent=seconds%8<4?"Nefes Al":"Nefes Ver";
 
-+ ":" +
-
-String(
-seconds%60
-).padStart(2,"0");
-
-
-$("breathCircle").textContent =
-seconds%8 < 4
-? "Nefes Al"
-: "Nefes Ver";
-
-
-if(seconds <= 0){
-
-clearInterval(breathInterval);
-
-$("breathTimer").textContent = "00:00";
-
+if(seconds<=0){
+clearInterval(breathTimer);
+$("breathTime").textContent="00:00";
+$("breathCircle").textContent="Tamamlandı";
 }
-
 },1000);
-
 }
 
-
-function finishExp(name){
-
-inc("exps",1);
-
+function finishExperience(name){
+increment("experiences",1);
 addEnergy(15);
-
-addHistory(
-name+" tamamlandı",
-"✨"
-);
-
-toast(
-name+" tamamlandı 🎉"
-);
-
-refresh();
+addHistory(name+" tamamlandı","✨");
+refreshHome();
+toast(name+" tamamlandı 🎉");
 
 setTimeout(()=>{
-show("home");
+showScreen("home");
 },700);
-
 }
-
 
 function prepareMemory(){
+const set=memorySets[indexFor(memorySets.length)];
 
-const set =
-memorySets[
-dailyIndex(memorySets.length)
-];
-
-$("memoryWords").innerHTML =
-set.slice(0,3).join(" · ")
-+
-"<br>"
-+
-set.slice(3).join(" · ");
-
+$("memoryWords").innerHTML=set.slice(0,3).join(" · ")+"<br>"+set.slice(3).join(" · ");
 $("memoryQuestion").classList.add("hidden");
 
-memoryCorrect =
-set[
-dayIndex() % set.length
-];
-
+memoryCorrect=set[indexFor(set.length)];
 }
 
+function hideMemory(){
+$("memoryWords").textContent="••••••";
 
-function hideMemoryWords(){
-
-$("memoryWords").textContent = "••••••";
-
-const wrongPool = [
-"Bisiklet",
-"Kitap",
-"Radyo",
-"Orman",
-"Balon",
-"Karpuz",
-"Çiçek",
-"Tren",
-"Gemi"
+const wrongPool=[
+"Bisiklet","Kitap","Radyo","Orman","Balon",
+"Karpuz","Çiçek","Tren","Gemi","Makas"
 ].filter(x=>x!==memoryCorrect);
 
-const wrong1 =
-wrongPool[
-(dayIndex()+2)%wrongPool.length
-];
+const wrong1=wrongPool[(dayNumber()+2)%wrongPool.length];
+const wrong2=wrongPool[(dayNumber()+5)%wrongPool.length];
 
-const wrong2 =
-wrongPool[
-(dayIndex()+5)%wrongPool.length
-];
+let options=[memoryCorrect,wrong1,wrong2];
 
-const options = [
-memoryCorrect,
-wrong1,
-wrong2
-].sort(()=>0.5-Math.random());
+const rotate=indexFor(3);
+options=options.slice(rotate).concat(options.slice(0,rotate));
 
-
-$("memoryOptions").innerHTML =
-options.map(x=>
-
-'<button class="opt" onclick="memoryAnswer(\''+
-x+
-'\')">'+
-x+
-'</button>'
-
-).join("");
-
+$("memoryOptions").innerHTML=options.map(item=>{
+return '<button class="option" onclick="answerMemory(\''+item+'\')">'+item+'</button>';
+}).join("");
 
 $("memoryQuestion").classList.remove("hidden");
-
 }
 
-
-function memoryAnswer(value){
-
+function answerMemory(value){
 if(value===memoryCorrect){
-
 toast("Doğru! 🧠");
-
 }else{
-
-toast(
-"Doğru cevap: "+
-memoryCorrect
-);
-
+toast("Doğru cevap: "+memoryCorrect);
 }
 
-finishExp("Hafıza Oyunu");
+increment("experiences",1);
+addEnergy(15);
+addHistory("Hafıza Oyunu tamamlandı","🧠");
+refreshHome();
 
+setTimeout(()=>{
+showScreen("home");
+},900);
 }
-
 
 function prepareGoodThings(){
+const set=goodSets[indexFor(goodSets.length)];
 
-const set =
-goodSets[
-dailyIndex(goodSets.length)
-];
-
-$("g1").placeholder = set[0];
-
-$("g2").placeholder = set[1];
-
-$("g3").placeholder = set[2];
-
+$("good1").placeholder=set[0];
+$("good2").placeholder=set[1];
+$("good3").placeholder=set[2];
 }
-
 
 function saveGoodThings(){
-
-const values = [
-
-$("g1").value.trim(),
-
-$("g2").value.trim(),
-
-$("g3").value.trim()
-
+const values=[
+$("good1").value.trim(),
+$("good2").value.trim(),
+$("good3").value.trim()
 ];
-
 
 if(!values.some(Boolean)){
-
 toast("En az bir şey yaz.");
-
 return;
-
 }
 
+const rewardKey="goodReward-"+localDateKey();
 
-localStorage.setItem(
-"goodThings-"+new Date().toISOString().slice(0,10),
-JSON.stringify(values)
-);
+localStorage.setItem("goodThings-"+localDateKey(),JSON.stringify(values));
 
+if(!localStorage.getItem(rewardKey)){
+localStorage.setItem(rewardKey,"1");
 addEnergy(10);
+}
 
-addHistory(
-"3 İyi Şey kaydedildi",
-"🌱"
-);
-
+addHistory("3 İyi Şey kaydedildi","🌱");
+refreshHome();
 toast("Kaydedildi 🌱");
 
-refresh();
-
 setTimeout(()=>{
-show("home");
+showScreen("home");
 },700);
-
 }
-
 
 function saveDailyAnswer(){
+const answer=$("dailyAnswer").value.trim();
 
-const value =
-$("dailyAnswer").value.trim();
-
-if(!value){
-
+if(!answer){
 toast("Önce birkaç kelime yaz.");
-
 return;
-
 }
 
-const key =
-"dailyAnswer-"+
-new Date().toISOString().slice(0,10);
+const rewardKey="questionReward-"+localDateKey();
 
-localStorage.setItem(
-key,
-value
-);
+localStorage.setItem("dailyAnswer-"+localDateKey(),answer);
 
+if(!localStorage.getItem(rewardKey)){
+localStorage.setItem(rewardKey,"1");
 addEnergy(10);
+}
 
-addHistory(
-"Günün sorusu cevaplandı",
-"💭"
-);
-
+addHistory("Günün sorusu cevaplandı","💭");
+refreshHome();
 toast("Cevabın kaydedildi");
 
-refresh();
-
 setTimeout(()=>{
-show("home");
+showScreen("home");
 },700);
-
 }
-
 
 function openCapsule(){
+const task=capsules[indexFor(capsules.length)];
 
-const task =
-capsules[
-dailyIndex(capsules.length)
-];
+$("capsuleBox").innerHTML="<h2>🎁 Görevin</h2><p>"+task+"</p>";
 
-$("capsuleText").innerHTML =
+const rewardKey="capsuleReward-"+localDateKey();
 
-"<h2>🎁 Görevin</h2>"+
-"<p>"+task+"</p>";
-
-const key =
-"capsuleEnergy-"+
-new Date().toISOString().slice(0,10);
-
-
-if(!localStorage.getItem(key)){
-
-localStorage.setItem(key,"1");
-
+if(!localStorage.getItem(rewardKey)){
+localStorage.setItem(rewardKey,"1");
 addEnergy(5);
-
-addHistory(
-"Sürpriz Kapsül açıldı",
-"🎁"
-);
-
-refresh();
-
+addHistory("Sürpriz Kapsül açıldı","🎁");
+refreshHome();
 }
-
 }
-
 
 function chooseGoal(title,emoji){
-
-const goal = {
-
+const goal={
 title:title,
-
 emoji:emoji,
-
-done:[],
-
-started:new Date().toISOString()
-
+done:[]
 };
 
-localStorage.setItem(
-"miniGoal",
-JSON.stringify(goal)
-);
-
+localStorage.setItem("miniGoal",JSON.stringify(goal));
 renderGoal();
-
-refresh();
-
+refreshHome();
 }
 
+function getGoal(){
+try{
+return JSON.parse(localStorage.getItem("miniGoal"));
+}catch(e){
+return null;
+}
+}
 
 function renderGoal(){
-
-let goal = null;
-
-try{
-
-goal =
-JSON.parse(
-localStorage.getItem("miniGoal")
-);
-
-}catch(e){}
-
+const goal=getGoal();
 
 if(!goal){
-
 $("goalChoose").classList.remove("hidden");
-
 $("goalActive").classList.add("hidden");
-
-$("homeGoalText").textContent =
-"Küçük bir hedef seç ve 3 gün boyunca dene.";
-
+$("goalPreview").textContent="Küçük bir hedef seç ve 3 gün boyunca dene.";
 return;
-
 }
-
 
 $("goalChoose").classList.add("hidden");
-
 $("goalActive").classList.remove("hidden");
 
-$("goalEmoji").textContent =
-goal.emoji;
+$("goalEmoji").textContent=goal.emoji;
+$("goalTitle").textContent=goal.title;
+$("goalStatus").textContent=goal.done.length+" / 3 gün tamamlandı";
 
-$("goalTitle").textContent =
-goal.title;
+$("goalDays").innerHTML=[1,2,3].map((n,i)=>{
+return '<div class="goalDay '+(goal.done[i]?"done":"")+'"><strong>Gün '+n+'</strong><br><br>'+(goal.done[i]?"✓":"○")+'</div>';
+}).join("");
 
-$("goalStatus").textContent =
-goal.done.length+
-" / 3 gün tamamlandı";
-
-
-$("goalDays").innerHTML =
-
-[1,2,3].map((day,index)=>
-
-'<div class="goalDay '+
-(goal.done[index]?"goalDone":"")+
-'">'+
-
-'<b>Gün '+
-day+
-'</b><br>'+
-
-(goal.done[index]?"✓":"○")+
-
-'</div>'
-
-).join("");
-
-
-$("homeGoalText").textContent =
-
-goal.emoji+
-" "+
-goal.title+
-" · "+
-goal.done.length+
-"/3";
-
+$("goalPreview").textContent=goal.emoji+" "+goal.title+" · "+goal.done.length+"/3";
 }
 
+function completeGoalDay(){
+const goal=getGoal();
 
-function goalDoneToday(){
+if(!goal) return;
 
-let goal = null;
-
-try{
-
-goal =
-JSON.parse(
-localStorage.getItem("miniGoal")
-);
-
-}catch(e){}
-
-
-if(!goal){
-return;
-}
-
-
-const today =
-new Date().toISOString().slice(0,10);
-
+const today=localDateKey();
 
 if(goal.done.includes(today)){
-
 toast("Bugünü zaten tamamladın 😄");
-
 return;
-
 }
-
 
 if(goal.done.length>=3){
-
-toast("Bu hedef tamamlandı 🎉");
-
+toast("Bu hedef zaten tamamlandı 🎉");
 return;
-
 }
-
 
 goal.done.push(today);
-
-
-localStorage.setItem(
-"miniGoal",
-JSON.stringify(goal)
-);
-
+localStorage.setItem("miniGoal",JSON.stringify(goal));
 
 addEnergy(20);
-
-addHistory(
-"Mini hedef günü tamamlandı",
-"🎯"
-);
-
+addHistory("Mini hedef günü tamamlandı","🎯");
 
 if(goal.done.length===3){
-
 addEnergy(40);
-
-toast(
-"3 günlük hedef tamamlandı! 🎉"
-);
-
+toast("3 günlük hedef tamamlandı! 🎉");
 }else{
-
 toast("Bugün tamamlandı ✓");
-
 }
-
 
 renderGoal();
-
-refresh();
-
+refreshHome();
 }
-
 
 function resetGoal(){
-
-localStorage.removeItem(
-"miniGoal"
-);
-
+localStorage.removeItem("miniGoal");
 renderGoal();
-
-refresh();
-
+refreshHome();
 }
-
 
 function renderWeather(){
-
-let data = {};
+let data={};
 
 try{
-
-data =
-JSON.parse(
-localStorage.getItem("lastAnswers") || "{}"
-);
-
+data=JSON.parse(localStorage.getItem("lastAnswers")||"{}");
 }catch(e){}
 
-
-if(!data.stres){
-
-$("weatherEmoji").textContent = "🌤️";
-
-$("weatherTitle").textContent =
-"Henüz veri yok";
-
-$("weatherText").textContent =
-"Check-in tamamladığında burada yorum oluşacak.";
-
+if(!data.stress){
+$("weatherEmoji").textContent="🌤️";
+$("weatherTitle").textContent="Henüz veri yok";
+$("weatherText").textContent="Check-in tamamladığında burada yorum oluşacak.";
 return;
-
 }
 
+const d=dayNumber();
 
-const d = dayIndex();
-
-
-const stressTexts = [
-
+const stressTexts=[
 "Bugün zihinsel hava biraz yağmurlu.",
 "Bugün bulutlar biraz yoğun görünüyor.",
 "Bugün zihnin dinlenmek istiyor olabilir.",
 "Bugün tempoyu biraz azaltmak iyi olabilir."
-
 ];
 
-
-const goodTexts = [
-
+const goodTexts=[
 "Bugün zihinsel hava açık.",
-"Bugün iç dünyanda güneşli bir hava var.",
+"İç dünyanda güneşli bir hava var.",
 "Bugün enerjin olumlu görünüyor.",
 "Bugün zihinsel hava hareketli ve açık."
-
 ];
 
-
-const middleTexts = [
-
+const middleTexts=[
 "Bugün parçalı bulutlu.",
 "Bugün dengeli ama değişken bir hava var.",
-"Bugün sakin ve hareketli anlar karışık.",
+"Sakin ve hareketli anlar bugün karışık.",
 "Bugün kendini gözlemlemek için güzel bir gün."
-
 ];
 
-
-if(data.stres>=4){
-
-$("weatherEmoji").textContent = "🌧️";
-
-$("weatherTitle").textContent =
-stressTexts[
-d%stressTexts.length
-];
-
-$("weatherText").textContent =
-"Kısa bir nefes veya odak molası deneyebilirsin.";
-
-}else if(data.ruh_hali>=4){
-
-$("weatherEmoji").textContent = "☀️";
-
-$("weatherTitle").textContent =
-goodTexts[
-d%goodTexts.length
-];
-
-$("weatherText").textContent =
-"Bu enerjiyi küçük ve anlamlı bir işe yönlendirebilirsin.";
-
+if(data.stress>=4){
+$("weatherEmoji").textContent="🌧️";
+$("weatherTitle").textContent=stressTexts[d%stressTexts.length];
+$("weatherText").textContent="Kısa bir nefes veya odak molası deneyebilirsin.";
+}else if(data.mood>=4){
+$("weatherEmoji").textContent="☀️";
+$("weatherTitle").textContent=goodTexts[d%goodTexts.length];
+$("weatherText").textContent="Bu enerjiyi küçük ve anlamlı bir işe yönlendirebilirsin.";
 }else{
-
-$("weatherEmoji").textContent = "🌤️";
-
-$("weatherTitle").textContent =
-middleTexts[
-d%middleTexts.length
-];
-
-$("weatherText").textContent =
-"Kendini zorlamadan küçük adımlarla ilerleyebilirsin.";
-
+$("weatherEmoji").textContent="🌤️";
+$("weatherTitle").textContent=middleTexts[d%middleTexts.length];
+$("weatherText").textContent="Kendini zorlamadan küçük adımlarla ilerleyebilirsin.";
+}
 }
 
-}
-
-
-function saveMoodDay(mood){
-
-let data = {};
+function saveMood(mood){
+let data={};
 
 try{
-
-data =
-JSON.parse(
-localStorage.getItem("moodCalendar") || "{}"
-);
-
+data=JSON.parse(localStorage.getItem("moodCalendar")||"{}");
 }catch(e){}
 
+data[localDateKey()]=mood;
 
-const key =
-new Date().toISOString().slice(0,10);
-
-data[key] = mood;
-
-
-localStorage.setItem(
-"moodCalendar",
-JSON.stringify(data)
-);
-
+localStorage.setItem("moodCalendar",JSON.stringify(data));
 }
-
 
 function renderCalendar(){
+const now=new Date();
+const year=now.getFullYear();
+const month=now.getMonth();
 
-const now = new Date();
-
-const year =
-now.getFullYear();
-
-const month =
-now.getMonth();
-
-
-$("calendarTitle").textContent =
-now.toLocaleDateString(
-"tr-TR",
-{
+$("calendarTitle").textContent=now.toLocaleDateString("tr-TR",{
 month:"long",
 year:"numeric"
-}
-);
-
-
-let data = {};
-
-try{
-
-data =
-JSON.parse(
-localStorage.getItem("moodCalendar") || "{}"
-);
-
-}catch(e){}
-
-
-const days =
-new Date(
-year,
-month+1,
-0
-).getDate();
-
-
-let html = "";
-
-
-for(let i=1;i<=days;i++){
-
-const key =
-
-year+
-"-"+
-String(month+1).padStart(2,"0")+
-"-"+
-String(i).padStart(2,"0");
-
-
-const mood =
-data[key];
-
-
-let value = i;
-
-
-if(mood){
-
-if(mood>=4){
-value="🙂";
-}
-
-else if(mood===3){
-value="😐";
-}
-
-else{
-value="🙁";
-}
-
-}
-
-
-const todayClass =
-i===now.getDate()
-? "today"
-: "";
-
-
-html +=
-
-'<div class="day '+
-todayClass+
-'">'+
-value+
-'</div>';
-
-}
-
-
-$("calendarGrid").innerHTML =
-html;
-
-}
-
-
-function addHistory(text,emoji){
-
-let history = [];
-
-try{
-
-history =
-JSON.parse(
-localStorage.getItem("history") || "[]"
-);
-
-}catch(e){}
-
-
-history.unshift({
-
-text:text,
-
-emoji:emoji,
-
-date:new Date().toLocaleString("tr-TR")
-
 });
 
-
-localStorage.setItem(
-
-"history",
-
-JSON.stringify(
-history.slice(0,50)
-)
-
-);
-
-}
-
-
-function renderHistory(){
-
-let history = [];
+let data={};
 
 try{
-
-history =
-JSON.parse(
-localStorage.getItem("history") || "[]"
-);
-
+data=JSON.parse(localStorage.getItem("moodCalendar")||"{}");
 }catch(e){}
 
+const totalDays=new Date(year,month+1,0).getDate();
 
-if(!history.length){
+let html="";
 
-$("historyList").innerHTML =
-'<p class="muted">Henüz aktivite yok.</p>';
+for(let day=1;day<=totalDays;day++){
+const key=
+year+"-"+
+String(month+1).padStart(2,"0")+"-"+
+String(day).padStart(2,"0");
 
+const mood=data[key];
+
+let content=day;
+
+if(mood){
+if(mood>=4) content="🙂";
+else if(mood===3) content="😐";
+else content="🙁";
+}
+
+const todayClass=day===now.getDate()?"today":"";
+
+html+='<div class="day '+todayClass+'">'+content+'</div>';
+}
+
+$("calendarGrid").innerHTML=html;
+}
+
+function addHistory(text,emoji){
+let history=[];
+
+try{
+history=JSON.parse(localStorage.getItem("history")||"[]");
+}catch(e){}
+
+history.unshift({
+text:text,
+emoji:emoji,
+date:new Date().toLocaleString("tr-TR")
+});
+
+localStorage.setItem("history",JSON.stringify(history.slice(0,50)));
+}
+
+function renderHistory(){
+let history=[];
+
+try{
+history=JSON.parse(localStorage.getItem("history")||"[]");
+}catch(e){}
+
+if(history.length===0){
+$("historyList").innerHTML='<p class="muted">Henüz aktivite yok.</p>';
 return;
-
 }
 
-
-$("historyList").innerHTML =
-
-history.map(item=>
-
-'<div class="row" style="padding:13px 0;border-bottom:1px solid #ffffff15">'+
-
-'<span>'+
-item.emoji+
-" "+
-item.text+
-'</span>'+
-
-'<small class="muted">'+
-item.date+
-'</small>'+
-
-'</div>'
-
-).join("");
-
+$("historyList").innerHTML=history.map(item=>{
+return '<div class="historyItem"><strong>'+item.emoji+' '+item.text+'</strong><small>'+item.date+'</small></div>';
+}).join("");
 }
 
-
-function inc(key,value){
-
-const old =
-Number(
-localStorage.getItem(key) || 0
-);
-
-localStorage.setItem(
-key,
-old+value
-);
-
+function increment(key,amount){
+const current=Number(localStorage.getItem(key)||0);
+localStorage.setItem(key,String(current+amount));
 }
 
-
-function addEnergy(value){
-
-const old =
-Number(
-localStorage.getItem("energy") || 0
-);
-
-localStorage.setItem(
-"energy",
-old+value
-);
-
+function addEnergy(amount){
+const current=Number(localStorage.getItem("energy")||0);
+localStorage.setItem("energy",String(current+amount));
 }
 
+function getRank(){
+const energy=Number(localStorage.getItem("energy")||0);
 
-function rankInfo(){
-
-const energy =
-Number(
-localStorage.getItem("energy") || 0
-);
-
-
-let index = 0;
-
+let index=0;
 
 for(let i=0;i<ranks.length;i++){
-
 if(energy>=ranks[i][1]){
-
 index=i;
-
+}
 }
 
+const current=ranks[index];
+const next=ranks[Math.min(index+1,ranks.length-1)];
+
+let percent=100;
+
+if(index<ranks.length-1){
+percent=((energy-current[1])/(next[1]-current[1]))*100;
 }
-
-
-const current =
-ranks[index];
-
-
-const next =
-ranks[
-Math.min(
-index+1,
-ranks.length-1
-)
-];
-
-
-const percent =
-
-index===ranks.length-1
-
-? 100
-
-: (
-(energy-current[1]) /
-(next[1]-current[1])
-) * 100;
-
 
 return{
-
 energy:energy,
-
 name:current[0],
-
 next:next[0],
-
-percent:
-Math.max(
-0,
-Math.min(100,percent)
-)
-
+percent:Math.max(0,Math.min(100,percent))
 };
-
 }
 
+function refreshHome(){
+const rank=getRank();
 
-function refresh(){
+$("rankName").textContent="Rütbe: "+rank.name;
+$("energyText").textContent="⚡ "+rank.energy+" Enerji";
+$("rankBar").style.width=rank.percent+"%";
 
-const rank =
-rankInfo();
-
-
-$("rankName").textContent =
-"Rütbe: "+
-rank.name;
-
-
-$("energyText").textContent =
-"⚡ "+
-rank.energy+
-" Enerji";
-
-
-$("rankFill").style.width =
-rank.percent+
-"%";
-
-
-$("rankNext").textContent =
-
-rank.name===rank.next
-
-? "En yüksek rütbedesin."
-
-: "Sonraki rütbe: "+
-rank.next;
-
+if(rank.name===rank.next){
+$("rankNext").textContent="En yüksek rütbedesin.";
+}else{
+$("rankNext").textContent="Sonraki rütbe: "+rank.next;
+}
 
 renderGoal();
-
 }
-
 
 function renderProfile(){
+const rank=getRank();
 
-const rank =
-rankInfo();
-
-
-$("profileRank").textContent =
-rank.name;
-
-
-$("pEnergy").textContent =
-rank.energy;
-
-
-$("pCheck").textContent =
-localStorage.getItem("checks") || 0;
-
-
-$("pExp").textContent =
-localStorage.getItem("exps") || 0;
-
+$("profileRank").textContent=rank.name;
+$("profileEnergy").textContent=rank.energy;
+$("profileChecks").textContent=localStorage.getItem("checks")||"0";
+$("profileExperiences").textContent=localStorage.getItem("experiences")||"0";
 }
 
+function toast(message){
+const old=document.querySelector(".toast");
+if(old) old.remove();
 
-function toast(text){
+const el=document.createElement("div");
+el.className="toast";
+el.textContent=message;
 
-const element =
-document.createElement("div");
-
-element.className =
-"toast";
-
-element.textContent =
-text;
-
-document.body.appendChild(
-element
-);
+document.body.appendChild(el);
 
 setTimeout(()=>{
-
-element.remove();
-
+el.remove();
 },2200);
-
 }
 
-
-document.addEventListener(
-"DOMContentLoaded",
-function(){
-
+document.addEventListener("DOMContentLoaded",function(){
 applyDailyContent();
-
-refresh();
-
-show("home");
-
-}
-);
-
+refreshHome();
+showScreen("home");
+});
 </script>
 
 </body>
