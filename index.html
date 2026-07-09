@@ -403,8 +403,7 @@ margin-top:5px;
 </div>
 
 <h1 class="title">Kendine Bir Alan SeÃ§</h1>
-<p class="desc">FarklÄ± araÃ§lara ve gÃ¼nlÃ¼k iÃ§eriklere buradan ulaÅabilirsin.</p>
-
+<p class="desc">Ana sayfayÄ± sade tuttuk. DiÄer Ã¶zelliklerin burada.</p>
 
 <div class="hero">
 <div class="heroEmoji">ðª</div>
@@ -515,6 +514,26 @@ margin-top:5px;
 </div>
 
 <button class="btn green" onclick="finishExperience('Odak MolasÄ±')">TamamladÄ±m +15 â¡</button>
+
+</section>
+
+
+<section id="breath" class="hidden">
+
+<div class="header">
+<button class="round" onclick="showScreen('home')">â</button>
+<div class="logo">NEFES <b>RÄ°TMÄ°</b></div>
+<div></div>
+</div>
+
+<h1 class="title">Daireyi takip et</h1>
+<p class="desc">BÃ¼yÃ¼rken nefes al, kÃ¼Ã§Ã¼lÃ¼rken ver.</p>
+
+<div class="breathCircle" id="breathCircle">Nefes Al</div>
+
+<p class="desc" id="breathTime">02:00</p>
+
+<button class="btn green" onclick="finishExperience('Nefes Ritmi')">TamamladÄ±m</button>
 
 </section>
 
@@ -645,6 +664,21 @@ margin-top:5px;
 </section>
 
 
+<section id="history" class="hidden">
+
+<div class="header">
+<button class="round" onclick="showScreen('home')">â</button>
+<div class="logo">GEÃMÄ°Å<b>Ä°M</b></div>
+<div></div>
+</div>
+
+<h1 class="title">Aktiviteler</h1>
+
+<div class="card" id="historyList"></div>
+
+</section>
+
+
 <section id="profile" class="hidden">
 
 <div class="header">
@@ -703,12 +737,10 @@ margin-top:5px;
 Ana Sayfa
 </div>
 
-
 <div class="navItem" onclick="showScreen('explore')">
 <span>ðª</span>
 KeÅfet
 </div>
-
 
 <div class="navItem" onclick="showScreen('profile')">
 <span>â</span>
@@ -727,17 +759,14 @@ const screens = [
 "home",
 "checkin",
 "result",
-
 "focus",
-
+"breath",
 "memory",
 "goodThings",
-
 "capsule",
 "goal",
 "weather",
-
-
+"history",
 "profile",
 "auth",
 "explore",
@@ -1060,6 +1089,7 @@ options:[
 
 let currentQuestion = 0;
 let checkinAnswers = {};
+let breathTimer = null;
 let memoryCorrect = "";
 
 
@@ -1177,6 +1207,7 @@ if(id==="focus") renderFocus();
 if(id==="memory") prepareMemory();
 if(id==="goodThings") prepareGoodThings();
 if(id==="weather") renderWeather();
+if(id==="history") renderHistory();
 if(id==="profile") renderProfile();
 if(id==="goal") renderGoal();
 
@@ -1185,6 +1216,7 @@ window.scrollTo(0,0);
 
 function applyDailyContent(){
 const q=questions[indexFor(questions.length)];
+if($("dailyQuestionText")) $("dailyQuestionText").textContent=q;
 if($("questionPreview")) $("questionPreview").textContent=q.length>70?q.slice(0,70)+"...":q;
 if($("questionPreviewExplore")) $("questionPreviewExplore").textContent=q.length>70?q.slice(0,70)+"...":q;
 renderFocus();
@@ -1349,7 +1381,7 @@ $("breathCircle").textContent="TamamlandÄ±";
 }
 
 function finishExperience(name){
-increment(1);
+increment("experiences",1);
 addEnergy(15);
 addHistory(name+" tamamlandÄ±","â¨");
 refreshHome();
@@ -1399,7 +1431,7 @@ toast("DoÄru! ð§ ");
 toast("DoÄru cevap: "+memoryCorrect);
 }
 
-increment(1);
+increment("experiences",1);
 addEnergy(15);
 addHistory("HafÄ±za Oyunu tamamlandÄ±","ð§ ");
 refreshHome();
@@ -1695,7 +1727,7 @@ emoji:emoji,
 date:new Date().toLocaleString("tr-TR")
 });
 
-localStorage.setItem(JSON.stringify(history.slice(0,50)));
+localStorage.setItem("history",JSON.stringify(history.slice(0,50)));
 }
 
 function renderHistory(){
