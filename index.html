@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { FiTrendingUp, FiSmile, FiShield, FiMoon, FiActivity, FiSparkles } from 'react-icons/fi';
+'use client';
+
+import React, { useState } from 'react';
+import { FiTrendingUp, FiMoon, FiActivity, FiShield, FiSparkles } from 'react-icons/fi';
 
 export default function PremiumDashboard() {
   const [dots, setDots] = useState([]);
-  const [isPremium, setIsPremium] = useState(true); // Gerçek projede veri tabanından gelecek
 
-  // Dikkat dağıtıcı alanına tıklandığında neon baloncuk oluşturan fonksiyon
   const handleCanvasClick = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -14,7 +14,6 @@ export default function PremiumDashboard() {
     
     setDots([...dots, newDot]);
     
-    // 1 saniye sonra baloncukları ekrandan sil (kasmaması için)
     setTimeout(() => {
       setDots((prev) => prev.filter((d) => d.id !== newDot.id));
     }, 1000);
@@ -49,7 +48,7 @@ export default function PremiumDashboard() {
             </div>
           </div>
 
-          {/* Dinamik Zihin Durumu Grafiği Simülasyonu */}
+          {/* Dinamik Zihin Durumu Grafiği */}
           <div className="bg-[#181d4a]/60 rounded-2xl p-4 mb-4 border border-purple-950">
             <div className="flex justify-between items-center mb-2">
               <span className="text-xs text-purple-300 font-medium">Bugünkü Zihinsel Grafik</span>
@@ -60,18 +59,22 @@ export default function PremiumDashboard() {
             
             {/* Grafik Çubukları */}
             <div className="h-16 flex items-end justify-between gap-4 px-2 pt-4">
-              <div className="w-full bg-purple-900/40 h-[40%] rounded-t-lg relative flex justify-center"><span className="text-[10px] absolute -top-5 text-gray-400">08:00</span></div>
-              <div className="w-full bg-orange-500/60 h-[85%] rounded-t-lg relative flex justify-center"><span className="text-[10px] absolute -top-5 text-orange-300 font-bold">20:00</span></div>
-              <div className="w-full bg-gradient-to-t from-purple-600 to-pink-500 h-[60%] rounded-t-lg relative flex justify-center"><span className="text-[10px] absolute -top-5 text-purple-300">00:00</span></div>
+              <div className="w-full bg-purple-900/40 h-[40%] rounded-t-lg relative flex justify-center">
+                <span className="text-[10px] absolute -top-5 text-gray-400">08:00</span>
+              </div>
+              <div className="w-full bg-orange-500/60 h-[85%] rounded-t-lg relative flex justify-center">
+                <span className="text-[10px] absolute -top-5 text-orange-300 font-bold">20:00</span>
+              </div>
+              <div className="w-full bg-gradient-to-t from-purple-600 to-pink-500 h-[60%] rounded-t-lg relative flex justify-center">
+                <span className="text-[10px] absolute -top-5 text-purple-300">00:00</span>
+              </div>
             </div>
           </div>
 
-          {/* Premium Yapay Zeka Yorumu */}
           <p className="text-sm text-gray-300 leading-relaxed bg-[#141842] p-4 rounded-2xl border border-gray-800/40">
             "Bugün akşam check-in'inde <span className="text-orange-400 font-semibold">hafif gergin ve yorgun</span> hissettiğini fark ettik. Gün ortasındaki odaklanma süren harikaydı ancak akşam saatlerinde zihnin biraz aşırı yüklenmiş. Şimdi arkana yaslan, aşağıdaki dikkat dağıtıcıyı kullan ve zihnini serbest bırak."
           </p>
         </div>
-
 
         {/* 2. PREMIUM DİKKAT DAĞITICI / ZİHİN BOŞALTICI KUTU */}
         <div className="bg-gradient-to-br from-[#16113a] to-[#0a0724] border border-pink-900/20 rounded-3xl p-5 shadow-2xl">
@@ -113,17 +116,14 @@ export default function PremiumDashboard() {
           </div>
         </div>
 
-        {/* 3. PREMIUM DESTEK VE PREMIUM GÜVENCESİ */}
+        {/* 3. PREMIUM GÜVENCESİ */}
         <div className="bg-[#0f1235] rounded-2xl p-4 border border-gray-800/60 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <FiShield className="text-amber-400 text-xl" />
             <div className="text-xs text-gray-400">
-              Aboneliğin <span className="text-white font-medium">09.08.2026</span> tarihine kadar aktiftir.
+              Aboneliğin aktif ve güvendedir.
             </div>
           </div>
-          <button className="text-xs bg-[#1a1f54] text-purple-300 px-3 py-1.5 rounded-xl border border-purple-900/40">
-            Yönet
-          </button>
         </div>
 
       </main>
