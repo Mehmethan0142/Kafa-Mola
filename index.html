@@ -351,21 +351,21 @@ margin-top:5px;
 <section id="home">
 
 <div class="header">
-<button class="round" onclick="showScreen('explore')">☰</button>
+<button class="round" onclick="showScreen('explore')">â°</button>
 <div class="logo">KAFA <b>MOLA</b></div>
-<button class="round" onclick="showScreen('profile')">🧠</button>
+<button class="round" onclick="showScreen('profile')">ð§ </button>
 </div>
 
 <div class="hero">
-<div class="heroEmoji">🌙☁️</div>
+<div class="heroEmoji">ðâï¸</div>
 <h1>Kafa Mola</h1>
-<p>Günde üç kısa check-in. Kendini fark et, birkaç dakika mola ver ve gün içindeki değişimini gör.</p>
+<p>GÃ¼nde Ã¼Ã§ kÄ±sa check-in. Kendini fark et, birkaÃ§ dakika mola ver ve gÃ¼n iÃ§indeki deÄiÅimini gÃ¶r.</p>
 </div>
 
 <div class="rank">
 <div class="row">
-<strong id="rankName">Rütbe: Çaylak</strong>
-<span id="energyText">⚡ 0</span>
+<strong id="rankName">RÃ¼tbe: Ãaylak</strong>
+<span id="energyText">â¡ 0</span>
 </div>
 <div class="bar">
 <div class="barFill" id="rankBar"></div>
@@ -375,120 +375,45 @@ margin-top:5px;
 
 <div class="card purple">
 <div class="row">
-<h2 id="homeCheckinTitle">Bugünün Check-in'i</h2>
-<span class="badge">+20 ⚡</span>
+<h2 id="homeCheckinTitle">BugÃ¼nÃ¼n Check-in'i</h2>
+<span class="badge">+20 â¡</span>
 </div>
-<p id="homeCheckinText">Test saatleri: 08:00 · 20:00 · 00:00</p>
-<button class="btn primary" onclick="startCheckin()">Check-in'i Başlat →</button>
-</div>
-
-<div class="card" style="text-align:center">
-<h3 style="margin:0 0 8px">Test aşamasındayız :)) Beyza’m ❤️</h3>
-<p class="muted" style="margin:0">gakkom :))</p>
+<p id="homeCheckinText">Test saatleri: 08:00 Â· 20:00 Â· 00:00</p>
+<button class="btn primary" onclick="startCheckin()">Check-in'i BaÅlat â</button>
 </div>
 
-<p class="desc">Diğer özellikler için menüden veya alttaki Keşfet bölümünden devam edebilirsin.</p>
-
-</section>
-
-
-
-<section id="auth" class="hidden">
-<div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">ÜYE <b>GİRİŞİ</b></div>
-<div></div>
-</div>
-
-<h1 class="title" id="authTitle">Giriş Yap</h1>
-<p class="desc">Profilini ve raporlarını bu cihazda saklamak için giriş yap.</p>
+<h1 class="title" id="authTitle">GiriÅ Yap</h1>
+<p class="desc">Profilini ve raporlarÄ±nÄ± bu cihazda saklamak iÃ§in giriÅ yap.</p>
 
 <div class="card">
-<input id="authName" placeholder="Adın" style="display:none">
+<input id="authName" placeholder="AdÄ±n" style="display:none">
 <input id="authEmail" type="email" placeholder="E-posta">
-<input id="authPassword" type="password" placeholder="Şifre">
+<input id="authPassword" type="password" placeholder="Åifre">
 <button class="btn primary" onclick="submitAuth()">Devam Et</button>
 <br><br>
-<button class="btn dark" onclick="toggleAuthMode()" id="authToggle">Hesabın yok mu? Üye ol</button>
+<button class="btn dark" onclick="toggleAuthMode()" id="authToggle">HesabÄ±n yok mu? Ãye ol</button>
 </div>
 </section>
 
 <section id="explore" class="hidden">
 <div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">KEŞ<b>FET</b></div>
-<button class="round" onclick="showScreen('profile')">🧠</button>
+<button class="round" onclick="showScreen('home')">â</button>
+<div class="logo">KEÅ<b>FET</b></div>
+<button class="round" onclick="showScreen('profile')">ð§ </button>
 </div>
 
-<h1 class="title">Kendine Bir Alan Seç</h1>
-<p class="desc">Ana sayfayı sade tuttuk. Diğer özelliklerin burada.</p>
+<h1 class="title">Kendine Bir Alan SeÃ§</h1>
+<p class="desc">FarklÄ± araÃ§lara ve gÃ¼nlÃ¼k iÃ§eriklere buradan ulaÅabilirsin.</p>
 
-<div class="card" onclick="showScreen('experiences')">
-<div class="row"><h2>Kısa Molalar ve Deneyimler</h2><span>✨</span></div>
-<p class="muted">Odak Molası, Nefes Ritmi, Hafıza Oyunu ve 3 İyi Şey.</p>
-</div>
-
-<div class="card" onclick="showScreen('history')">
-<div class="row"><h2>Geçmişim</h2><span>📊</span></div>
-<p class="muted">Tamamladığın aktiviteleri tarihleriyle gör.</p>
-</div>
-
-<div class="card" onclick="showScreen('perspective')">
-<div class="row"><h2>Başka Bir Pencereden Bak</h2><span>🪟</span></div>
-<p class="muted">Aklındaki bir konuya farklı bir açıdan yaklaş.</p>
-</div>
-
-<div class="card" onclick="showScreen('goal')">
-<div class="row"><h2>3 Günlük Mini Hedef</h2><span>🎯</span></div>
-<p class="muted" id="goalPreviewExplore">Küçük bir hedef seç ve 3 gün boyunca dene.</p>
-</div>
-
-<div class="card" onclick="showScreen('weather')">
-<div class="row"><h2>Ruh Hâli Hava Durumu</h2><span>🌤️</span></div>
-<p class="muted">Son check-in sonucunun kısa yorumunu gör.</p>
-</div>
-
-<div class="card" onclick="showScreen('calendar')">
-<div class="row"><h2>Ruh Hâli Takvimi</h2><span>📅</span></div>
-<p class="muted">Ayın nasıl geçtiğini tek bakışta gör.</p>
-</div>
-
-<div class="card" onclick="showScreen('dailyQuestion')">
-<div class="row"><h2>Günün Tek Sorusu</h2><span>💭</span></div>
-<p class="muted" id="questionPreviewExplore">Her gün farklı bir soru.</p>
-</div>
-
-<div class="card" onclick="showScreen('capsule')">
-<div class="row"><h2>Sürpriz Kapsül</h2><span>🎁</span></div>
-<p class="muted">Her gün farklı küçük bir görev.</p>
-</div>
-
-<div class="card" onclick="showScreen('auth')">
-<div class="row"><h2>Üyelik / Giriş</h2><span>👤</span></div>
-<p class="muted">Hesap oluştur veya mevcut hesabınla giriş yap.</p>
-</div>
-
-<div class="card" onclick="showScreen('contact')">
-<div class="row"><h2>Fikir & İletişim</h2><span>💌</span></div>
-<p class="muted">Öneri, eleştiri ve yeni özellik fikirlerini paylaş.</p>
-</div>
-</section>
-
-<section id="perspective" class="hidden">
-<div class="header">
-<button class="round" onclick="showScreen('explore')">←</button>
-<div class="logo">BAŞKA BİR <b>PENCERE</b></div>
-<div></div>
-</div>
 
 <div class="hero">
-<div class="heroEmoji">🪟</div>
-<h1>Başka Bir Pencereden Bak</h1>
-<p>Aklındaki konuyu yaz. Sana düşünmeni sağlayacak farklı bir bakış açısı gösterelim.</p>
+<div class="heroEmoji">ðª</div>
+<h1>BaÅka Bir Pencereden Bak</h1>
+<p>AklÄ±ndaki konuyu yaz. Sana dÃ¼ÅÃ¼nmeni saÄlayacak farklÄ± bir bakÄ±Å aÃ§Ä±sÄ± gÃ¶sterelim.</p>
 </div>
 
-<textarea id="perspectiveInput" placeholder="Aklındaki konu ne?"></textarea>
-<button class="btn primary" onclick="generatePerspective()">Farklı Bir Açı Göster</button>
+<textarea id="perspectiveInput" placeholder="AklÄ±ndaki konu ne?"></textarea>
+<button class="btn primary" onclick="generatePerspective()">FarklÄ± Bir AÃ§Ä± GÃ¶ster</button>
 
 <div class="card hidden" id="perspectiveResult">
 <h2 id="perspectiveTitle"></h2>
@@ -498,48 +423,48 @@ margin-top:5px;
 
 <section id="contact" class="hidden">
 <div class="header">
-<button class="round" onclick="showScreen('explore')">←</button>
-<div class="logo">FİKİR & <b>İLETİŞİM</b></div>
+<button class="round" onclick="showScreen('explore')">â</button>
+<div class="logo">FÄ°KÄ°R & <b>Ä°LETÄ°ÅÄ°M</b></div>
 <div></div>
 </div>
 
 <div class="hero">
-<div class="heroEmoji">💌</div>
-<h1>Fikrini Paylaş</h1>
-<p>Önerilerin, eleştirilerin veya yeni özellik fikirlerin varsa yazabilirsin.</p>
+<div class="heroEmoji">ð</div>
+<h1>Fikrini PaylaÅ</h1>
+<p>Ãnerilerin, eleÅtirilerin veya yeni Ã¶zellik fikirlerin varsa yazabilirsin.</p>
 </div>
 
 <div class="card">
 <h3>mehmettirpan1@yandex.com</h3>
-<button class="btn primary" onclick="location.href='mailto:mehmettirpan1@yandex.com?subject=Kafa%20Mola%20Öneri'">E-posta Gönder</button>
+<button class="btn primary" onclick="location.href='mailto:mehmettirpan1@yandex.com?subject=Kafa%20Mola%20Ãneri'">E-posta GÃ¶nder</button>
 </div>
 </section>
 
 <section id="slotPicker" class="hidden">
 <div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
+<button class="round" onclick="showScreen('home')">â</button>
 <div class="logo">CHECK-<b>IN</b></div>
 <div></div>
 </div>
 <h1 class="title">Hangi check-in?</h1>
-<p class="desc">Saatini kaçırdıysan da gün içinde tamamlayabilirsin. Daha önce yaptığın testi yeniden yaparsan yeni cevapların kaydedilir.</p>
+<p class="desc">Saatini kaÃ§Ä±rdÄ±ysan da gÃ¼n iÃ§inde tamamlayabilirsin. Daha Ã¶nce yaptÄ±ÄÄ±n testi yeniden yaparsan yeni cevaplarÄ±n kaydedilir.</p>
 <div class="options">
-<button class="option" onclick="startCheckinForSlot('08:00')">🌅 08:00 Sabah Check-in</button>
-<button class="option" onclick="startCheckinForSlot('20:00')">🌆 20:00 Akşam Check-in</button>
-<button class="option" onclick="startCheckinForSlot('00:00')">🌙 00:00 Gece Check-in</button>
+<button class="option" onclick="startCheckinForSlot('08:00')">ð 08:00 Sabah Check-in</button>
+<button class="option" onclick="startCheckinForSlot('20:00')">ð 20:00 AkÅam Check-in</button>
+<button class="option" onclick="startCheckinForSlot('00:00')">ð 00:00 Gece Check-in</button>
 </div>
 </section>
 
 <section id="checkin" class="hidden">
 
 <div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
+<button class="round" onclick="showScreen('home')">â</button>
 <div class="logo">CHECK-<b>IN</b></div>
 <div></div>
 </div>
 
-<h1 class="title">Kısa Check-in</h1>
-<p class="desc">Beş kısa soruyla bugünkü durumuna bakalım.</p>
+<h1 class="title">KÄ±sa Check-in</h1>
+<p class="desc">BeÅ kÄ±sa soruyla bugÃ¼nkÃ¼ durumuna bakalÄ±m.</p>
 
 <div id="questionCount" class="muted"></div>
 
@@ -555,71 +480,21 @@ margin-top:5px;
 <section id="result" class="hidden">
 
 <div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">SONUÇ <b>ÖZETİ</b></div>
+<button class="round" onclick="showScreen('home')">â</button>
+<div class="logo">SONUÃ <b>ÃZETÄ°</b></div>
 <div></div>
 </div>
 
 <div class="hero">
-<div class="heroEmoji" id="resultEmoji">🌤️</div>
+<div class="heroEmoji" id="resultEmoji">ð¤ï¸</div>
 <h1 id="resultTitle"></h1>
 <p id="resultText"></p>
 </div>
 
 <div class="card">
-<h2>Bugün sana uygun mola</h2>
+<h2>BugÃ¼n sana uygun mola</h2>
 <p class="muted" id="resultAdvice"></p>
-<button class="btn green" onclick="showScreen('experiences')">Bir Mola Seç</button>
-</div>
-
-</section>
-
-
-<section id="experiences" class="hidden">
-
-<div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">DENEYİM<b>LER</b></div>
-<div></div>
-</div>
-
-<h1 class="title">Kısa Molalar</h1>
-<p class="desc">Her gün değişen küçük deneyimler.</p>
-
-<div class="grid">
-
-<div class="card mini" onclick="showScreen('focus')">
-<div class="miniEmoji">🎯</div>
-<div>
-<h3>Günlük Odak</h3>
-<small class="muted">Bugüne özel görev.</small>
-</div>
-</div>
-
-<div class="card mini" onclick="startBreath()">
-<div class="miniEmoji">🌬️</div>
-<div>
-<h3>Nefes Ritmi</h3>
-<small class="muted">2 dakikalık mola.</small>
-</div>
-</div>
-
-<div class="card mini" onclick="showScreen('memory')">
-<div class="miniEmoji">🧠</div>
-<div>
-<h3>Hafıza Oyunu</h3>
-<small class="muted">Günlük kelime seti.</small>
-</div>
-</div>
-
-<div class="card mini" onclick="showScreen('goodThings')">
-<div class="miniEmoji">🌱</div>
-<div>
-<h3>3 İyi Şey</h3>
-<small class="muted">Her gün farklı sorular.</small>
-</div>
-</div>
-
+<button class="btn green" onclick="showScreen('focus')">Odak MolasÄ±na Git</button>
 </div>
 
 </section>
@@ -628,38 +503,18 @@ margin-top:5px;
 <section id="focus" class="hidden">
 
 <div class="header">
-<button class="round" onclick="showScreen('experiences')">←</button>
+<button class="round" onclick="showScreen('home')">â</button>
 <div class="logo">ODAK <b>MOLASI</b></div>
 <div></div>
 </div>
 
-<h1 class="title">Bugünün Odak Görevi</h1>
+<h1 class="title">BugÃ¼nÃ¼n Odak GÃ¶revi</h1>
 
 <div class="card">
 <h2 id="focusText"></h2>
 </div>
 
-<button class="btn green" onclick="finishExperience('Odak Molası')">Tamamladım +15 ⚡</button>
-
-</section>
-
-
-<section id="breath" class="hidden">
-
-<div class="header">
-<button class="round" onclick="showScreen('experiences')">←</button>
-<div class="logo">NEFES <b>RİTMİ</b></div>
-<div></div>
-</div>
-
-<h1 class="title">Daireyi takip et</h1>
-<p class="desc">Büyürken nefes al, küçülürken ver.</p>
-
-<div class="breathCircle" id="breathCircle">Nefes Al</div>
-
-<p class="desc" id="breathTime">02:00</p>
-
-<button class="btn green" onclick="finishExperience('Nefes Ritmi')">Tamamladım</button>
+<button class="btn green" onclick="finishExperience('Odak MolasÄ±')">TamamladÄ±m +15 â¡</button>
 
 </section>
 
@@ -667,7 +522,7 @@ margin-top:5px;
 <section id="memory" class="hidden">
 
 <div class="header">
-<button class="round" onclick="showScreen('experiences')">←</button>
+<button class="round" onclick="showScreen('home')">â</button>
 <div class="logo">HAFIZA <b>OYUNU</b></div>
 <div></div>
 </div>
@@ -676,10 +531,10 @@ margin-top:5px;
 
 <div class="card" id="memoryWords" style="font-size:22px;text-align:center;line-height:2"></div>
 
-<button class="btn primary" onclick="hideMemory()">Hazırım</button>
+<button class="btn primary" onclick="hideMemory()">HazÄ±rÄ±m</button>
 
 <div id="memoryQuestion" class="hidden">
-<h2 class="title">Listede hangisi vardı?</h2>
+<h2 class="title">Listede hangisi vardÄ±?</h2>
 <div class="options" id="memoryOptions"></div>
 </div>
 
@@ -689,40 +544,19 @@ margin-top:5px;
 <section id="goodThings" class="hidden">
 
 <div class="header">
-<button class="round" onclick="showScreen('experiences')">←</button>
-<div class="logo">3 İYİ <b>ŞEY</b></div>
+<button class="round" onclick="showScreen('home')">â</button>
+<div class="logo">3 Ä°YÄ° <b>ÅEY</b></div>
 <div></div>
 </div>
 
-<h1 class="title">Bugünden kalanlar</h1>
-<p class="desc">Her gün farklı üç küçük yönlendirme.</p>
+<h1 class="title">BugÃ¼nden kalanlar</h1>
+<p class="desc">Her gÃ¼n farklÄ± Ã¼Ã§ kÃ¼Ã§Ã¼k yÃ¶nlendirme.</p>
 
 <input id="good1">
 <input id="good2">
 <input id="good3">
 
-<button class="btn green" onclick="saveGoodThings()">Kaydet +10 ⚡</button>
-
-</section>
-
-
-<section id="dailyQuestion" class="hidden">
-
-<div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">TEK <b>SORU</b></div>
-<div></div>
-</div>
-
-<h1 class="title">Bugünün sorusu</h1>
-
-<div class="card">
-<h2 id="dailyQuestionText"></h2>
-</div>
-
-<textarea id="dailyAnswer" placeholder="İstersen birkaç kelime yaz..."></textarea>
-
-<button class="btn green" onclick="saveDailyAnswer()">Cevabımı Kaydet +10 ⚡</button>
+<button class="btn green" onclick="saveGoodThings()">Kaydet +10 â¡</button>
 
 </section>
 
@@ -730,22 +564,22 @@ margin-top:5px;
 <section id="capsule" class="hidden">
 
 <div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">SÜRPRİZ <b>KAPSÜL</b></div>
+<button class="round" onclick="showScreen('home')">â</button>
+<div class="logo">SÃRPRÄ°Z <b>KAPSÃL</b></div>
 <div></div>
 </div>
 
 <div class="hero">
-<div class="heroEmoji">🎁</div>
-<h1>Bugünün kapsülü</h1>
-<p>Her gün küçük bir sürpriz.</p>
+<div class="heroEmoji">ð</div>
+<h1>BugÃ¼nÃ¼n kapsÃ¼lÃ¼</h1>
+<p>Her gÃ¼n kÃ¼Ã§Ã¼k bir sÃ¼rpriz.</p>
 </div>
 
 <div class="card" id="capsuleBox">
-<p class="muted">Açmak için butona dokun.</p>
+<p class="muted">AÃ§mak iÃ§in butona dokun.</p>
 </div>
 
-<button class="btn primary" onclick="openCapsule()">Kapsülü Aç</button>
+<button class="btn primary" onclick="openCapsule()">KapsÃ¼lÃ¼ AÃ§</button>
 
 </section>
 
@@ -753,23 +587,23 @@ margin-top:5px;
 <section id="goal" class="hidden">
 
 <div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">MİNİ <b>HEDEF</b></div>
+<button class="round" onclick="showScreen('home')">â</button>
+<div class="logo">MÄ°NÄ° <b>HEDEF</b></div>
 <div></div>
 </div>
 
-<h1 class="title">3 Günlük Mini Hedef</h1>
-<p class="desc">Küçük bir değişikliği üç gün dene.</p>
+<h1 class="title">3 GÃ¼nlÃ¼k Mini Hedef</h1>
+<p class="desc">KÃ¼Ã§Ã¼k bir deÄiÅikliÄi Ã¼Ã§ gÃ¼n dene.</p>
 
 <div id="goalChoose" class="options">
 
-<button class="option" onclick="chooseGoal('Telefonu daha az kullanacağım','📵')">📵 Telefonu daha az kullanacağım</button>
+<button class="option" onclick="chooseGoal('Telefonu daha az kullanacaÄÄ±m','ðµ')">ðµ Telefonu daha az kullanacaÄÄ±m</button>
 
-<button class="option" onclick="chooseGoal('Her gün 15 dakika yürüyeceğim','🚶')">🚶 Her gün 15 dakika yürüyeceğim</button>
+<button class="option" onclick="chooseGoal('Her gÃ¼n 15 dakika yÃ¼rÃ¼yeceÄim','ð¶')">ð¶ Her gÃ¼n 15 dakika yÃ¼rÃ¼yeceÄim</button>
 
-<button class="option" onclick="chooseGoal('Yatmadan önce ekranı bırakacağım','🌙')">🌙 Yatmadan önce ekranı bırakacağım</button>
+<button class="option" onclick="chooseGoal('Yatmadan Ã¶nce ekranÄ± bÄ±rakacaÄÄ±m','ð')">ð Yatmadan Ã¶nce ekranÄ± bÄ±rakacaÄÄ±m</button>
 
-<button class="option" onclick="chooseGoal('Her gün kendime 10 dakika ayıracağım','🌱')">🌱 Kendime 10 dakika ayıracağım</button>
+<button class="option" onclick="chooseGoal('Her gÃ¼n kendime 10 dakika ayÄ±racaÄÄ±m','ð±')">ð± Kendime 10 dakika ayÄ±racaÄÄ±m</button>
 
 </div>
 
@@ -783,11 +617,11 @@ margin-top:5px;
 
 <div class="goalDays" id="goalDays"></div>
 
-<button class="btn green" onclick="completeGoalDay()">Bugün Başardım ✓</button>
+<button class="btn green" onclick="completeGoalDay()">BugÃ¼n BaÅardÄ±m â</button>
 
 <br><br>
 
-<button class="btn dark" onclick="resetGoal()">Hedefi Değiştir</button>
+<button class="btn dark" onclick="resetGoal()">Hedefi DeÄiÅtir</button>
 
 </div>
 
@@ -797,48 +631,16 @@ margin-top:5px;
 <section id="weather" class="hidden">
 
 <div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">ZİHİNSEL <b>HAVA</b></div>
+<button class="round" onclick="showScreen('home')">â</button>
+<div class="logo">ZÄ°HÄ°NSEL <b>HAVA</b></div>
 <div></div>
 </div>
 
 <div class="hero">
-<div class="heroEmoji" id="weatherEmoji">🌤️</div>
-<h1 id="weatherTitle">Henüz veri yok</h1>
-<p id="weatherText">Check-in tamamladığında burada yorum oluşacak.</p>
+<div class="heroEmoji" id="weatherEmoji">ð¤ï¸</div>
+<h1 id="weatherTitle">HenÃ¼z veri yok</h1>
+<p id="weatherText">Check-in tamamladÄ±ÄÄ±nda burada yorum oluÅacak.</p>
 </div>
-
-</section>
-
-
-<section id="calendar" class="hidden">
-
-<div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">RUH HÂLİ <b>TAKVİMİ</b></div>
-<div></div>
-</div>
-
-<h1 class="title" id="calendarTitle"></h1>
-
-<div class="card">
-<div class="calendar" id="calendarGrid"></div>
-</div>
-
-</section>
-
-
-<section id="history" class="hidden">
-
-<div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">GEÇMİŞ<b>İM</b></div>
-<div></div>
-</div>
-
-<h1 class="title">Aktiviteler</h1>
-
-<div class="card" id="historyList"></div>
 
 </section>
 
@@ -846,15 +648,15 @@ margin-top:5px;
 <section id="profile" class="hidden">
 
 <div class="header">
-<button class="round" onclick="showScreen('home')">←</button>
-<div class="logo">PROF<b>İL</b></div>
+<button class="round" onclick="showScreen('home')">â</button>
+<div class="logo">PROF<b>Ä°L</b></div>
 <div></div>
 </div>
 
 <div class="hero">
-<div class="heroEmoji">🧠</div>
-<h1 id="profileRank">Çaylak</h1>
-<p>Kafa Mola Yolculuğun</p>
+<div class="heroEmoji">ð§ </div>
+<h1 id="profileRank">Ãaylak</h1>
+<p>Kafa Mola YolculuÄun</p>
 </div>
 
 <div class="stats">
@@ -878,14 +680,14 @@ margin-top:5px;
 
 
 <div class="card" id="accountCard">
-<h2 id="accountTitle">Üyelik</h2>
-<p class="muted" id="accountText">Raporlarını ve profilini saklamak için giriş yap veya üye ol.</p>
-<button class="btn primary" id="accountButton" onclick="showScreen('auth')">Giriş Yap / Üye Ol</button>
+<h2 id="accountTitle">Ãyelik</h2>
+<p class="muted" id="accountText">RaporlarÄ±nÄ± ve profilini saklamak iÃ§in giriÅ yap veya Ã¼ye ol.</p>
+<button class="btn primary" id="accountButton" onclick="showScreen('auth')">GiriÅ Yap / Ãye Ol</button>
 </div>
 
 <div class="card">
-<h2>📄 Günlük Raporlar</h2>
-<p class="muted">08:00, 20:00 ve 00:00 check-in sonuçlarına göre saat 02:00 sonrası hazırlanır.</p>
+<h2>ð GÃ¼nlÃ¼k Raporlar</h2>
+<p class="muted">08:00, 20:00 ve 00:00 check-in sonuÃ§larÄ±na gÃ¶re saat 02:00 sonrasÄ± hazÄ±rlanÄ±r.</p>
 <div id="dailyReports"></div>
 </div>
 
@@ -897,27 +699,19 @@ margin-top:5px;
 <nav class="nav">
 
 <div class="navItem" onclick="showScreen('home')">
-<span>⌂</span>
+<span>â</span>
 Ana Sayfa
 </div>
 
-<div class="navItem" onclick="showScreen('experiences')">
-<span>✨</span>
-Deneyimler
-</div>
 
 <div class="navItem" onclick="showScreen('explore')">
-<span>🪟</span>
-Keşfet
+<span>ðª</span>
+KeÅfet
 </div>
 
-<div class="navItem" onclick="showScreen('history')">
-<span>📊</span>
-Geçmiş
-</div>
 
 <div class="navItem" onclick="showScreen('profile')">
-<span>♙</span>
+<span>â</span>
 Profil
 </div>
 
@@ -933,17 +727,17 @@ const screens = [
 "home",
 "checkin",
 "result",
-"experiences",
+
 "focus",
-"breath",
+
 "memory",
 "goodThings",
-"dailyQuestion",
+
 "capsule",
 "goal",
 "weather",
-"calendar",
-"history",
+
+
 "profile",
 "auth",
 "explore",
@@ -953,320 +747,319 @@ const screens = [
 ];
 
 const ranks = [
-["Çaylak",0],
-["Gözcü",100],
-["Kaşif",250],
-["Öncü",500],
+["Ãaylak",0],
+["GÃ¶zcÃ¼",100],
+["KaÅif",250],
+["ÃncÃ¼",500],
 ["Uzman",850],
 ["Kaptan",1300],
 ["Komutan",2000],
-["Mareşal",3000]
+["MareÅal",3000]
 ];
 
 const questions = [
-"Bugün tekrar yaşayabilsen hangi 10 dakikayı seçerdin?",
-"Bugün seni en çok ne rahatlattı?",
-"Bugün kendinle ilgili ne fark ettin?",
-"Şu an hayatında neyi biraz azaltmak isterdin?",
-"Bugün hangi küçük şey beklediğinden daha iyi geçti?",
-"Son zamanlarda sana enerji veren şey ne?",
-"Bugün kime teşekkür etmek isterdin ve neden?",
-"Şu an zihninde en fazla yer kaplayan konu ne?",
-"Bugün kendine daha nazik davransaydın neyi farklı yapardın?",
-"Bugün seni gülümseten en küçük şey neydi?",
-"Bir alışkanlığını değiştirebilseydin hangisi olurdu?",
-"Bugün hangi anda gerçekten oradaydın?",
-"Şu an en çok neye ihtiyacın var?",
-"Bugün öğrendiğin küçük bir şey ne?",
-"Hangi işi bitirmek sana en fazla rahatlama getirirdi?",
-"Bugün birine söylemek istediğin şey ne?",
-"Son günlerde seni şaşırtan şey ne oldu?",
-"Bugün hangi düşünceyi yanında taşımak istemezdin?",
-"Kendine bugün tek bir tavsiye versen ne derdin?",
-"Şu an hayatındaki hangi şey için minnettarsın?",
-"Bugün neyi gereğinden fazla düşündün?",
-"Son zamanlarda hangi anı tekrar hatırlıyorsun?",
-"Bugün enerjini en çok ne tüketti?",
-"Bugün enerjini en çok ne yükseltti?",
-"Yarın daha iyi hissetmek için bu akşam ne yapabilirsin?",
-"Bir korkun olmasaydı bugün ne yapardın?",
-"Kendinde en sevdiğin küçük özellik ne?",
-"Bugün hangi konuda kendine haksızlık ettin?",
-"Şu an çözmek zorunda olmadığın şey ne?",
-"Bugünü yeniden yaşasan neyi farklı yapardın?",
-"Son bir ayda sende değişen bir şey var mı?",
-"Bugün hangi sınırını korumak isterdin?",
-"Şu an bırakman gereken küçük yük ne?",
-"Bugün seni en çok kim anladı?",
-"Bugün sen kimi gerçekten dinledin?",
-"Hayatında daha fazla yer açmak istediğin şey ne?",
-"Bugün kendin için yaptığın en iyi şey neydi?",
-"Ruh hâlini tek cümleyle nasıl anlatırsın?",
-"Bugün seni zorlayan şey sana ne öğretti?",
-"Yarın için tek bir niyet seçsen ne olurdu?",
-"Bugün hangi anda zaman hızlı geçti?",
-"Bugün hangi anda zaman yavaşladı?",
-"Kendine daha çok güvenseydin hangi adımı atardın?",
-"Hayatında sadeleştirebileceğin ne var?",
-"Bugün hangi küçük başarıyı görmezden geldin?",
-"Şu an kime sarılmak isterdin?",
-"Bugün duymaya ihtiyacın olan cümle ne?",
-"Şu an neyi kontrol etmeye çalışıyorsun?",
-"Kontrolün dışında olan neyi bırakabilirsin?",
-"Bugün seni en çok hangi düşünce ziyaret etti?",
-"Son zamanlarda neyi özlüyorsun?",
-"Bugün bir fotoğraf çekseydin neyin fotoğrafını çekerdin?",
-"Bugünün bir rengi olsaydı hangisi olurdu?",
-"Bugünün bir şarkısı olsaydı hangisi olurdu?",
-"Bugün hangi karar seni rahatlattı?",
-"Kime daha fazla zaman ayırmak istersin?",
-"Bugün kendini ne zaman güçlü hissettin?",
-"Bugün kendini ne zaman yorgun hissettin?",
-"Bir ay sonraki kendine ne söylemek istersin?",
-"Bir yıl önceki kendine ne söylemek isterdin?",
-"Bugün seni ne meraklandırdı?",
-"Bugün neye hayır demek isterdin?",
-"Bugün neye daha çok evet demek isterdin?",
-"Şu an hayatında en çok neyi bekliyorsun?",
-"Bugün seni rahatlatan bir ses neydi?",
-"Bugün fark ettiğin güzel bir ayrıntı neydi?",
-"Kendine 20 dakika ayırsan ne yapardın?",
-"Bugün hangi konuşma sende kaldı?",
-"Bugün bir şeyi fazla ciddiye aldın mı?",
-"Şu an seni ne gülümsetebilir?",
-"Bugün kendinle gurur duyduğun şey ne?",
-"Bugün hangi alışkanlığın sana yardımcı oldu?",
-"Hangi alışkanlığın işini zorlaştırdı?",
-"Bugün bir şeyi affedebilseydin ne olurdu?",
-"Şu an en çok hangi duyguyu hissediyorsun?",
-"Bu duygunun senden istediği şey ne olabilir?",
-"Bugün kendine verdiğin sözü tuttun mu?",
-"Yarın için kendine hangi küçük sözü verebilirsin?",
-"Bugün hayatını kolaylaştıran biri oldu mu?",
-"Sen bugün kimin hayatını biraz kolaylaştırdın?",
-"Şu an önceliğin gerçekten ne?",
-"Bugün neyi erteledin ve neden?",
-"Bugün başladığın küçük bir şey var mı?",
-"Zihnini boşaltmak için ne yapabilirsin?",
-"Bugün hangi anı saklamak isterdin?",
-"Bugün kendine ne kadar anlayış gösterdin?",
-"Seni ileri taşıyacak en küçük adım ne?",
-"Bugün bir şeyi olduğu gibi kabul edebildin mi?",
-"Bugün neye gereğinden az zaman ayırdın?",
-"90 gün sonraki kendin sana ne için teşekkür ederdi?"
+"BugÃ¼n tekrar yaÅayabilsen hangi 10 dakikayÄ± seÃ§erdin?",
+"BugÃ¼n seni en Ã§ok ne rahatlattÄ±?",
+"BugÃ¼n kendinle ilgili ne fark ettin?",
+"Åu an hayatÄ±nda neyi biraz azaltmak isterdin?",
+"BugÃ¼n hangi kÃ¼Ã§Ã¼k Åey beklediÄinden daha iyi geÃ§ti?",
+"Son zamanlarda sana enerji veren Åey ne?",
+"BugÃ¼n kime teÅekkÃ¼r etmek isterdin ve neden?",
+"Åu an zihninde en fazla yer kaplayan konu ne?",
+"BugÃ¼n kendine daha nazik davransaydÄ±n neyi farklÄ± yapardÄ±n?",
+"BugÃ¼n seni gÃ¼lÃ¼mseten en kÃ¼Ã§Ã¼k Åey neydi?",
+"Bir alÄ±ÅkanlÄ±ÄÄ±nÄ± deÄiÅtirebilseydin hangisi olurdu?",
+"BugÃ¼n hangi anda gerÃ§ekten oradaydÄ±n?",
+"Åu an en Ã§ok neye ihtiyacÄ±n var?",
+"BugÃ¼n Ã¶ÄrendiÄin kÃ¼Ã§Ã¼k bir Åey ne?",
+"Hangi iÅi bitirmek sana en fazla rahatlama getirirdi?",
+"BugÃ¼n birine sÃ¶ylemek istediÄin Åey ne?",
+"Son gÃ¼nlerde seni ÅaÅÄ±rtan Åey ne oldu?",
+"BugÃ¼n hangi dÃ¼ÅÃ¼nceyi yanÄ±nda taÅÄ±mak istemezdin?",
+"Kendine bugÃ¼n tek bir tavsiye versen ne derdin?",
+"Åu an hayatÄ±ndaki hangi Åey iÃ§in minnettarsÄ±n?",
+"BugÃ¼n neyi gereÄinden fazla dÃ¼ÅÃ¼ndÃ¼n?",
+"Son zamanlarda hangi anÄ± tekrar hatÄ±rlÄ±yorsun?",
+"BugÃ¼n enerjini en Ã§ok ne tÃ¼ketti?",
+"BugÃ¼n enerjini en Ã§ok ne yÃ¼kseltti?",
+"YarÄ±n daha iyi hissetmek iÃ§in bu akÅam ne yapabilirsin?",
+"Bir korkun olmasaydÄ± bugÃ¼n ne yapardÄ±n?",
+"Kendinde en sevdiÄin kÃ¼Ã§Ã¼k Ã¶zellik ne?",
+"BugÃ¼n hangi konuda kendine haksÄ±zlÄ±k ettin?",
+"Åu an Ã§Ã¶zmek zorunda olmadÄ±ÄÄ±n Åey ne?",
+"BugÃ¼nÃ¼ yeniden yaÅasan neyi farklÄ± yapardÄ±n?",
+"Son bir ayda sende deÄiÅen bir Åey var mÄ±?",
+"BugÃ¼n hangi sÄ±nÄ±rÄ±nÄ± korumak isterdin?",
+"Åu an bÄ±rakman gereken kÃ¼Ã§Ã¼k yÃ¼k ne?",
+"BugÃ¼n seni en Ã§ok kim anladÄ±?",
+"BugÃ¼n sen kimi gerÃ§ekten dinledin?",
+"HayatÄ±nda daha fazla yer aÃ§mak istediÄin Åey ne?",
+"BugÃ¼n kendin iÃ§in yaptÄ±ÄÄ±n en iyi Åey neydi?",
+"Ruh hÃ¢lini tek cÃ¼mleyle nasÄ±l anlatÄ±rsÄ±n?",
+"BugÃ¼n seni zorlayan Åey sana ne Ã¶Äretti?",
+"YarÄ±n iÃ§in tek bir niyet seÃ§sen ne olurdu?",
+"BugÃ¼n hangi anda zaman hÄ±zlÄ± geÃ§ti?",
+"BugÃ¼n hangi anda zaman yavaÅladÄ±?",
+"Kendine daha Ã§ok gÃ¼venseydin hangi adÄ±mÄ± atardÄ±n?",
+"HayatÄ±nda sadeleÅtirebileceÄin ne var?",
+"BugÃ¼n hangi kÃ¼Ã§Ã¼k baÅarÄ±yÄ± gÃ¶rmezden geldin?",
+"Åu an kime sarÄ±lmak isterdin?",
+"BugÃ¼n duymaya ihtiyacÄ±n olan cÃ¼mle ne?",
+"Åu an neyi kontrol etmeye Ã§alÄ±ÅÄ±yorsun?",
+"KontrolÃ¼n dÄ±ÅÄ±nda olan neyi bÄ±rakabilirsin?",
+"BugÃ¼n seni en Ã§ok hangi dÃ¼ÅÃ¼nce ziyaret etti?",
+"Son zamanlarda neyi Ã¶zlÃ¼yorsun?",
+"BugÃ¼n bir fotoÄraf Ã§ekseydin neyin fotoÄrafÄ±nÄ± Ã§ekerdin?",
+"BugÃ¼nÃ¼n bir rengi olsaydÄ± hangisi olurdu?",
+"BugÃ¼nÃ¼n bir ÅarkÄ±sÄ± olsaydÄ± hangisi olurdu?",
+"BugÃ¼n hangi karar seni rahatlattÄ±?",
+"Kime daha fazla zaman ayÄ±rmak istersin?",
+"BugÃ¼n kendini ne zaman gÃ¼Ã§lÃ¼ hissettin?",
+"BugÃ¼n kendini ne zaman yorgun hissettin?",
+"Bir ay sonraki kendine ne sÃ¶ylemek istersin?",
+"Bir yÄ±l Ã¶nceki kendine ne sÃ¶ylemek isterdin?",
+"BugÃ¼n seni ne meraklandÄ±rdÄ±?",
+"BugÃ¼n neye hayÄ±r demek isterdin?",
+"BugÃ¼n neye daha Ã§ok evet demek isterdin?",
+"Åu an hayatÄ±nda en Ã§ok neyi bekliyorsun?",
+"BugÃ¼n seni rahatlatan bir ses neydi?",
+"BugÃ¼n fark ettiÄin gÃ¼zel bir ayrÄ±ntÄ± neydi?",
+"Kendine 20 dakika ayÄ±rsan ne yapardÄ±n?",
+"BugÃ¼n hangi konuÅma sende kaldÄ±?",
+"BugÃ¼n bir Åeyi fazla ciddiye aldÄ±n mÄ±?",
+"Åu an seni ne gÃ¼lÃ¼msetebilir?",
+"BugÃ¼n kendinle gurur duyduÄun Åey ne?",
+"BugÃ¼n hangi alÄ±ÅkanlÄ±ÄÄ±n sana yardÄ±mcÄ± oldu?",
+"Hangi alÄ±ÅkanlÄ±ÄÄ±n iÅini zorlaÅtÄ±rdÄ±?",
+"BugÃ¼n bir Åeyi affedebilseydin ne olurdu?",
+"Åu an en Ã§ok hangi duyguyu hissediyorsun?",
+"Bu duygunun senden istediÄi Åey ne olabilir?",
+"BugÃ¼n kendine verdiÄin sÃ¶zÃ¼ tuttun mu?",
+"YarÄ±n iÃ§in kendine hangi kÃ¼Ã§Ã¼k sÃ¶zÃ¼ verebilirsin?",
+"BugÃ¼n hayatÄ±nÄ± kolaylaÅtÄ±ran biri oldu mu?",
+"Sen bugÃ¼n kimin hayatÄ±nÄ± biraz kolaylaÅtÄ±rdÄ±n?",
+"Åu an Ã¶nceliÄin gerÃ§ekten ne?",
+"BugÃ¼n neyi erteledin ve neden?",
+"BugÃ¼n baÅladÄ±ÄÄ±n kÃ¼Ã§Ã¼k bir Åey var mÄ±?",
+"Zihnini boÅaltmak iÃ§in ne yapabilirsin?",
+"BugÃ¼n hangi anÄ± saklamak isterdin?",
+"BugÃ¼n kendine ne kadar anlayÄ±Å gÃ¶sterdin?",
+"Seni ileri taÅÄ±yacak en kÃ¼Ã§Ã¼k adÄ±m ne?",
+"BugÃ¼n bir Åeyi olduÄu gibi kabul edebildin mi?",
+"BugÃ¼n neye gereÄinden az zaman ayÄ±rdÄ±n?",
+"90 gÃ¼n sonraki kendin sana ne iÃ§in teÅekkÃ¼r ederdi?"
 ];
 
 const capsules = [
-"5 dakika boyunca telefonunu başka bir odada bırak.",
-"Bir şarkıyı hiçbir şey yapmadan sadece dinle.",
-"Bir kişiye içten bir teşekkür mesajı gönder.",
-"10 dakikalık kısa bir yürüyüş yap.",
-"Ertelediğin küçük bir işe yalnızca 2 dakikalığına başla.",
-"2 dakika boyunca gökyüzüne bak.",
-"Uzun zamandır konuşmadığın birine nasılsın diye yaz.",
-"Bir bardak suyu yavaşça ve fark ederek iç.",
-"Bulunduğun yerde gördüğün 5 rengi say.",
-"Kendin için küçük bir şeyi ertelemeden yap.",
-"Telefonundaki gereksiz 10 ekran görüntüsünü sil.",
-"Sevdiğin bir fotoğrafı bul ve neden sevdiğini düşün.",
+"5 dakika boyunca telefonunu baÅka bir odada bÄ±rak.",
+"Bir ÅarkÄ±yÄ± hiÃ§bir Åey yapmadan sadece dinle.",
+"Bir kiÅiye iÃ§ten bir teÅekkÃ¼r mesajÄ± gÃ¶nder.",
+"10 dakikalÄ±k kÄ±sa bir yÃ¼rÃ¼yÃ¼Å yap.",
+"ErtelediÄin kÃ¼Ã§Ã¼k bir iÅe yalnÄ±zca 2 dakikalÄ±ÄÄ±na baÅla.",
+"2 dakika boyunca gÃ¶kyÃ¼zÃ¼ne bak.",
+"Uzun zamandÄ±r konuÅmadÄ±ÄÄ±n birine nasÄ±lsÄ±n diye yaz.",
+"Bir bardak suyu yavaÅÃ§a ve fark ederek iÃ§.",
+"BulunduÄun yerde gÃ¶rdÃ¼ÄÃ¼n 5 rengi say.",
+"Kendin iÃ§in kÃ¼Ã§Ã¼k bir Åeyi ertelemeden yap.",
+"Telefonundaki gereksiz 10 ekran gÃ¶rÃ¼ntÃ¼sÃ¼nÃ¼ sil.",
+"SevdiÄin bir fotoÄrafÄ± bul ve neden sevdiÄini dÃ¼ÅÃ¼n.",
 "Birine samimi bir iltifat et.",
-"5 dakika sessizce otur ve çevrendeki sesleri dinle.",
-"Bir işi normalden daha yavaş ve dikkatli yap.",
-"Bir pencere aç ve 10 rahat nefes al.",
-"Çocukken sevdiğin bir şarkıyı dinle.",
-"Bugün bir şikâyetini daha sakin bir cümleyle ifade et.",
-"Masandaki küçük bir alanı düzenle.",
-"Aklını en çok meşgul eden şeyi bir kâğıda yaz.",
-"Çayını veya kahveni telefona bakmadan iç.",
-"Bir kişiye teşekkür etmek için özel bir neden bul.",
-"5 dakika boyunca sadece yürüyüşüne odaklan.",
-"Kendine bugün iyi yaptığın bir şeyi söyle.",
-"Ertelediğin küçük bir mesajı gönder.",
+"5 dakika sessizce otur ve Ã§evrendeki sesleri dinle.",
+"Bir iÅi normalden daha yavaÅ ve dikkatli yap.",
+"Bir pencere aÃ§ ve 10 rahat nefes al.",
+"Ãocukken sevdiÄin bir ÅarkÄ±yÄ± dinle.",
+"BugÃ¼n bir ÅikÃ¢yetini daha sakin bir cÃ¼mleyle ifade et.",
+"Masandaki kÃ¼Ã§Ã¼k bir alanÄ± dÃ¼zenle.",
+"AklÄ±nÄ± en Ã§ok meÅgul eden Åeyi bir kÃ¢ÄÄ±da yaz.",
+"ÃayÄ±nÄ± veya kahveni telefona bakmadan iÃ§.",
+"Bir kiÅiye teÅekkÃ¼r etmek iÃ§in Ã¶zel bir neden bul.",
+"5 dakika boyunca sadece yÃ¼rÃ¼yÃ¼ÅÃ¼ne odaklan.",
+"Kendine bugÃ¼n iyi yaptÄ±ÄÄ±n bir Åeyi sÃ¶yle.",
+"ErtelediÄin kÃ¼Ã§Ã¼k bir mesajÄ± gÃ¶nder.",
 "Bir dakika bedenindeki gergin yerleri fark et.",
-"Bir öğünün ilk 5 dakikasını ekransız ye.",
-"Kullanmadığın bir şeyi ayır.",
-"Bir arkadaşına güzel bir anınızı hatırlatan mesaj gönder.",
-"Bir işi bitirdikten sonra 30 saniye hiçbir şeye geçmeden bekle.",
-"Çevrende daha önce fark etmediğin 3 ayrıntı bul.",
-"Kendine geleceğe yönelik kısa bir not yaz.",
-"Bir kişiyi sözünü kesmeden dikkatle dinle.",
-"5 dakika sevdiğin bir müziğe eşlik et.",
-"Bugün yapmayacağın bir şeyi bilinçli olarak seç.",
-"Bildirimlerini 30 dakikalığına sessize al.",
-"Bir ağaca veya gökyüzüne dikkatle bak.",
-"Birine küçük bir yardım yap.",
-"Kendine sevdiğin bir içecek hazırla.",
-"Bugün seni güldüren bir şeyi not et.",
-"Bir çekmeceyi 5 dakika düzenle.",
-"Bir karar öncesi kendine gerçekten isteyip istemediğini sor.",
-"Bir kişiye sebepsiz yere iyi dilek mesajı gönder.",
-"3 dakika omuzlarını ve boynunu rahatlat.",
-"Sosyal medyaya girişini bir kez ertele.",
-"Bir çocukluk anını ayrıntılarıyla hatırla.",
-"Bugün duyduğun güzel bir cümleyi not et.",
-"Kendine 10 dakikalık boş zaman oluştur.",
-"Bir işi mükemmel değil, yeterince iyi bitir.",
-"Birinin işini küçük bir şekilde kolaylaştır.",
-"5 dakika pencereden dışarıyı izle.",
-"Telefonunun ana ekranını sadeleştir.",
-"Bir kişiye neden değer verdiğini söyle.",
+"Bir Ã¶ÄÃ¼nÃ¼n ilk 5 dakikasÄ±nÄ± ekransÄ±z ye.",
+"KullanmadÄ±ÄÄ±n bir Åeyi ayÄ±r.",
+"Bir arkadaÅÄ±na gÃ¼zel bir anÄ±nÄ±zÄ± hatÄ±rlatan mesaj gÃ¶nder.",
+"Bir iÅi bitirdikten sonra 30 saniye hiÃ§bir Åeye geÃ§meden bekle.",
+"Ãevrende daha Ã¶nce fark etmediÄin 3 ayrÄ±ntÄ± bul.",
+"Kendine geleceÄe yÃ¶nelik kÄ±sa bir not yaz.",
+"Bir kiÅiyi sÃ¶zÃ¼nÃ¼ kesmeden dikkatle dinle.",
+"5 dakika sevdiÄin bir mÃ¼ziÄe eÅlik et.",
+"BugÃ¼n yapmayacaÄÄ±n bir Åeyi bilinÃ§li olarak seÃ§.",
+"Bildirimlerini 30 dakikalÄ±ÄÄ±na sessize al.",
+"Bir aÄaca veya gÃ¶kyÃ¼zÃ¼ne dikkatle bak.",
+"Birine kÃ¼Ã§Ã¼k bir yardÄ±m yap.",
+"Kendine sevdiÄin bir iÃ§ecek hazÄ±rla.",
+"BugÃ¼n seni gÃ¼ldÃ¼ren bir Åeyi not et.",
+"Bir Ã§ekmeceyi 5 dakika dÃ¼zenle.",
+"Bir karar Ã¶ncesi kendine gerÃ§ekten isteyip istemediÄini sor.",
+"Bir kiÅiye sebepsiz yere iyi dilek mesajÄ± gÃ¶nder.",
+"3 dakika omuzlarÄ±nÄ± ve boynunu rahatlat.",
+"Sosyal medyaya giriÅini bir kez ertele.",
+"Bir Ã§ocukluk anÄ±nÄ± ayrÄ±ntÄ±larÄ±yla hatÄ±rla.",
+"BugÃ¼n duyduÄun gÃ¼zel bir cÃ¼mleyi not et.",
+"Kendine 10 dakikalÄ±k boÅ zaman oluÅtur.",
+"Bir iÅi mÃ¼kemmel deÄil, yeterince iyi bitir.",
+"Birinin iÅini kÃ¼Ã§Ã¼k bir Åekilde kolaylaÅtÄ±r.",
+"5 dakika pencereden dÄ±ÅarÄ±yÄ± izle.",
+"Telefonunun ana ekranÄ±nÄ± sadeleÅtir.",
+"Bir kiÅiye neden deÄer verdiÄini sÃ¶yle.",
 "Bir dakika esneme yap.",
-"Seni yoran bir düşünceyi yazıp kâğıdı kapat.",
-"Sevdiğin bir kokuyu bilinçli olarak fark et.",
-"Bugün bir yere 10 dakika erken hazırlan.",
-"Bir arkadaşının güzel bir özelliğini ona söyle.",
-"Kısa yürüyüşte adımlarını say.",
-"Bir işi sekme değiştirmeden bitir.",
-"Eski bir fotoğrafa bak ve o günkü kendine bir cümle söyle.",
-"Kendine küçük bir ödül belirle.",
-"Birine gerçekten merak ettiğin bir soru sor.",
-"2 dakika nefesinin doğal ritmini izle.",
-"Gereksiz bir tartışmadan bilinçli olarak uzak dur.",
-"Bulunduğun ortamın ışığını değiştir ve etkisini fark et.",
-"Bugün tamamladığın 3 küçük şeyi say.",
-"Birine komik bir şey gönder.",
-"5 dakika boyunca tek bir işe odaklan.",
-"Bir şeyi sonra demeden hemen yap.",
-"Şu an istediğin 3 şeyi yaz.",
-"Birine teşekkür ederken nedenini de söyle.",
-"Kulaklığını çıkar ve çevreni dinle.",
-"Bugün bir bardak daha fazla su iç.",
-"Kendini biriyle kıyasladığını fark ettiğinde düşünceyi bırak.",
-"Sevdiğin bir yeri zihninde ayrıntılarıyla canlandır.",
-"Bir kişiye nasıl yardımcı olabileceğini sor.",
-"5 dakika haber ve sosyal medya akışından uzak dur.",
-"Yarın için tek bir küçük öncelik belirle.",
+"Seni yoran bir dÃ¼ÅÃ¼nceyi yazÄ±p kÃ¢ÄÄ±dÄ± kapat.",
+"SevdiÄin bir kokuyu bilinÃ§li olarak fark et.",
+"BugÃ¼n bir yere 10 dakika erken hazÄ±rlan.",
+"Bir arkadaÅÄ±nÄ±n gÃ¼zel bir Ã¶zelliÄini ona sÃ¶yle.",
+"KÄ±sa yÃ¼rÃ¼yÃ¼Åte adÄ±mlarÄ±nÄ± say.",
+"Bir iÅi sekme deÄiÅtirmeden bitir.",
+"Eski bir fotoÄrafa bak ve o gÃ¼nkÃ¼ kendine bir cÃ¼mle sÃ¶yle.",
+"Kendine kÃ¼Ã§Ã¼k bir Ã¶dÃ¼l belirle.",
+"Birine gerÃ§ekten merak ettiÄin bir soru sor.",
+"2 dakika nefesinin doÄal ritmini izle.",
+"Gereksiz bir tartÄ±Åmadan bilinÃ§li olarak uzak dur.",
+"BulunduÄun ortamÄ±n Ä±ÅÄ±ÄÄ±nÄ± deÄiÅtir ve etkisini fark et.",
+"BugÃ¼n tamamladÄ±ÄÄ±n 3 kÃ¼Ã§Ã¼k Åeyi say.",
+"Birine komik bir Åey gÃ¶nder.",
+"5 dakika boyunca tek bir iÅe odaklan.",
+"Bir Åeyi sonra demeden hemen yap.",
+"Åu an istediÄin 3 Åeyi yaz.",
+"Birine teÅekkÃ¼r ederken nedenini de sÃ¶yle.",
+"KulaklÄ±ÄÄ±nÄ± Ã§Ä±kar ve Ã§evreni dinle.",
+"BugÃ¼n bir bardak daha fazla su iÃ§.",
+"Kendini biriyle kÄ±yasladÄ±ÄÄ±nÄ± fark ettiÄinde dÃ¼ÅÃ¼nceyi bÄ±rak.",
+"SevdiÄin bir yeri zihninde ayrÄ±ntÄ±larÄ±yla canlandÄ±r.",
+"Bir kiÅiye nasÄ±l yardÄ±mcÄ± olabileceÄini sor.",
+"5 dakika haber ve sosyal medya akÄ±ÅÄ±ndan uzak dur.",
+"YarÄ±n iÃ§in tek bir kÃ¼Ã§Ã¼k Ã¶ncelik belirle.",
 "Seni rahatlatan bir hareketi tekrar et.",
-"Bir şarkının sözleri yerine enstrümanlarına dikkat et.",
-"Geçmişte yaptığın iyi bir seçimi hatırla.",
-"Bir kişiye kısa bir sesli mesaj gönder.",
-"Çevrende yuvarlak, kare ve üçgen birer nesne bul.",
-"Bugün gereksiz bir harcamayı ertele.",
-"Bir dakika yüz kaslarını bilinçli olarak gevşet.",
-"Seni motive eden bir cümle yaz.",
-"Birine küçük bir sürpriz yap.",
+"Bir ÅarkÄ±nÄ±n sÃ¶zleri yerine enstrÃ¼manlarÄ±na dikkat et.",
+"GeÃ§miÅte yaptÄ±ÄÄ±n iyi bir seÃ§imi hatÄ±rla.",
+"Bir kiÅiye kÄ±sa bir sesli mesaj gÃ¶nder.",
+"Ãevrende yuvarlak, kare ve Ã¼Ã§gen birer nesne bul.",
+"BugÃ¼n gereksiz bir harcamayÄ± ertele.",
+"Bir dakika yÃ¼z kaslarÄ±nÄ± bilinÃ§li olarak gevÅet.",
+"Seni motive eden bir cÃ¼mle yaz.",
+"Birine kÃ¼Ã§Ã¼k bir sÃ¼rpriz yap.",
 "10 dakika boyunca telefonsuz kal.",
-"Bugünün sonunda iyi ki yaptım diyebileceğin küçük bir şey yap."
+"BugÃ¼nÃ¼n sonunda iyi ki yaptÄ±m diyebileceÄin kÃ¼Ã§Ã¼k bir Åey yap."
 ];
 
 const focusTasks = [
-"Çevrende 5 şey gör, 4 şeye dokun, 3 ses duy, 2 koku fark et ve 1 düşünceni isimlendir.",
-"60 saniye boyunca yalnızca bulunduğun yerdeki sesleri say.",
-"Çevrende aynı renkte 7 nesne bul.",
-"2 dakika ayaklarının yere temasını fark ederek yürü.",
+"Ãevrende 5 Åey gÃ¶r, 4 Åeye dokun, 3 ses duy, 2 koku fark et ve 1 dÃ¼ÅÃ¼nceni isimlendir.",
+"60 saniye boyunca yalnÄ±zca bulunduÄun yerdeki sesleri say.",
+"Ãevrende aynÄ± renkte 7 nesne bul.",
+"2 dakika ayaklarÄ±nÄ±n yere temasÄ±nÄ± fark ederek yÃ¼rÃ¼.",
 "Bir nesneyi eline al ve dokusunu dikkatle incele.",
-"30'dan geriye üçer üçer say.",
-"Bir dakika nefesini değiştirmeden sadece izle.",
-"Daha önce fark etmediğin 5 ayrıntı bul.",
-"Bir şarkının yalnızca ritmini takip et.",
-"Tek bir noktaya bak ve çevresel görüşünü fark et.",
-"Bir harf seç ve o harfle başlayan 10 kelime bul.",
-"Üç farklı yüzeye dokun ve farklarını hisset.",
-"Duyabildiğin en uzak sesi bulmaya çalış.",
-"20'den geriye yavaşça say.",
-"Çevrende köşeli 5 nesne bul.",
-"Bir bardak suyu 10 yudumda iç.",
-"Bir dakika yalnızca sağ elindeki hisleri fark et.",
-"Bir dakika yalnızca sol elindeki hisleri fark et.",
-"Işık ve gölgelerde 5 farklı ton bul.",
-"Bir kelime seç ve 8 çağrışım bul.",
-"2 dakika yaptığın işi yarı hızında yap.",
-"Çevrende üç farklı sıcaklık hissi bul.",
-"Bir nesneyi incele, gözünü kapat ve ayrıntılarını hatırla.",
-"1'den 20'ye çok yavaş say.",
-"A, E ve K harfiyle başlayan nesneler bul.",
-"Bir dakika çeneni ve omuzlarını gevşet.",
-"Telefonu ters çevir ve 3 dakika tek işe odaklan.",
-"Bir ses seç ve kaybolana kadar takip et.",
-"Beş nesneyi zihninde boyut sırasına koy.",
-"Bir dakika yalnızca çevrendeki hareketleri fark et."
+"30'dan geriye Ã¼Ã§er Ã¼Ã§er say.",
+"Bir dakika nefesini deÄiÅtirmeden sadece izle.",
+"Daha Ã¶nce fark etmediÄin 5 ayrÄ±ntÄ± bul.",
+"Bir ÅarkÄ±nÄ±n yalnÄ±zca ritmini takip et.",
+"Tek bir noktaya bak ve Ã§evresel gÃ¶rÃ¼ÅÃ¼nÃ¼ fark et.",
+"Bir harf seÃ§ ve o harfle baÅlayan 10 kelime bul.",
+"ÃÃ§ farklÄ± yÃ¼zeye dokun ve farklarÄ±nÄ± hisset.",
+"DuyabildiÄin en uzak sesi bulmaya Ã§alÄ±Å.",
+"20'den geriye yavaÅÃ§a say.",
+"Ãevrende kÃ¶Åeli 5 nesne bul.",
+"Bir bardak suyu 10 yudumda iÃ§.",
+"Bir dakika yalnÄ±zca saÄ elindeki hisleri fark et.",
+"Bir dakika yalnÄ±zca sol elindeki hisleri fark et.",
+"IÅÄ±k ve gÃ¶lgelerde 5 farklÄ± ton bul.",
+"Bir kelime seÃ§ ve 8 Ã§aÄrÄ±ÅÄ±m bul.",
+"2 dakika yaptÄ±ÄÄ±n iÅi yarÄ± hÄ±zÄ±nda yap.",
+"Ãevrende Ã¼Ã§ farklÄ± sÄ±caklÄ±k hissi bul.",
+"Bir nesneyi incele, gÃ¶zÃ¼nÃ¼ kapat ve ayrÄ±ntÄ±larÄ±nÄ± hatÄ±rla.",
+"1'den 20'ye Ã§ok yavaÅ say.",
+"A, E ve K harfiyle baÅlayan nesneler bul.",
+"Bir dakika Ã§eneni ve omuzlarÄ±nÄ± gevÅet.",
+"Telefonu ters Ã§evir ve 3 dakika tek iÅe odaklan.",
+"Bir ses seÃ§ ve kaybolana kadar takip et.",
+"BeÅ nesneyi zihninde boyut sÄ±rasÄ±na koy.",
+"Bir dakika yalnÄ±zca Ã§evrendeki hareketleri fark et."
 ];
 
 const goodSets = [
-["Bugün iyi gelen...","Teşekkür ettiğin...","Gülümsediğin..."],
-["Bugün başardığın küçük şey...","Sana iyi davranan biri...","Fark ettiğin güzel ayrıntı..."],
-["Bugün öğrendiğin...","Rahatladığın an...","Kendinde takdir ettiğin..."],
-["Bugün keyif aldığın...","Sana destek olan...","Yarın taşımak istediğin his..."],
-["Bugün iyi ki dediğin...","Kendin için yaptığın...","Hatırlamak istediğin an..."],
-["Bugün seni güldüren...","Kolaylaştırdığın bir şey...","Şanslı hissettiğin konu..."],
-["Bugün tamamladığın...","Duyduğun güzel söz...","Kendine teşekkür ettiğin şey..."],
-["Bugün gördüğün güzel şey...","Duyduğun güzel şey...","Hissettiğin güzel şey..."],
-["Bugün cesaret ettiğin...","Bırakabildiğin...","Kabul edebildiğin..."],
-["Bugün sana enerji veren...","Sakinleştiren...","Umutlandıran..."]
+["BugÃ¼n iyi gelen...","TeÅekkÃ¼r ettiÄin...","GÃ¼lÃ¼msediÄin..."],
+["BugÃ¼n baÅardÄ±ÄÄ±n kÃ¼Ã§Ã¼k Åey...","Sana iyi davranan biri...","Fark ettiÄin gÃ¼zel ayrÄ±ntÄ±..."],
+["BugÃ¼n Ã¶ÄrendiÄin...","RahatladÄ±ÄÄ±n an...","Kendinde takdir ettiÄin..."],
+["BugÃ¼n keyif aldÄ±ÄÄ±n...","Sana destek olan...","YarÄ±n taÅÄ±mak istediÄin his..."],
+["BugÃ¼n iyi ki dediÄin...","Kendin iÃ§in yaptÄ±ÄÄ±n...","HatÄ±rlamak istediÄin an..."],
+["BugÃ¼n seni gÃ¼ldÃ¼ren...","KolaylaÅtÄ±rdÄ±ÄÄ±n bir Åey...","ÅanslÄ± hissettiÄin konu..."],
+["BugÃ¼n tamamladÄ±ÄÄ±n...","DuyduÄun gÃ¼zel sÃ¶z...","Kendine teÅekkÃ¼r ettiÄin Åey..."],
+["BugÃ¼n gÃ¶rdÃ¼ÄÃ¼n gÃ¼zel Åey...","DuyduÄun gÃ¼zel Åey...","HissettiÄin gÃ¼zel Åey..."],
+["BugÃ¼n cesaret ettiÄin...","BÄ±rakabildiÄin...","Kabul edebildiÄin..."],
+["BugÃ¼n sana enerji veren...","SakinleÅtiren...","UmutlandÄ±ran..."]
 ];
 
 const memorySets = [
-["Limon","Saat","Köprü","Mavi","Anahtar","Bulut"],
-["Kalem","Deniz","Masa","Yeşil","Kapı","Yıldız"],
-["Kitap","Kedi","Güneş","Bardak","Sarı","Tren"],
-["Ağaç","Telefon","Kırmızı","Ay","Çanta","Nehir"],
-["Bisiklet","Kahve","Mor","Pencere","Kuş","Taş"],
+["Limon","Saat","KÃ¶prÃ¼","Mavi","Anahtar","Bulut"],
+["Kalem","Deniz","Masa","YeÅil","KapÄ±","YÄ±ldÄ±z"],
+["Kitap","Kedi","GÃ¼neÅ","Bardak","SarÄ±","Tren"],
+["AÄaÃ§","Telefon","KÄ±rmÄ±zÄ±","Ay","Ãanta","Nehir"],
+["Bisiklet","Kahve","Mor","Pencere","KuÅ","TaÅ"],
 ["Balon","Orman","Saat","Turuncu","Kutu","Yol"],
-["Mum","Deniz","Elma","Beyaz","Köprü","Radyo"],
-["Çiçek","Bulut","Sandalye","Mavi","Anahtar","Gemi"],
-["Karpuz","Dağ","Kalem","Sarı","Kapı","Yıldız"],
-["Kitap","Kahve","Ay","Yeşil","Telefon","Nehir"]
+["Mum","Deniz","Elma","Beyaz","KÃ¶prÃ¼","Radyo"],
+["ÃiÃ§ek","Bulut","Sandalye","Mavi","Anahtar","Gemi"],
+["Karpuz","DaÄ","Kalem","SarÄ±","KapÄ±","YÄ±ldÄ±z"],
+["Kitap","Kahve","Ay","YeÅil","Telefon","Nehir"]
 ];
 
 const checkinQuestions = [
 {
-text:"Bugünkü ruh hâlin nasıl?",
+text:"BugÃ¼nkÃ¼ ruh hÃ¢lin nasÄ±l?",
 key:"mood",
 options:[
-["😞 Çok kötü",1],
-["🙁 Kötü",2],
-["😐 Orta",3],
-["🙂 İyi",4],
-["😄 Çok iyi",5]
+["ð Ãok kÃ¶tÃ¼",1],
+["ð KÃ¶tÃ¼",2],
+["ð Orta",3],
+["ð Ä°yi",4],
+["ð Ãok iyi",5]
 ]
 },
 {
-text:"Stres seviyen nasıl?",
+text:"Stres seviyen nasÄ±l?",
 key:"stress",
 options:[
-["😌 Çok düşük",1],
-["🙂 Düşük",2],
-["😐 Orta",3],
-["😟 Yüksek",4],
-["😵 Çok yüksek",5]
+["ð Ãok dÃ¼ÅÃ¼k",1],
+["ð DÃ¼ÅÃ¼k",2],
+["ð Orta",3],
+["ð YÃ¼ksek",4],
+["ðµ Ãok yÃ¼ksek",5]
 ]
 },
 {
-text:"Enerjin nasıl?",
+text:"Enerjin nasÄ±l?",
 key:"energy",
 options:[
-["🪫 Çok düşük",1],
-["😴 Düşük",2],
-["😐 Orta",3],
-["⚡ İyi",4],
-["🔥 Çok yüksek",5]
+["ðª« Ãok dÃ¼ÅÃ¼k",1],
+["ð´ DÃ¼ÅÃ¼k",2],
+["ð Orta",3],
+["â¡ Ä°yi",4],
+["ð¥ Ãok yÃ¼ksek",5]
 ]
 },
 {
 text:"Zihnin ne kadar dolu?",
 key:"mind",
 options:[
-["🌤️ Rahat",1],
-["☁️ Biraz dolu",2],
-["🌥️ Karışık",3],
-["🌧️ Çok dolu",4],
-["🌪️ Aşırı yoğun",5]
+["ð¤ï¸ Rahat",1],
+["âï¸ Biraz dolu",2],
+["ð¥ï¸ KarÄ±ÅÄ±k",3],
+["ð§ï¸ Ãok dolu",4],
+["ðªï¸ AÅÄ±rÄ± yoÄun",5]
 ]
 },
 {
-text:"Şu an neye ihtiyacın var?",
+text:"Åu an neye ihtiyacÄ±n var?",
 key:"need",
 options:[
-["🌬️ Sakinleşmek",1],
-["🎯 Odaklanmak",2],
-["✨ Kafamı dağıtmak",3]
+["ð¬ï¸ SakinleÅmek",1],
+["ð¯ Odaklanmak",2],
+["â¨ KafamÄ± daÄÄ±tmak",3]
 ]
 }
 ];
 
 let currentQuestion = 0;
 let checkinAnswers = {};
-let breathTimer = null;
 let memoryCorrect = "";
 
 
@@ -1274,8 +1067,8 @@ let authMode="login";
 
 function toggleAuthMode(){
 authMode=authMode==="login"?"register":"login";
-$("authTitle").textContent=authMode==="login"?"Giriş Yap":"Üye Ol";
-$("authToggle").textContent=authMode==="login"?"Hesabın yok mu? Üye ol":"Zaten hesabın var mı? Giriş yap";
+$("authTitle").textContent=authMode==="login"?"GiriÅ Yap":"Ãye Ol";
+$("authToggle").textContent=authMode==="login"?"HesabÄ±n yok mu? Ãye ol":"Zaten hesabÄ±n var mÄ±? GiriÅ yap";
 $("authName").style.display=authMode==="login"?"none":"block";
 }
 
@@ -1285,27 +1078,27 @@ const password=$("authPassword").value.trim();
 const name=$("authName").value.trim();
 
 if(!email || !password){
-toast("E-posta ve şifre gerekli.");
+toast("E-posta ve Åifre gerekli.");
 return;
 }
 
 if(authMode==="register"){
 if(!name){
-toast("Adını yaz.");
+toast("AdÄ±nÄ± yaz.");
 return;
 }
 localStorage.setItem("kmAccount",JSON.stringify({name:name,email:email,password:password}));
 localStorage.setItem("kmSession","1");
-toast("Üyelik oluşturuldu ✓");
+toast("Ãyelik oluÅturuldu â");
 }else{
 let account=null;
 try{account=JSON.parse(localStorage.getItem("kmAccount")||"null");}catch(e){}
 if(!account || account.email!==email || account.password!==password){
-toast("E-posta veya şifre hatalı.");
+toast("E-posta veya Åifre hatalÄ±.");
 return;
 }
 localStorage.setItem("kmSession","1");
-toast("Giriş yapıldı ✓");
+toast("GiriÅ yapÄ±ldÄ± â");
 }
 
 setTimeout(()=>showScreen("profile"),500);
@@ -1314,28 +1107,28 @@ setTimeout(()=>showScreen("profile"),500);
 function logout(){
 localStorage.removeItem("kmSession");
 renderProfile();
-toast("Çıkış yapıldı.");
+toast("ÃÄ±kÄ±Å yapÄ±ldÄ±.");
 }
 
 const perspectivePrompts=[
-["Kontrol Alanı","Bu konuda gerçekten kontrol edebildiğin şey ne? Kontrol edemediğin kısmı bir kenara bıraksan bugün atabileceğin en küçük adım hangisi olurdu?"],
-["Yakın Arkadaşın Olsaydı","Aynı durumu çok sevdiğin bir arkadaşın yaşasaydı ona ne söylerdin? Şimdi o cümlenin sana da uyabilecek kısmını düşün."],
-["Bir Ay Sonradan Bak","Bir ay sonraki hâlin bugünkü bu konuya baksa, sence hangi ayrıntının sandığın kadar büyük olmadığını söylerdi?"],
-["Tersinden Bak","Bu durumun yalnızca kötü tarafını değil, sana gösterdiği ihtiyacı düşün. Belki sınır koymak, dinlenmek, konuşmak veya karar vermek gerekiyordur."],
-["Tek Cümleye İndir","Konuyu bütün ayrıntılarından arındırıp tek cümleye indir. Sonra kendine sor: Bu cümlede çözebileceğim ilk parça hangisi?"]
+["Kontrol AlanÄ±","Bu konuda gerÃ§ekten kontrol edebildiÄin Åey ne? Kontrol edemediÄin kÄ±smÄ± bir kenara bÄ±raksan bugÃ¼n atabileceÄin en kÃ¼Ã§Ã¼k adÄ±m hangisi olurdu?"],
+["YakÄ±n ArkadaÅÄ±n OlsaydÄ±","AynÄ± durumu Ã§ok sevdiÄin bir arkadaÅÄ±n yaÅasaydÄ± ona ne sÃ¶ylerdin? Åimdi o cÃ¼mlenin sana da uyabilecek kÄ±smÄ±nÄ± dÃ¼ÅÃ¼n."],
+["Bir Ay Sonradan Bak","Bir ay sonraki hÃ¢lin bugÃ¼nkÃ¼ bu konuya baksa, sence hangi ayrÄ±ntÄ±nÄ±n sandÄ±ÄÄ±n kadar bÃ¼yÃ¼k olmadÄ±ÄÄ±nÄ± sÃ¶ylerdi?"],
+["Tersinden Bak","Bu durumun yalnÄ±zca kÃ¶tÃ¼ tarafÄ±nÄ± deÄil, sana gÃ¶sterdiÄi ihtiyacÄ± dÃ¼ÅÃ¼n. Belki sÄ±nÄ±r koymak, dinlenmek, konuÅmak veya karar vermek gerekiyordur."],
+["Tek CÃ¼mleye Ä°ndir","Konuyu bÃ¼tÃ¼n ayrÄ±ntÄ±larÄ±ndan arÄ±ndÄ±rÄ±p tek cÃ¼mleye indir. Sonra kendine sor: Bu cÃ¼mlede Ã§Ã¶zebileceÄim ilk parÃ§a hangisi?"]
 ];
 
 function generatePerspective(){
 const text=$("perspectiveInput").value.trim();
 if(!text){
-toast("Önce aklındaki konuyu yaz.");
+toast("Ãnce aklÄ±ndaki konuyu yaz.");
 return;
 }
 const item=perspectivePrompts[indexFor(perspectivePrompts.length)];
 $("perspectiveTitle").textContent=item[0];
 $("perspectiveText").textContent=item[1];
 $("perspectiveResult").classList.remove("hidden");
-addHistory("Başka Bir Pencereden Bak kullanıldı","🪟");
+addHistory("BaÅka Bir Pencereden Bak kullanÄ±ldÄ±","ðª");
 }
 
 
@@ -1384,8 +1177,6 @@ if(id==="focus") renderFocus();
 if(id==="memory") prepareMemory();
 if(id==="goodThings") prepareGoodThings();
 if(id==="weather") renderWeather();
-if(id==="calendar") renderCalendar();
-if(id==="history") renderHistory();
 if(id==="profile") renderProfile();
 if(id==="goal") renderGoal();
 
@@ -1394,7 +1185,6 @@ window.scrollTo(0,0);
 
 function applyDailyContent(){
 const q=questions[indexFor(questions.length)];
-$("dailyQuestionText").textContent=q;
 if($("questionPreview")) $("questionPreview").textContent=q.length>70?q.slice(0,70)+"...":q;
 if($("questionPreviewExplore")) $("questionPreviewExplore").textContent=q.length>70?q.slice(0,70)+"...":q;
 renderFocus();
@@ -1477,7 +1267,7 @@ localStorage.setItem("checkin-"+day+"-"+slot,JSON.stringify(saved));
 
 increment("checks",1);
 addEnergy(20);
-addHistory(slot+" check-in tamamlandı","📝");
+addHistory(slot+" check-in tamamlandÄ±","ð");
 saveMood(checkinAnswers.mood);
 
 const seed=(day+slot+String(saved.mood)+String(saved.stress)+String(saved.energy)+String(saved.mind));
@@ -1486,42 +1276,42 @@ for(let i=0;i<seed.length;i++) hash=((hash<<5)-hash)+seed.charCodeAt(i);
 hash=Math.abs(hash);
 
 const stressed=[
-"Bugün zihnin yük taşıyor gibi görünüyor.",
-"Şu an biraz fazla uyaran altında kalmış olabilirsin.",
-"Zihinsel tempon bugün yüksek görünüyor.",
-"Biraz alan açmak bugün sana iyi gelebilir."
+"BugÃ¼n zihnin yÃ¼k taÅÄ±yor gibi gÃ¶rÃ¼nÃ¼yor.",
+"Åu an biraz fazla uyaran altÄ±nda kalmÄ±Å olabilirsin.",
+"Zihinsel tempon bugÃ¼n yÃ¼ksek gÃ¶rÃ¼nÃ¼yor.",
+"Biraz alan aÃ§mak bugÃ¼n sana iyi gelebilir."
 ];
 const positive=[
-"Bugünkü cevapların olumlu bir denge gösteriyor.",
-"Enerjin ve ruh hâlin bugün iyi bir noktada.",
-"Bugün kendini taşıyacak gücün var gibi görünüyor.",
-"İç dengen bugün daha açık ve hareketli."
+"BugÃ¼nkÃ¼ cevaplarÄ±n olumlu bir denge gÃ¶steriyor.",
+"Enerjin ve ruh hÃ¢lin bugÃ¼n iyi bir noktada.",
+"BugÃ¼n kendini taÅÄ±yacak gÃ¼cÃ¼n var gibi gÃ¶rÃ¼nÃ¼yor.",
+"Ä°Ã§ dengen bugÃ¼n daha aÃ§Ä±k ve hareketli."
 ];
 const mixed=[
-"Bugün bazı alanlarda iyi, bazı alanlarda yorgun görünüyorsun.",
-"Bugünkü tablo dengeli ama dalgalı.",
-"Zihnin ve enerjin aynı hızda ilerlemiyor olabilir.",
-"Bugün küçük molalarla ritmini korumak iyi olabilir."
+"BugÃ¼n bazÄ± alanlarda iyi, bazÄ± alanlarda yorgun gÃ¶rÃ¼nÃ¼yorsun.",
+"BugÃ¼nkÃ¼ tablo dengeli ama dalgalÄ±.",
+"Zihnin ve enerjin aynÄ± hÄ±zda ilerlemiyor olabilir.",
+"BugÃ¼n kÃ¼Ã§Ã¼k molalarla ritmini korumak iyi olabilir."
 ];
 
 let pool=mixed;
-let emoji="🌤️";
-if(saved.stress>=4 || saved.mind>=4){pool=stressed;emoji="🌧️";}
-else if(saved.mood>=4 && saved.energy>=3){pool=positive;emoji="☀️";}
+let emoji="ð¤ï¸";
+if(saved.stress>=4 || saved.mind>=4){pool=stressed;emoji="ð§ï¸";}
+else if(saved.mood>=4 && saved.energy>=3){pool=positive;emoji="âï¸";}
 
 $("resultEmoji").textContent=emoji;
 $("resultTitle").textContent=pool[hash%pool.length];
 
 let advice=[];
-if(saved.stress>=4) advice.push("2 dakikalık Nefes Ritmi");
-if(saved.mind>=4) advice.push("Odak Molası");
-if(saved.energy<=2) advice.push("kısa ve hafif bir mola");
-if(saved.need===2) advice.push("Hafıza Oyunu");
-if(saved.need===3) advice.push("Sürpriz Kapsül");
-if(!advice.length) advice.push("Günün Sorusu");
+if(saved.stress>=4) advice.push("2 dakikalÄ±k Nefes Ritmi");
+if(saved.mind>=4) advice.push("Odak MolasÄ±");
+if(saved.energy<=2) advice.push("kÄ±sa ve hafif bir mola");
+if(saved.need===2) advice.push("HafÄ±za Oyunu");
+if(saved.need===3) advice.push("SÃ¼rpriz KapsÃ¼l");
+if(!advice.length) advice.push("GÃ¼nÃ¼n Sorusu");
 
-$("resultAdvice").textContent="Sana şu an "+advice[0]+" uygun görünüyor.";
-$("resultText").textContent=slot+" cevaplarına göre hazırlandı. Aynı gün içindeki diğer check-in'lerle birlikte 02:00 sonrası günlük rapora dönüşür.";
+$("resultAdvice").textContent="Sana Åu an "+advice[0]+" uygun gÃ¶rÃ¼nÃ¼yor.";
+$("resultText").textContent=slot+" cevaplarÄ±na gÃ¶re hazÄ±rlandÄ±. AynÄ± gÃ¼n iÃ§indeki diÄer check-in'lerle birlikte 02:00 sonrasÄ± gÃ¼nlÃ¼k rapora dÃ¶nÃ¼ÅÃ¼r.";
 
 refreshHome();
 showScreen("result");
@@ -1553,17 +1343,17 @@ $("breathCircle").textContent=seconds%8<4?"Nefes Al":"Nefes Ver";
 if(seconds<=0){
 clearInterval(breathTimer);
 $("breathTime").textContent="00:00";
-$("breathCircle").textContent="Tamamlandı";
+$("breathCircle").textContent="TamamlandÄ±";
 }
 },1000);
 }
 
 function finishExperience(name){
-increment("experiences",1);
+increment(1);
 addEnergy(15);
-addHistory(name+" tamamlandı","✨");
+addHistory(name+" tamamlandÄ±","â¨");
 refreshHome();
-toast(name+" tamamlandı 🎉");
+toast(name+" tamamlandÄ± ð");
 
 setTimeout(()=>{
 showScreen("home");
@@ -1573,18 +1363,18 @@ showScreen("home");
 function prepareMemory(){
 const set=memorySets[indexFor(memorySets.length)];
 
-$("memoryWords").innerHTML=set.slice(0,3).join(" · ")+"<br>"+set.slice(3).join(" · ");
+$("memoryWords").innerHTML=set.slice(0,3).join(" Â· ")+"<br>"+set.slice(3).join(" Â· ");
 $("memoryQuestion").classList.add("hidden");
 
 memoryCorrect=set[indexFor(set.length)];
 }
 
 function hideMemory(){
-$("memoryWords").textContent="••••••";
+$("memoryWords").textContent="â¢â¢â¢â¢â¢â¢";
 
 const wrongPool=[
 "Bisiklet","Kitap","Radyo","Orman","Balon",
-"Karpuz","Çiçek","Tren","Gemi","Makas"
+"Karpuz","ÃiÃ§ek","Tren","Gemi","Makas"
 ].filter(x=>x!==memoryCorrect);
 
 const wrong1=wrongPool[(dayNumber()+2)%wrongPool.length];
@@ -1604,14 +1394,14 @@ $("memoryQuestion").classList.remove("hidden");
 
 function answerMemory(value){
 if(value===memoryCorrect){
-toast("Doğru! 🧠");
+toast("DoÄru! ð§ ");
 }else{
-toast("Doğru cevap: "+memoryCorrect);
+toast("DoÄru cevap: "+memoryCorrect);
 }
 
-increment("experiences",1);
+increment(1);
 addEnergy(15);
-addHistory("Hafıza Oyunu tamamlandı","🧠");
+addHistory("HafÄ±za Oyunu tamamlandÄ±","ð§ ");
 refreshHome();
 
 setTimeout(()=>{
@@ -1635,7 +1425,7 @@ $("good3").value.trim()
 ];
 
 if(!values.some(Boolean)){
-toast("En az bir şey yaz.");
+toast("En az bir Åey yaz.");
 return;
 }
 
@@ -1648,9 +1438,9 @@ localStorage.setItem(rewardKey,"1");
 addEnergy(10);
 }
 
-addHistory("3 İyi Şey kaydedildi","🌱");
+addHistory("3 Ä°yi Åey kaydedildi","ð±");
 refreshHome();
-toast("Kaydedildi 🌱");
+toast("Kaydedildi ð±");
 
 setTimeout(()=>{
 showScreen("home");
@@ -1661,7 +1451,7 @@ function saveDailyAnswer(){
 const answer=$("dailyAnswer").value.trim();
 
 if(!answer){
-toast("Önce birkaç kelime yaz.");
+toast("Ãnce birkaÃ§ kelime yaz.");
 return;
 }
 
@@ -1674,9 +1464,9 @@ localStorage.setItem(rewardKey,"1");
 addEnergy(10);
 }
 
-addHistory("Günün sorusu cevaplandı","💭");
+addHistory("GÃ¼nÃ¼n sorusu cevaplandÄ±","ð­");
 refreshHome();
-toast("Cevabın kaydedildi");
+toast("CevabÄ±n kaydedildi");
 
 setTimeout(()=>{
 showScreen("home");
@@ -1686,14 +1476,14 @@ showScreen("home");
 function openCapsule(){
 const task=capsules[indexFor(capsules.length)];
 
-$("capsuleBox").innerHTML="<h2>🎁 Görevin</h2><p>"+task+"</p>";
+$("capsuleBox").innerHTML="<h2>ð GÃ¶revin</h2><p>"+task+"</p>";
 
 const rewardKey="capsuleReward-"+localDateKey();
 
 if(!localStorage.getItem(rewardKey)){
 localStorage.setItem(rewardKey,"1");
 addEnergy(5);
-addHistory("Sürpriz Kapsül açıldı","🎁");
+addHistory("SÃ¼rpriz KapsÃ¼l aÃ§Ä±ldÄ±","ð");
 refreshHome();
 }
 }
@@ -1724,8 +1514,8 @@ const goal=getGoal();
 if(!goal){
 $("goalChoose").classList.remove("hidden");
 $("goalActive").classList.add("hidden");
-if($("goalPreview")) $("goalPreview").textContent="Küçük bir hedef seç ve 3 gün boyunca dene.";
-if($("goalPreviewExplore")) $("goalPreviewExplore").textContent="Küçük bir hedef seç ve 3 gün boyunca dene.";
+if($("goalPreview")) $("goalPreview").textContent="KÃ¼Ã§Ã¼k bir hedef seÃ§ ve 3 gÃ¼n boyunca dene.";
+if($("goalPreviewExplore")) $("goalPreviewExplore").textContent="KÃ¼Ã§Ã¼k bir hedef seÃ§ ve 3 gÃ¼n boyunca dene.";
 return;
 }
 
@@ -1734,14 +1524,14 @@ $("goalActive").classList.remove("hidden");
 
 $("goalEmoji").textContent=goal.emoji;
 $("goalTitle").textContent=goal.title;
-$("goalStatus").textContent=goal.done.length+" / 3 gün tamamlandı";
+$("goalStatus").textContent=goal.done.length+" / 3 gÃ¼n tamamlandÄ±";
 
 $("goalDays").innerHTML=[1,2,3].map((n,i)=>{
-return '<div class="goalDay '+(goal.done[i]?"done":"")+'"><strong>Gün '+n+'</strong><br><br>'+(goal.done[i]?"✓":"○")+'</div>';
+return '<div class="goalDay '+(goal.done[i]?"done":"")+'"><strong>GÃ¼n '+n+'</strong><br><br>'+(goal.done[i]?"â":"â")+'</div>';
 }).join("");
 
-if($("goalPreview")) $("goalPreview").textContent=goal.emoji+" "+goal.title+" · "+goal.done.length+"/3";
-if($("goalPreviewExplore")) $("goalPreviewExplore").textContent=goal.emoji+" "+goal.title+" · "+goal.done.length+"/3";
+if($("goalPreview")) $("goalPreview").textContent=goal.emoji+" "+goal.title+" Â· "+goal.done.length+"/3";
+if($("goalPreviewExplore")) $("goalPreviewExplore").textContent=goal.emoji+" "+goal.title+" Â· "+goal.done.length+"/3";
 }
 
 function completeGoalDay(){
@@ -1752,12 +1542,12 @@ if(!goal) return;
 const today=localDateKey();
 
 if(goal.done.includes(today)){
-toast("Bugünü zaten tamamladın 😄");
+toast("BugÃ¼nÃ¼ zaten tamamladÄ±n ð");
 return;
 }
 
 if(goal.done.length>=3){
-toast("Bu hedef zaten tamamlandı 🎉");
+toast("Bu hedef zaten tamamlandÄ± ð");
 return;
 }
 
@@ -1765,13 +1555,13 @@ goal.done.push(today);
 localStorage.setItem("miniGoal",JSON.stringify(goal));
 
 addEnergy(20);
-addHistory("Mini hedef günü tamamlandı","🎯");
+addHistory("Mini hedef gÃ¼nÃ¼ tamamlandÄ±","ð¯");
 
 if(goal.done.length===3){
 addEnergy(40);
-toast("3 günlük hedef tamamlandı! 🎉");
+toast("3 gÃ¼nlÃ¼k hedef tamamlandÄ±! ð");
 }else{
-toast("Bugün tamamlandı ✓");
+toast("BugÃ¼n tamamlandÄ± â");
 }
 
 renderGoal();
@@ -1792,47 +1582,47 @@ data=JSON.parse(localStorage.getItem("lastAnswers")||"{}");
 }catch(e){}
 
 if(!data.stress){
-$("weatherEmoji").textContent="🌤️";
-$("weatherTitle").textContent="Henüz veri yok";
-$("weatherText").textContent="Check-in tamamladığında burada yorum oluşacak.";
+$("weatherEmoji").textContent="ð¤ï¸";
+$("weatherTitle").textContent="HenÃ¼z veri yok";
+$("weatherText").textContent="Check-in tamamladÄ±ÄÄ±nda burada yorum oluÅacak.";
 return;
 }
 
 const d=dayNumber();
 
 const stressTexts=[
-"Bugün zihinsel hava biraz yağmurlu.",
-"Bugün bulutlar biraz yoğun görünüyor.",
-"Bugün zihnin dinlenmek istiyor olabilir.",
-"Bugün tempoyu biraz azaltmak iyi olabilir."
+"BugÃ¼n zihinsel hava biraz yaÄmurlu.",
+"BugÃ¼n bulutlar biraz yoÄun gÃ¶rÃ¼nÃ¼yor.",
+"BugÃ¼n zihnin dinlenmek istiyor olabilir.",
+"BugÃ¼n tempoyu biraz azaltmak iyi olabilir."
 ];
 
 const goodTexts=[
-"Bugün zihinsel hava açık.",
-"İç dünyanda güneşli bir hava var.",
-"Bugün enerjin olumlu görünüyor.",
-"Bugün zihinsel hava hareketli ve açık."
+"BugÃ¼n zihinsel hava aÃ§Ä±k.",
+"Ä°Ã§ dÃ¼nyanda gÃ¼neÅli bir hava var.",
+"BugÃ¼n enerjin olumlu gÃ¶rÃ¼nÃ¼yor.",
+"BugÃ¼n zihinsel hava hareketli ve aÃ§Ä±k."
 ];
 
 const middleTexts=[
-"Bugün parçalı bulutlu.",
-"Bugün dengeli ama değişken bir hava var.",
-"Sakin ve hareketli anlar bugün karışık.",
-"Bugün kendini gözlemlemek için güzel bir gün."
+"BugÃ¼n parÃ§alÄ± bulutlu.",
+"BugÃ¼n dengeli ama deÄiÅken bir hava var.",
+"Sakin ve hareketli anlar bugÃ¼n karÄ±ÅÄ±k.",
+"BugÃ¼n kendini gÃ¶zlemlemek iÃ§in gÃ¼zel bir gÃ¼n."
 ];
 
 if(data.stress>=4){
-$("weatherEmoji").textContent="🌧️";
+$("weatherEmoji").textContent="ð§ï¸";
 $("weatherTitle").textContent=stressTexts[d%stressTexts.length];
-$("weatherText").textContent="Kısa bir nefes veya odak molası deneyebilirsin.";
+$("weatherText").textContent="KÄ±sa bir nefes veya odak molasÄ± deneyebilirsin.";
 }else if(data.mood>=4){
-$("weatherEmoji").textContent="☀️";
+$("weatherEmoji").textContent="âï¸";
 $("weatherTitle").textContent=goodTexts[d%goodTexts.length];
-$("weatherText").textContent="Bu enerjiyi küçük ve anlamlı bir işe yönlendirebilirsin.";
+$("weatherText").textContent="Bu enerjiyi kÃ¼Ã§Ã¼k ve anlamlÄ± bir iÅe yÃ¶nlendirebilirsin.";
 }else{
-$("weatherEmoji").textContent="🌤️";
+$("weatherEmoji").textContent="ð¤ï¸";
 $("weatherTitle").textContent=middleTexts[d%middleTexts.length];
-$("weatherText").textContent="Kendini zorlamadan küçük adımlarla ilerleyebilirsin.";
+$("weatherText").textContent="Kendini zorlamadan kÃ¼Ã§Ã¼k adÄ±mlarla ilerleyebilirsin.";
 }
 }
 
@@ -1879,9 +1669,9 @@ const mood=data[key];
 let content=day;
 
 if(mood){
-if(mood>=4) content="🙂";
-else if(mood===3) content="😐";
-else content="🙁";
+if(mood>=4) content="ð";
+else if(mood===3) content="ð";
+else content="ð";
 }
 
 const todayClass=day===now.getDate()?"today":"";
@@ -1905,7 +1695,7 @@ emoji:emoji,
 date:new Date().toLocaleString("tr-TR")
 });
 
-localStorage.setItem("history",JSON.stringify(history.slice(0,50)));
+localStorage.setItem(JSON.stringify(history.slice(0,50)));
 }
 
 function renderHistory(){
@@ -1916,7 +1706,7 @@ history=JSON.parse(localStorage.getItem("history")||"[]");
 }catch(e){}
 
 if(history.length===0){
-$("historyList").innerHTML='<p class="muted">Henüz aktivite yok.</p>';
+$("historyList").innerHTML='<p class="muted">HenÃ¼z aktivite yok.</p>';
 return;
 }
 
@@ -1966,26 +1756,26 @@ percent:Math.max(0,Math.min(100,percent))
 function refreshHome(){
 const rank=getRank();
 
-$("rankName").textContent="Rütbe: "+rank.name;
-$("energyText").textContent="⚡ "+rank.energy+" Enerji";
+$("rankName").textContent="RÃ¼tbe: "+rank.name;
+$("energyText").textContent="â¡ "+rank.energy+" Enerji";
 $("rankBar").style.width=rank.percent+"%";
 
 if(rank.name===rank.next){
-$("rankNext").textContent="En yüksek rütbedesin.";
+$("rankNext").textContent="En yÃ¼ksek rÃ¼tbedesin.";
 }else{
-$("rankNext").textContent="Sonraki rütbe: "+rank.next;
+$("rankNext").textContent="Sonraki rÃ¼tbe: "+rank.next;
 }
 
 renderGoal();
 
 const currentSlot=getCheckinSlot();
 if($("homeCheckinTitle")){
-$("homeCheckinTitle").textContent=currentSlot ? currentSlot+" Check-in'i" : "Sıradaki Check-in";
+$("homeCheckinTitle").textContent=currentSlot ? currentSlot+" Check-in'i" : "SÄ±radaki Check-in";
 const day=checkinDayKey();
 const doneSlots=["08:00","20:00","00:00"].filter(x=>localStorage.getItem("checkin-"+day+"-"+x));
 $("homeCheckinText").textContent=doneSlots.length
-? "Bugün tamamlanan: "+doneSlots.join(" · ")+" — İstersen herhangi bir testi yeniden yapabilirsin."
-: "08:00 · 20:00 · 00:00 — Saatini kaçırdıysan da şimdi tamamlayabilirsin.";
+? "BugÃ¼n tamamlanan: "+doneSlots.join(" Â· ")+" â Ä°stersen herhangi bir testi yeniden yapabilirsin."
+: "08:00 Â· 20:00 Â· 00:00 â Saatini kaÃ§Ä±rdÄ±ysan da Åimdi tamamlayabilirsin.";
 }
 }
 
@@ -2034,10 +1824,10 @@ const stress=avg(tests,"stress");
 const energy=avg(tests,"energy");
 const mind=avg(tests,"mind");
 
-let summary="Gün içindeki cevapların genel olarak dengeli ama değişken bir tablo gösteriyor.";
-if(stress>=4) summary="Gün boyunca stres seviyesi yüksek tarafta kaldı. Kısa molaları gün içine yaymak iyi gelebilir.";
-else if(mood>=4 && energy>=3.5) summary="Ruh hâlin ve enerjin gün genelinde olumlu tarafta ilerledi.";
-else if(energy<=2) summary="Enerjin gün genelinde düşük seyretti. Dinlenmeye ve yükünü azaltmaya biraz daha alan açabilirsin.";
+let summary="GÃ¼n iÃ§indeki cevaplarÄ±n genel olarak dengeli ama deÄiÅken bir tablo gÃ¶steriyor.";
+if(stress>=4) summary="GÃ¼n boyunca stres seviyesi yÃ¼ksek tarafta kaldÄ±. KÄ±sa molalarÄ± gÃ¼n iÃ§ine yaymak iyi gelebilir.";
+else if(mood>=4 && energy>=3.5) summary="Ruh hÃ¢lin ve enerjin gÃ¼n genelinde olumlu tarafta ilerledi.";
+else if(energy<=2) summary="Enerjin gÃ¼n genelinde dÃ¼ÅÃ¼k seyretti. Dinlenmeye ve yÃ¼kÃ¼nÃ¼ azaltmaya biraz daha alan aÃ§abilirsin.";
 
 const report={
 day:day,
@@ -2063,16 +1853,16 @@ let reports=[];
 try{reports=JSON.parse(localStorage.getItem("dailyReports")||"[]");}catch(e){}
 
 if(!reports.length){
-$("dailyReports").innerHTML='<p class="muted">Henüz rapor oluşmadı. Test yaptığın günün ardından saat 02:00 sonrası burada görünecek.</p>';
+$("dailyReports").innerHTML='<p class="muted">HenÃ¼z rapor oluÅmadÄ±. Test yaptÄ±ÄÄ±n gÃ¼nÃ¼n ardÄ±ndan saat 02:00 sonrasÄ± burada gÃ¶rÃ¼necek.</p>';
 return;
 }
 
 $("dailyReports").innerHTML=reports.map(r=>
 '<div class="historyItem">'+
-'<strong>📄 '+r.day+' Raporu</strong>'+
-'<small>'+r.count+'/3 test · '+r.slots.join(" · ")+'</small>'+
+'<strong>ð '+r.day+' Raporu</strong>'+
+'<small>'+r.count+'/3 test Â· '+r.slots.join(" Â· ")+'</small>'+
 '<p>'+r.summary+'</p>'+
-'<small>Ruh hâli: '+r.mood+' · Stres: '+r.stress+' · Enerji: '+r.energy+' · Zihin: '+r.mind+'</small>'+
+'<small>Ruh hÃ¢li: '+r.mood+' Â· Stres: '+r.stress+' Â· Enerji: '+r.energy+' Â· Zihin: '+r.mind+'</small>'+
 '</div>'
 ).join("");
 }
@@ -2085,12 +1875,12 @@ const logged=localStorage.getItem("kmSession")==="1" && account;
 if(logged){
 $("accountTitle").textContent="Merhaba, "+account.name;
 $("accountText").textContent=account.email;
-$("accountButton").textContent="Çıkış Yap";
+$("accountButton").textContent="ÃÄ±kÄ±Å Yap";
 $("accountButton").onclick=logout;
 }else{
-$("accountTitle").textContent="Üyelik";
-$("accountText").textContent="Raporlarını ve profilini saklamak için giriş yap veya üye ol.";
-$("accountButton").textContent="Giriş Yap / Üye Ol";
+$("accountTitle").textContent="Ãyelik";
+$("accountText").textContent="RaporlarÄ±nÄ± ve profilini saklamak iÃ§in giriÅ yap veya Ã¼ye ol.";
+$("accountButton").textContent="GiriÅ Yap / Ãye Ol";
 $("accountButton").onclick=()=>showScreen("auth");
 }
 }
